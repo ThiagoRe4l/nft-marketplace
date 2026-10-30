@@ -1,0 +1,3 @@
+- TS fixado em 6.0: template do Vite veio com TS 7, typescript-eslint só suporta até 6.0.x.
+- MSW fixado em 2.x: @mswjs/socket.io-binding 0.2.0 exige msw ^2; o MSW 3 mudou a API de WebSocket.
+- .env commitado: só contém configuração não sensível; garante que checkout limpo e deploy rodem com mocks.
