@@ -24,6 +24,13 @@
 - order-timeout atrasa só a resposta da criação (15 s, acima do timeout do Axios); o reenvio com a mesma chave responde rápido e recupera o pedido.
 - Endpoints /api/__mock/* nunca sofrem falhas de cenário.
 - MSW avisa no console sobre chamadas a /api sem handler; o resto (assets, Vite) passa sem aviso.
+- Catálogo: estado na URL (validateSearch com .catch por campo: valor inválido é ignorado). Campos opcionais sem padrão; a API aplica os padrões e a URL fica limpa.
+- Mudar filtro volta para a página 1.
+- Fora de ordem: uma chave de cache por combinação de parâmetros + AbortSignal do Query repassado ao Axios (requisição obsoleta é cancelada).
+- keepPreviousData no catálogo: a lista anterior fica visível (esmaecida) enquanto a nova carrega.
+- Loader faz prefetch sem bloquear a navegação, para o skeleton aparecer.
+- Retry: queries não repetem 4xx e tentam até 2 vezes em rede/5xx; mutations nunca repetem sozinhas.
+- Axios serializa arrays como parâmetros repetidos (?category=a&category=b).
 
 ## Tempo real
 - Socket mockado via ws.link com URL explícita (VITE_SOCKET_URL + /*); o socket.io-client usa transports: ['websocket'], pois o MSW intercepta WebSocket e não long-polling.

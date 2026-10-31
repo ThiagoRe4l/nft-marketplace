@@ -6,8 +6,23 @@ import { routeTree } from './routeTree.gen'
 import './index.css'
 import { endSession } from './features/auth/session'
 import { setUnauthorizedHandler } from './shared/api/client'
+import { toAppError } from './shared/api/errors'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 15_000,
+      // 4xx não melhora tentando de novo; rede e 5xx tentam até 2 vezes
+      retry: (failureCount, error) => {
+        const { status } = toAppError(error)
+        if (status >= 400 && status < 500) return false
+        return failureCount < 2
+      },
+    },
+    // mutations nunca repetem sozinhas: pedido duplicado se evita com idempotência, não com sorte
+    mutations: { retry: false },
+  },
+})
 
 const router = createRouter({
   routeTree,

@@ -2,7 +2,11 @@ import axios, { type AxiosRequestConfig } from 'axios'
 import type { z } from 'zod'
 import { cartIdStorage, tokenStorage } from './storage'
 
-export const api = axios.create({ baseURL: '/api', timeout: 10_000 })
+export const api = axios.create({ 
+  baseURL: '/api',
+  timeout: 10_000,
+  paramsSerializer: { indexes: null }, // arrays como ?category=a&category=b
+})
 
 // identidade: com sessão vai o token; sem sessão, o carrinho de visitante
 api.interceptors.request.use((config) => {
