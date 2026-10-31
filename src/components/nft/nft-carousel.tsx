@@ -11,9 +11,6 @@ const navButton =
 
 const itemClass = 'w-[10.5rem] shrink-0 snap-start md:w-[calc((100%-3rem)/5)]'
 
-const favoriteIds = useFavoriteIds()
-const toggleFavorite = useToggleFavorite()
-
 type NftCarouselProps = {
   id: string
   title: string
@@ -24,6 +21,8 @@ type NftCarouselProps = {
 }
 
 export function NftCarousel({ id, title, listLabel, items, isPending, onAddToCart }: NftCarouselProps) {
+  const favoriteIds = useFavoriteIds()
+  const toggleFavorite = useToggleFavorite()
   const track = useRef<HTMLUListElement>(null)
 
   const scroll = (direction: 1 | -1) => {

@@ -53,6 +53,7 @@
 - Imagens dos NFTs estão em PNG 2x; converter para AVIF/WebP com dimensões fixas na fase do Lighthouse.
 - No Figma, o detalhe do Emerald Ape mostra a edição 1/50 selecionada com 1.19 ETH; nas fixtures, 1.19 é a edição mais barata e a 1/50 custa 1.79. Decidir na tela de detalhe: selecionar por padrão a edição mais barata, ou ajustar a fixture.
 - Bundle principal com 649 kB (208 kB gzip): investigar na fase do Lighthouse (o que entra no chunk inicial; mocks e zod são candidatos a separar).
+- Domingo: após a rodada final dos testes, copiar playwright-report/ para docs/e2e-report/ (relatório HTML é entregável).
 
 ## Integração
 - Axios com interceptor de identidade (Bearer ou X-Cart-Id) e de 401; o cliente só avisa, a camada de sessão decide (sem dependência circular com router/Query).
@@ -76,3 +77,21 @@
 - Cache guarda só os ids (o coração funciona igual no card e no detalhe); chave com o userId.
 - Visitante que tenta favoritar abre o diálogo de login e volta para a mesma página.
 - Cenário mutation-error (503 em toda escrita, exceto auth) para exercitar o rollback.
+
+## Conta
+- Mutations de perfil e avatar atualizam o cache do perfil e o da sessão: o nome e o avatar no Header mudam na hora.
+- Avatar enviado como multipart (FormData).
+- Salvar uma carteira invalida a lista de carteiras (cadastro e edição pelo mesmo PUT por slot).
+
+## Checkout
+- Formulário (react-hook-form + Zod) com os campos e a regra de endereço por rede do UpsertWalletInput (safeExtend), mais carteira escolhida e observação. Pré-preenchido com o perfil e a carteira principal; o rascunho fica em sessionStorage por usuário e vale mais que o pré-preenchimento (sobrevive a refresh e ao login depois de sessão expirada; é apagado ao criar o pedido).
+- Mapeamento dos campos do Figma: "Nome de usuário" = profileName, "Nome do perfil" = nickname, "ENS ou carteira secundária" = secondaryAddress.
+- Só rede e observação vão no pedido (com quoteId e walletId). Os demais campos são validados e guardados no rascunho, mas não editam a carteira: não há chamada de edição no checkout.
+- A carteira que paga é a escolhida num grupo de opções (radio) com as carteiras cadastradas ("Principal — MetaMask"); escolher uma preenche o formulário com os dados dela e desconecta a anterior. Sem carteira (ex.: Bruno): mensagem com link para /carteiras e "Revisar pedido" desabilitado.
+- Cotação desatualizada = a API devolveu QUOTE_STALE OU o carrinho foi relido depois da cotação e já não bate com ela (itens, quantidades, preços unitários, cupom e total). Só o dataUpdatedAt gerava aviso falso a cada refetch sem mudança (foco da janela, reconciliação do socket).
+- Cotação expirada (10 min) não tem timer no cliente: a API responde QUOTE_STALE e o fluxo é o mesmo.
+- Retomada: tentativa guardada sem orderId reenvia o body com a mesma chave de idempotência, uma única vez ao montar. Com QUOTE_STALE a tentativa é descartada (o servidor não criou pedido) e o fluxo volta ao normal.
+- Recibo usa só o snapshot do pedido (linhas, carteira, valores); o link do Etherscan é simulado e abre em nova aba com rel="noopener noreferrer".
+- Desvio do Figma (mobile): o frame mobile só tem escolha de carteira, total e Confirmar; o app empilha as mesmas seções do desktop (formulário, itens, carteira, Confirmar).
+- Desvio do Figma (recibo): vira a página /pedidos/$id em vez de modal; o "X" leva ao início; a ilustração "THANK YOU" é um ícone do lucide por falta de asset.
+- /carteiras é uma rota provisória e privada, só para o Link ser tipado; será substituída pela tela de Carteiras.

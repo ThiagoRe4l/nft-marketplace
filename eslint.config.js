@@ -6,7 +6,15 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist', 'src/routeTree.gen.ts', 'public/mockServiceWorker.js']),
+  globalIgnores([
+    'dist', 
+    'src/routeTree.gen.ts', 
+    'public/mockServiceWorker.js',
+    'test-results',
+    'playwright-report',
+    'lighthouse',
+    '.lighthouseci',
+  ]),
   {
     files: [
       '**/*.{ts,tsx}',
