@@ -28,3 +28,4 @@
 ## Pendências
 - maxPerOrder das fixtures (5 para edições acima de 1/10) não permite reproduzir o carrinho do Figma (quantidades 2, 6 e 9). Avaliar subir para 10 antes de gerar as baselines de regressão visual.
 - Imagens dos NFTs estão em PNG 2x; converter para AVIF/WebP com dimensões fixas na fase do Lighthouse.
+- No Figma, o detalhe do Emerald Ape mostra a edição 1/50 selecionada com 1.19 ETH; nas fixtures, 1.19 é a edição mais barata e a 1/50 custa 1.79. Decidir na tela de detalhe: selecionar por padrão a edição mais barata, ou ajustar a fixture.

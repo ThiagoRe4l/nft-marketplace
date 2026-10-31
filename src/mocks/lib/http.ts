@@ -43,3 +43,9 @@ export function requireSession(request: Request) {
   }
   return session
 }
+
+// Visitante é permitido; mas se veio um token e ele é inválido, continua sendo 401, para o app perceber que a sessão expirou em vez de virar visitante sem avisar
+export function optionalSession(request: Request) {
+  if (!request.headers.has('Authorization')) return null
+  return requireSession(request)
+}

@@ -1,6 +1,8 @@
 import { z } from 'zod'
 import { EthAmount, Id, PriceSummary } from './common'
 
+export const MergeCartInput = z.object({ guestCartId: Id })
+
 export const CartLine = z.object({
   id: Id,
   nftId: Id,
