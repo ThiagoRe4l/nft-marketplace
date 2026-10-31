@@ -17,6 +17,7 @@
 - Pagamento decidido 3 s após a criação; a decisão é retomada ao iniciar o mock e ao consultar o pedido, então sobrevive a refresh.
 - Pedido de outro usuário responde 404, não 403, para não revelar que existe.
 - Recibo é cópia das linhas da cotação; txHash determinístico derivado do id do pedido; link do explorer é simulado.
+- Slider de preço usa os limites reais do catálogo (priceRange da API, sobre o preço do card), e não os valores fixos do Figma (0,02 – 12,30).
 
 ## Tempo real
 - Socket mockado via ws.link com URL explícita (VITE_SOCKET_URL + /*); o socket.io-client usa transports: ['websocket'], pois o MSW intercepta WebSocket e não long-polling.

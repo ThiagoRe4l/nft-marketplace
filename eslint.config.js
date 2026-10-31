@@ -6,15 +6,20 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist', 'src/routeTree.gen.ts']),
+  globalIgnores(['dist', 'src/routeTree.gen.ts', 'public/mockServiceWorker.js']),
   {
-    files: ['**/*.{ts,tsx}'],
+    files: [
+      '**/*.{ts,tsx}',
+      'src/routes/**/*.tsx',
+      'src/components/ui/**/*.tsx'
+    ],
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
     ],
+    rules: { 'react-refresh/only-export-components': 'off' },
     languageOptions: {
       globals: globals.browser,
     },
