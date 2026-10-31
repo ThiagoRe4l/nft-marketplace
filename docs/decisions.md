@@ -8,6 +8,9 @@
 - routeTree.gen.ts commitado: o build roda tsc antes do vite, e um checkout limpo quebraria sem ele.
 - .env commitado: só contém configuração não sensível; garante que checkout limpo e deploy rodem com mocks.
 - mockServiceWorker.js versionado em public/: o deploy precisa servir o worker; sem ele, o rewrite SPA devolve HTML e o MSW falha.
+- Login com credenciais erradas devolve mensagem genérica (não revela se o e-mail existe).
+- Cadastro calcula o hash antes de checar duplicidade, para checagem e gravação acontecerem sem await no meio.
+- Usuário público gerado com User.parse: o Zod descarta passwordHash e passwordSalt.
 
 ## Tempo real
 - Socket mockado via ws.link com URL explícita (VITE_SOCKET_URL + /*); o socket.io-client usa transports: ['websocket'], pois o MSW intercepta WebSocket e não long-polling.
@@ -21,3 +24,7 @@
 - Sessão por token Bearer salvo no localStorage, enviado pelo interceptor do Axios.
 - Pedido recebe só quoteId + walletId: o pagamento usa as carteiras cadastradas, e o formulário vem preenchido com perfil e carteira.
 - Carteiras por slot fixo (primary/secondary), como no Figma.
+
+## Pendências
+- maxPerOrder das fixtures (5 para edições acima de 1/10) não permite reproduzir o carrinho do Figma (quantidades 2, 6 e 9). Avaliar subir para 10 antes de gerar as baselines de regressão visual.
+- Imagens dos NFTs estão em PNG 2x; converter para AVIF/WebP com dimensões fixas na fase do Lighthouse.
