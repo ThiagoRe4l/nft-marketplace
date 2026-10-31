@@ -6,6 +6,11 @@ App React + TS com backend 100% simulado por MSW. Enunciado completo e decisões
 - npm run dev | build | preview | typecheck | lint | test:e2e
 - Sempre rode `npm run typecheck` e `npm run lint` ao terminar uma tarefa.
 
+## Credenciais fictícias (mock)
+- ana@kurio.dev / kurio1234 (tem carteira)
+- bruno@kurio.dev / kurio5678 (sem carteira)
+- Reset do mock: POST /api/__mock/reset. Cenários: POST /api/__mock/scenario { name }.
+
 ## Versões fixadas (não atualizar)
 - TypeScript ~6.0 (typescript-eslint não suporta 7)
 - MSW 2.x (@mswjs/socket.io-binding exige msw ^2)
@@ -13,8 +18,11 @@ App React + TS com backend 100% simulado por MSW. Enunciado completo e decisões
 ## Estrutura
 - src/contracts/: schemas Zod, fonte única dos tipos (z.infer). Não duplique tipos.
 - src/mocks/: o "backend". db/ (store em memória + localStorage), handlers/ (um arquivo por recurso), realtime/ (Socket.IO via ws.link), lib/ (http, pricing, password).
+- src/features/<domínio>/: hooks de dados (queries.ts) e componentes da feature (components/).
+- src/shared/api/: cliente Axios (`request` valida a resposta com o schema), storage e errors (`toAppError`).
 - src/routes/: TanStack Router file-based. src/routeTree.gen.ts é gerado: não edite.
 - src/components/ui/: shadcn/ui com **Base UI** (usa a prop `render`, não `asChild`).
+- Utilitário de classes: pacote oficial `cn` do shadcn (`import { cn } from "cn"`).
 - e2e/: testes Playwright.
 
 ## Regras do mock
@@ -30,8 +38,13 @@ App React + TS com backend 100% simulado por MSW. Enunciado completo e decisões
 - Componentes, hooks e o cliente Axios NUNCA contêm respostas fictícias ou eventos simulados: isso só existe em src/mocks/.
 - Valores em ETH são strings decimais; cálculos com big.js, nunca Number.
 - Textos da interface em português.
+- Rotas privadas: `beforeLoad: requireAuth` (src/features/auth/require-auth.ts).
+- Login e cadastro são um diálogo controlado por ?auth=login|signup na URL, em qualquer página.
 
 ## Como trabalhar
 - Não adicione dependências sem perguntar.
 - Não altere arquivos fora do escopo pedido. Em mudanças grandes, mostre o plano antes.
 - Arquivos do núcleo escritos à mão (não reescrever sem pedir): src/mocks/db/*, src/mocks/lib/http.ts, src/mocks/handlers/{auth,cart,checkout}.ts, src/mocks/realtime/*.
+
+## Ao terminar uma tarefa
+Responda com um resumo curto (até 20 linhas): o que mudou, decisões que você tomou, o que ficou pendente e como testar.
