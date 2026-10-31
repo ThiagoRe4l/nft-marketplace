@@ -11,9 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/_auth'
+import { Route as CarrinhoRouteImport } from './routes/carrinho'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as TesteRouteImport } from './routes/teste'
 import { Route as AuthPrivadoRouteImport } from './routes/_auth/privado'
+import { Route as NftIdRouteImport } from './routes/nft.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 } as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarrinhoRoute = CarrinhoRouteImport.update({
+  id: '/carrinho',
+  path: '/carrinho',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -39,40 +46,61 @@ const AuthPrivadoRoute = AuthPrivadoRouteImport.update({
   path: '/privado',
   getParentRoute: () => AuthRoute,
 } as any)
+const NftIdRoute = NftIdRouteImport.update({
+  id: '/nft/$id',
+  path: '/nft/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/carrinho': typeof CarrinhoRoute
   '/login': typeof LoginRoute
   '/teste': typeof TesteRoute
   '/privado': typeof AuthPrivadoRoute
+  '/nft/$id': typeof NftIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/carrinho': typeof CarrinhoRoute
   '/login': typeof LoginRoute
   '/teste': typeof TesteRoute
   '/privado': typeof AuthPrivadoRoute
+  '/nft/$id': typeof NftIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
+  '/carrinho': typeof CarrinhoRoute
   '/login': typeof LoginRoute
   '/teste': typeof TesteRoute
   '/_auth/privado': typeof AuthPrivadoRoute
+  '/nft/$id': typeof NftIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/teste' | '/privado'
+  fullPaths: '/' | '/carrinho' | '/login' | '/teste' | '/privado' | '/nft/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/teste' | '/privado'
-  id: '__root__' | '/' | '/_auth' | '/login' | '/teste' | '/_auth/privado'
+  to: '/' | '/carrinho' | '/login' | '/teste' | '/privado' | '/nft/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/_auth'
+    | '/carrinho'
+    | '/login'
+    | '/teste'
+    | '/_auth/privado'
+    | '/nft/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRouteWithChildren
+  CarrinhoRoute: typeof CarrinhoRoute
   LoginRoute: typeof LoginRoute
   TesteRoute: typeof TesteRoute
+  NftIdRoute: typeof NftIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -89,6 +117,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carrinho': {
+      id: '/carrinho'
+      path: '/carrinho'
+      fullPath: '/carrinho'
+      preLoaderRoute: typeof CarrinhoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -112,6 +147,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthPrivadoRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/nft/$id': {
+      id: '/nft/$id'
+      path: '/nft/$id'
+      fullPath: '/nft/$id'
+      preLoaderRoute: typeof NftIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -128,8 +170,10 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
+  CarrinhoRoute: CarrinhoRoute,
   LoginRoute: LoginRoute,
   TesteRoute: TesteRoute,
+  NftIdRoute: NftIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,1 +1,108 @@
 @import "tailwindcss";
+@import "@fontsource-variable/roboto-mono/wght.css";
+
+/*
+ * Tokens medidos nos pixels das telas do Figma (Início, Detalhes, Carrinho).
+ * Foco e erro não existem no Figma: escolhidos com contraste >= 4.5:1 sobre
+ * --background (#140d0a) e --card (#241612).
+ *   destructive #e5675c: 5.89:1 / 5.36:1   ring #f0b87a: 10.85:1 / 9.88:1
+ */
+:root {
+  --background: #140d0a;
+  --foreground: #f5f1eb;
+  --card: #241612;
+  --card-foreground: #f5f1eb;
+  --popover: #241612;
+  --popover-foreground: #f5f1eb;
+  --primary: #d28a4c;
+  --primary-foreground: #140d0a;
+  --secondary: #55321f;
+  --secondary-foreground: #f5f1eb;
+  --muted: #38220f;
+  --muted-foreground: #cfb28c;
+  --accent: #38220f;
+  --accent-foreground: #f5f1eb;
+  --destructive: #e5675c;
+  --border: #432c1a;
+  --input: #915e36;
+  --ring: #f0b87a;
+  --radius: 0.375rem;
+
+  /* extras do projeto (fora do conjunto padrão do shadcn) */
+  --surface-raised: #38220f;
+  --border-strong: #915e36;
+  --primary-hover: #b77743;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface-raised: var(--surface-raised);
+  --color-border-strong: var(--border-strong);
+  --color-primary-hover: var(--primary-hover);
+}
+
+@theme {
+  --font-sans: "Roboto Mono Variable", ui-monospace, monospace;
+  --font-heading: "Roboto Mono Variable", ui-monospace, monospace;
+  --font-mono: "Roboto Mono Variable", ui-monospace, monospace;
+
+  /* desktop: botões 6px, cartões quase retos; mobile: cartões 16-20px e botões em pílula */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+
+  /* container de 1200px (120px de margem a 1440px), gutter de 24px no mobile */
+  --container-page: 75rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-header: 5rem;
+
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  @keyframes shimmer {
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    color-scheme: dark;
+    scroll-padding-top: var(--spacing-header);
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+  }
+}
