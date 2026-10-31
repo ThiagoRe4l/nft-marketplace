@@ -10,6 +10,10 @@ import { nftListQuery, useFeatured } from '@/features/catalog/queries'
 import { CatalogSearch, useCatalogFilters } from '@/features/catalog/search'
 import { useSubmitSearch } from '@/features/catalog/use-submit-search'
 import { comingSoon } from '@/shared/lib/coming-soon'
+import { toast } from 'sonner'
+import { useAddToCart } from '@/features/cart/queries'
+import { toAppError } from '@/shared/api/errors'
+import type { NftSummary } from '@/contracts/nft'
 
 export const Route = createFileRoute('/')({
   validateSearch: CatalogSearch,
@@ -27,11 +31,20 @@ function Home() {
   const { search } = useCatalogFilters()
   const featured = useFeatured()
   const submitSearch = useSubmitSearch()
+  const addToCart = useAddToCart()
   const [filtersOpen, setFiltersOpen] = useState(false)
 
   const hero = featured.data?.hero ?? []
   const spotlight = featured.data?.spotlight
-  const artwork = [...hero.map((nft) => nft.image), ...(spotlight ? [spotlight.image] : [])]
+  
+  const handleAddToCart = (nft: NftSummary) =>
+    addToCart.mutate(
+      { nftId: nft.id, editionId: nft.editionId, quantity: 1 },
+      {
+        onSuccess: () => toast.success(`${nft.name} adicionado ao carrinho`),
+        onError: (error) => toast.error(toAppError(error).message),
+      },
+    )
 
   return (
     <>
@@ -68,15 +81,15 @@ function Home() {
         spotlight={spotlight}
         isSpotlightLoading={featured.isPending}
         favoriteIds={NO_FAVORITES}
+        onAddToCart={handleAddToCart}
         // provisório: ligar ao carrinho e aos favoritos quando esses dados existirem
-        onAddToCart={comingSoon}
         onToggleFavorite={comingSoon}
         filtersOpen={filtersOpen}
         onFiltersOpenChange={setFiltersOpen}
       />
 
-      <PromoBanners images={[artwork[0], artwork[2]]} />
-      <JournalSection images={artwork} />
+      <PromoBanners />
+      <JournalSection />
     </>
   )
 }

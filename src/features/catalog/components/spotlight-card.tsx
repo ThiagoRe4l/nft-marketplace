@@ -18,20 +18,17 @@ export function SpotlightCard({ nft, isLoading }: { nft: NftSummary | undefined;
       <Link
         to="/nft/$id"
         params={{ id: nft.id }}
+        aria-label={`${nft.name}, ${formatEth(nft.price)}`}
         className="block outline-none focus-visible:ring-3 focus-visible:ring-ring"
       >
         <img
           src={nft.image}
-          alt={nft.name}
+          alt=""
           width={400}
           height={500}
           loading="lazy"
           className="aspect-[4/5] w-full rounded-xl object-cover"
         />
-        <span className="flex items-baseline justify-between gap-2 p-4 text-sm">
-          <span className="truncate">{nft.name}</span>
-          <span className="font-bold text-primary">{formatEth(nft.price)}</span>
-        </span>
       </Link>
     </section>
   )

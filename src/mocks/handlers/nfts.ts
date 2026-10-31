@@ -8,9 +8,14 @@ import { apiError } from '../lib/http'
 const PAGE_SIZE = 9
 const NEW_WINDOW_MS = 30 * 24 * 60 * 60 * 1000
 const SPOTLIGHT_ID = 'sage-nomad-009'
+const HERO_FIRST_ID = 'emerald-ape-042' // abre o carrossel, como no Figma
 
-const cheapestEdition = (nft: Nft) =>
-  nft.editions.reduce((best, e) => (new Big(e.price).lt(best.price) ? e : best))
+// mais barata entre as disponíveis; se todas estiverem esgotadas, a mais barata de todas
+const cheapestEdition = (nft: Nft) => {
+  const available = nft.editions.filter((e) => e.available !== 0)
+  const pool = available.length ? available : nft.editions
+  return pool.reduce((best, e) => (new Big(e.price).lt(best.price) ? e : best))
+}
 
 const priceOf = (nft: Nft) => new Big(cheapestEdition(nft).price)
 
@@ -28,6 +33,7 @@ export function toSummary(nft: Nft): NftSummary {
     price: edition.price,
     compareAtPrice: edition.compareAtPrice,
     soldOut: nft.editions.every((e) => e.available === 0),
+    editionId: edition.id, // edição mais barata: a que o card exibe e adiciona ao carrinho
   }
 }
 
@@ -129,7 +135,9 @@ export const nftHandlers = [
     const catalog = db.read().nfts
     const spotlight = catalog.find((n) => n.id === SPOTLIGHT_ID)
     if (!spotlight) return apiError('NOT_FOUND', 'NFT em destaque não encontrado')
-    const hero = catalog.filter((n) => n.trending).sort(compareByRecent).slice(0, 3)
+    const trending = catalog.filter((n) => n.trending).sort(compareByRecent)
+    const first = trending.find((n) => n.id === HERO_FIRST_ID)
+    const hero = [...(first ? [first] : []), ...trending.filter((n) => n.id !== HERO_FIRST_ID)].slice(0, 3)
     return HttpResponse.json({ hero: hero.map(toSummary), spotlight: toSummary(spotlight) })
   }),
 

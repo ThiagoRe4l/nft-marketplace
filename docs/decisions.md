@@ -31,6 +31,8 @@
 - Loader faz prefetch sem bloquear a navegação, para o skeleton aparecer.
 - Retry: queries não repetem 4xx e tentam até 2 vezes em rede/5xx; mutations nunca repetem sozinhas.
 - Axios serializa arrays como parâmetros repetidos (?category=a&category=b).
+- Preço do card = edição mais barata entre as disponíveis (esgotadas só contam se todas estiverem). É também a edição que o botão de carrinho do card adiciona, e a base do filtro de preço e da ordenação.
+
 
 ## Tempo real
 - Socket mockado via ws.link com URL explícita (VITE_SOCKET_URL + /*); o socket.io-client usa transports: ['websocket'], pois o MSW intercepta WebSocket e não long-polling.
@@ -59,3 +61,10 @@
 - Rotas privadas sob o layout _auth (beforeLoad + ensureQueryData); redirect só aceita caminhos internos (evita open redirect).
 - Expiração durante a navegação leva a /login?redirect=<página>&reason=expired.
 - Tipo de retorno do queryFn da sessão declarado explicitamente (Promise<Session | null>): a inferência se perdia ao passar pela função genérica request e pelo try/catch.
+
+## Interface
+- Header mantido no mobile (o frame não tem): é onde ficam o login, o menu e a busca.
+- Barra inferior do mobile reta (o Figma tem um recorte curvo) e hero mobile com uma imagem (o Figma sobrepõe duas). Desvios visuais por tempo.
+- Filtros na URL no formato padrão do TanStack Router (JSON): as aspas mantêm os valores ETH como texto.
+- Busca pelo header ou pelo campo mobile inicia uma pesquisa nova (descarta os outros filtros).
+- Conteúdo editorial (Diário, banners) é estático; "Ler mais", newsletter e itens fora do escopo mostram "Disponível em breve nesta demonstração".

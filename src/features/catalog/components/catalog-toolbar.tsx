@@ -16,7 +16,7 @@ type CatalogToolbarProps = {
 
 export function CatalogToolbar({ tab, sort, onTabChange, onSortChange }: CatalogToolbarProps) {
   return (
-    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+    <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
       <Tabs
         value={tab}
         onValueChange={(value) => {
@@ -25,7 +25,7 @@ export function CatalogToolbar({ tab, sort, onTabChange, onSortChange }: Catalog
         }}
         className="max-w-full overflow-x-auto"
       >
-        <TabsList variant="line" aria-label="Filtrar por" className="h-auto gap-3 pb-2 md:gap-4">
+        <TabsList variant="line" aria-label="Filtrar por" className="h-auto gap-2.5 pb-2 md:gap-4">
           {NftTab.options.map((option) => (
             <TabsTrigger
               key={option}

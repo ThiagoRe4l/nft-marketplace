@@ -111,7 +111,7 @@ export function HeroCarousel({ slides, isLoading, error, onRetry }: HeroCarousel
         </div>
       </div>
       {slides.length > 1 && (
-        <div className="mt-3 flex justify-center gap-1 lg:justify-start lg:pl-2">
+        <div className="mt-3 flex justify-center gap-1">
           <Dots count={slides.length} index={index} onSelect={setIndex} />
         </div>
       )}

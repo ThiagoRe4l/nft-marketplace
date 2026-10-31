@@ -18,6 +18,10 @@ type NftCardProps = {
 const actionClass =
   'inline-flex size-9 items-center justify-center rounded-full bg-background/80 text-foreground outline-none backdrop-blur-sm transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:ring-3 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50'
 
+// botões ficam fora do fluxo e só recebem clique eles mesmos (o contêiner não bloqueia a imagem)
+const revealClass =
+  'pointer-events-auto opacity-0 group-hover/card:opacity-100 group-focus-within/card:opacity-100 focus-visible:opacity-100'
+
 export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite, className }: NftCardProps) {
   return (
     <article className={cn('group/card', className)}>
@@ -36,19 +40,23 @@ export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite
             RARO
           </span>
         )}
-        {/* aparecem no hover/foco; em telas de toque ficam sempre visíveis */}
-        <div className="absolute right-3 bottom-3 flex gap-1.5 opacity-0 transition-opacity group-focus-within/card:opacity-100 group-hover/card:opacity-100 pointer-coarse:opacity-100 md:right-5 md:bottom-5">
+        {/* ver e carrinho aparecem no hover/foco; o coração fica sempre visível abaixo de md (Figma) */}
+        <div className="pointer-events-none absolute inset-3 md:inset-5">
           <Link
             to="/nft/$id"
             params={{ id: nft.id }}
-            className={actionClass}
+            className={cn(actionClass, revealClass, 'absolute right-[5.25rem] bottom-0')}
             aria-label={`Ver detalhes de ${nft.name}`}
           >
             <EyeIcon className="size-4" />
           </Link>
           <button
             type="button"
-            className={actionClass}
+            className={cn(
+              actionClass,
+              revealClass,
+              'absolute top-0 right-0 opacity-100 md:top-auto md:right-[2.625rem] md:bottom-0 md:opacity-0',
+            )}
             aria-label={isFavorite ? `Remover ${nft.name} dos favoritos` : `Favoritar ${nft.name}`}
             aria-pressed={isFavorite}
             onClick={() => onToggleFavorite(nft)}
@@ -57,7 +65,7 @@ export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite
           </button>
           <button
             type="button"
-            className={actionClass}
+            className={cn(actionClass, revealClass, 'absolute right-0 bottom-0')}
             aria-label={`Adicionar ${nft.name} ao carrinho`}
             disabled={nft.soldOut}
             onClick={() => onAddToCart(nft)}

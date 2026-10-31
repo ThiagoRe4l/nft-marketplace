@@ -3,7 +3,10 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 // 1 ... 4 [5] 6 ... 12
+const SHOW_ALL_UP_TO = 7
+
 function pageWindow(current: number, total: number): (number | 'gap')[] {
+  if (total <= SHOW_ALL_UP_TO) return Array.from({ length: total }, (_, i) => i + 1)
   const pages = new Set([1, total, current - 1, current, current + 1].filter((p) => p >= 1 && p <= total))
   const sorted = [...pages].sort((a, b) => a - b)
   return sorted.flatMap((page, i): (number | 'gap')[] => (i > 0 && page - sorted[i - 1] > 1 ? ['gap', page] : [page]))

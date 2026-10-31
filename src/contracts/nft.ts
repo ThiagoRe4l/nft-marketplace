@@ -57,6 +57,7 @@ export const NftSummary = Nft.pick({
   price: EthAmount,                     // menor preço entre as edições
   compareAtPrice: EthAmount.nullable(),
   soldOut: z.boolean(),
+  editionId: Id, // edição mais barata: a que o card exibe e adiciona ao carrinho
 })
 export type NftSummary = z.infer<typeof NftSummary>
 
