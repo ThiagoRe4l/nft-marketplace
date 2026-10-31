@@ -2,7 +2,6 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/shared/api/client'
 import { Button } from '@/components/ui/button'
-
 export const Route = createFileRoute('/')({ component: Home })
 
 function Home() {

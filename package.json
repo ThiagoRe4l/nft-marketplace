@@ -6,14 +6,19 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "format": "prettier --write .",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@base-ui/react": "^1.9.0",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-query": "^5.105.0",
     "@tanstack/react-router": "^1.170.46",
     "axios": "^1.21.0",
+    "class-variance-authority": "^0.7.1",
     "cn": "^0.5.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
@@ -23,6 +28,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@mswjs/socket.io-binding": "^0.2.0",
+    "@playwright/test": "^1.64.1",
     "@tanstack/router-plugin": "^1.168.48",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
