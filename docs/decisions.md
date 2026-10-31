@@ -37,6 +37,7 @@
 ## Tempo real
 - Socket mockado via ws.link com URL explícita (VITE_SOCKET_URL + /*); o socket.io-client usa transports: ['websocket'], pois o MSW intercepta WebSocket e não long-polling.
 - Socket com uma conexão por sessão, fora dos componentes; componentes só assinam eventos. Evita conexões duplicadas (StrictMode) e facilita limpar tudo no logout.
+- Heartbeat no mock: o @mswjs/socket.io-binding não envia o ping do Engine.IO; sem ele o cliente derrubava a conexão a cada ~30 s. O mock envia o pacote "2" a cada 10 s (limitação do binding, documentada).
 
 ## Contratos
 - Schemas Zod como fonte única; tipos derivados com z.infer. Mock valida entradas e cliente valida respostas com os mesmos schemas.

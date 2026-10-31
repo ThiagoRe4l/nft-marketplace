@@ -24,7 +24,13 @@ export const socketHandlers = [
     connection.client.addEventListener('message', (event) => {
       if (typeof event.data === 'string' && event.data.startsWith('40')) client.ready = true
     })
-    connection.client.addEventListener('close', () => removeClient(client))
+    
+    // O binding não implementa o heartbeat do Engine.IO: sem o "ping" (pacote "2") do servidor, o cliente considera a conexão morta e reconecta a cada ~30 s.
+    const heartbeat = setInterval(() => connection.client.send('2'), 10_000)
+    connection.client.addEventListener('close', () => {
+      clearInterval(heartbeat)
+      removeClient(client)
+    })
     addClient(client)
   }),
 ]
