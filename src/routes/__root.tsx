@@ -1,5 +1,6 @@
 import { QueryClient } from "@tanstack/react-query";
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
+import { z } from 'zod'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Toaster } from '@/components/ui/sonner'
@@ -7,7 +8,17 @@ import { MobileNav } from '@/components/layout/mobile-nav'
 import { useSubmitSearch } from '@/features/catalog/use-submit-search'
 import { useNavigate, useRouterState } from '@tanstack/react-router'
 import { useLogout, useSession } from '@/features/auth/session'
+import { AuthDialog } from '@/features/auth/components/auth-dialog'
+import { withoutAuthParams } from '@/features/auth/redirect'
 import { cartItemCount, useCart } from '@/features/cart/queries'
+import { RealtimeBridge } from '@/features/realtime/realtime-bridge'
+
+// parâmetros do diálogo de login/cadastro: valem em qualquer página
+const RootSearch = z.object({
+    auth: z.enum(['login', 'signup']).optional().catch(undefined),
+    redirect: z.string().optional().catch(undefined),
+    reason: z.enum(['expired']).optional().catch(undefined),
+})
 
 function skipToContent(event: React.MouseEvent<HTMLAnchorElement>) {
     // foca o <main> sem mexer no hash da URL (o router usa hash para âncoras como #catalogo)
@@ -22,8 +33,7 @@ function RootLayout() {
     const navigate = useNavigate()
     const href = useRouterState({ select: (s) => s.location.href })
     const submitSearch = useSubmitSearch()
-    // valores provisórios: ligar ao carrinho e à sessão quando essas fases chegarem
-    const cartCount = 0
+    const cartCount = cartItemCount(cart.data)
     return (
         <div className="flex min-h-dvh flex-col pb-[calc(4.25rem+env(safe-area-inset-bottom))] md:pb-0">
             <a
@@ -34,9 +44,14 @@ function RootLayout() {
                 Pular para o conteúdo
             </a>
             <Header
-                cartCount={cartItemCount(cart.data)}
+                cartCount={cartCount}
                 user={session.data?.user ?? null}
-                onLoginClick={() => navigate({ to: '/login', search: { redirect: href } })}
+                onLoginClick={() =>
+                    navigate({
+                        to: '.',
+                        search: (prev) => ({ ...prev, auth: 'login', redirect: withoutAuthParams(href), reason: undefined }),
+                    })
+                }
                 onLogout={() => logout.mutate(undefined, { onSuccess: () => navigate({ to: '/' }) })}
                 onSearch={submitSearch}
             />
@@ -45,12 +60,15 @@ function RootLayout() {
             </main>
             <Footer />
             <MobileNav cartCount={cartCount} />
+            <AuthDialog />
             <Toaster />
+            <RealtimeBridge />
         </div>
     )
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+    validateSearch: RootSearch,
     component: RootLayout,
     notFoundComponent: () => <p className="p-4">Página não encontrada</p>,
 })

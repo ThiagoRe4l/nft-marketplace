@@ -1,10 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { NftDetail } from '@/features/nft/components/nft-detail'
 
 export const Route = createFileRoute('/nft/$id')({
-  component: NftPlaceholder,
+  component: NftPage,
 })
 
-function NftPlaceholder() {
+function NftPage() {
   const { id } = Route.useParams()
-  return <p className="mx-auto w-full max-w-page px-gutter py-10">NFT {id} (provisório)</p>
+  return <NftDetail id={id} />
 }

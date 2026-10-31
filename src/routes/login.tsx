@@ -1,12 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { z } from 'zod'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 
-const LoginSearch = z.object({
-  redirect: z.string().optional(),
-  reason: z.enum(['expired']).optional(),
-})
-
+// rota antiga: o login agora é um diálogo sobre a Início
 export const Route = createFileRoute('/login')({
-  validateSearch: LoginSearch,
-  component: () => <p className="p-4">Login (provisório)</p>,
+  beforeLoad: ({ search }) => {
+    throw redirect({ to: '/', search: { auth: 'login', redirect: search.redirect, reason: search.reason } })
+  },
 })
