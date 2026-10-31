@@ -10,11 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/_auth'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as TesteRouteImport } from './routes/teste'
+import { Route as AuthPrivadoRouteImport } from './routes/_auth/privado'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TesteRoute = TesteRouteImport.update({
@@ -22,30 +34,44 @@ const TesteRoute = TesteRouteImport.update({
   path: '/teste',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthPrivadoRoute = AuthPrivadoRouteImport.update({
+  id: '/privado',
+  path: '/privado',
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/teste': typeof TesteRoute
+  '/privado': typeof AuthPrivadoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/teste': typeof TesteRoute
+  '/privado': typeof AuthPrivadoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_auth': typeof AuthRouteWithChildren
+  '/login': typeof LoginRoute
   '/teste': typeof TesteRoute
+  '/_auth/privado': typeof AuthPrivadoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/teste'
+  fullPaths: '/' | '/login' | '/teste' | '/privado'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/teste'
-  id: '__root__' | '/' | '/teste'
+  to: '/' | '/login' | '/teste' | '/privado'
+  id: '__root__' | '/' | '/_auth' | '/login' | '/teste' | '/_auth/privado'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRouteWithChildren
+  LoginRoute: typeof LoginRoute
   TesteRoute: typeof TesteRoute
 }
 
@@ -58,6 +84,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/teste': {
       id: '/teste'
       path: '/teste'
@@ -65,11 +105,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TesteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_auth/privado': {
+      id: '/_auth/privado'
+      path: '/privado'
+      fullPath: '/privado'
+      preLoaderRoute: typeof AuthPrivadoRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
 
+interface AuthRouteChildren {
+  AuthPrivadoRoute: typeof AuthPrivadoRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthPrivadoRoute: AuthPrivadoRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRouteWithChildren,
+  LoginRoute: LoginRoute,
   TesteRoute: TesteRoute,
 }
 export const routeTree = rootRouteImport

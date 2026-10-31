@@ -23,6 +23,7 @@
 - Cenário padrão com 120 ms de latência (é o usado no Lighthouse).
 - order-timeout atrasa só a resposta da criação (15 s, acima do timeout do Axios); o reenvio com a mesma chave responde rápido e recupera o pedido.
 - Endpoints /api/__mock/* nunca sofrem falhas de cenário.
+- MSW avisa no console sobre chamadas a /api sem handler; o resto (assets, Vite) passa sem aviso.
 
 ## Tempo real
 - Socket mockado via ws.link com URL explícita (VITE_SOCKET_URL + /*); o socket.io-client usa transports: ['websocket'], pois o MSW intercepta WebSocket e não long-polling.
@@ -41,3 +42,13 @@
 - maxPerOrder das fixtures (5 para edições acima de 1/10) não permite reproduzir o carrinho do Figma (quantidades 2, 6 e 9). Avaliar subir para 10 antes de gerar as baselines de regressão visual.
 - Imagens dos NFTs estão em PNG 2x; converter para AVIF/WebP com dimensões fixas na fase do Lighthouse.
 - No Figma, o detalhe do Emerald Ape mostra a edição 1/50 selecionada com 1.19 ETH; nas fixtures, 1.19 é a edição mais barata e a 1/50 custa 1.79. Decidir na tela de detalhe: selecionar por padrão a edição mais barata, ou ajustar a fixture.
+
+## Integração
+- Axios com interceptor de identidade (Bearer ou X-Cart-Id) e de 401; o cliente só avisa, a camada de sessão decide (sem dependência circular com router/Query).
+- Respostas validadas com os schemas Zod do contrato (função request).
+- Erros normalizados em AppError, incluindo NETWORK_ERROR e TIMEOUT, que não têm resposta HTTP.
+- Sessão como query (staleTime infinito). Login, cadastro, logout e 401 limpam o cache inteiro (queryClient.clear): nenhum dado privado atravessa a troca de usuário. Chaves de dados privados também levam o userId.
+- Merge do carrinho de visitante no login; o id só é descartado se o merge der certo.
+- Rotas privadas sob o layout _auth (beforeLoad + ensureQueryData); redirect só aceita caminhos internos (evita open redirect).
+- Expiração durante a navegação leva a /login?redirect=<página>&reason=expired.
+- Tipo de retorno do queryFn da sessão declarado explicitamente (Promise<Session | null>): a inferência se perdia ao passar pela função genérica request e pelo try/catch.

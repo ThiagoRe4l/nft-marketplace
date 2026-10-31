@@ -15,6 +15,7 @@ export const User = z.object({
 export type User = z.infer<typeof User>
 
 export const Session = z.object({ user: User, expiresAt: IsoDate })
+export type Session = z.infer<typeof Session>
 export const AuthResponse = Session.extend({ token: z.string() })
 
 export const SignupInput = z
