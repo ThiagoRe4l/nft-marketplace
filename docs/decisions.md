@@ -12,3 +12,12 @@
 ## Tempo real
 - Socket mockado via ws.link com URL explícita (VITE_SOCKET_URL + /*); o socket.io-client usa transports: ['websocket'], pois o MSW intercepta WebSocket e não long-polling.
 - Socket com uma conexão por sessão, fora dos componentes; componentes só assinam eventos. Evita conexões duplicadas (StrictMode) e facilita limpar tudo no logout.
+
+## Contratos
+- Schemas Zod como fonte única; tipos derivados com z.infer. Mock valida entradas e cliente valida respostas com os mesmos schemas.
+- Preço e estoque ficam na edição (1/1, 1/N, aberta); o NFT tem um version único que sobe a cada mudança.
+- Carrinho sempre no mock: visitante identificado por cartId salvo no localStorage (header X-Cart-Id); no login, POST /cart/merge junta os itens.
+- Carrinho traz o resumo de valores calculado pelo mock; a cotação congela os valores para o checkout.
+- Sessão por token Bearer salvo no localStorage, enviado pelo interceptor do Axios.
+- Pedido recebe só quoteId + walletId: o pagamento usa as carteiras cadastradas, e o formulário vem preenchido com perfil e carteira.
+- Carteiras por slot fixo (primary/secondary), como no Figma.
