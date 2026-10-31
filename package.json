@@ -10,7 +10,8 @@
     "typecheck": "tsc -b",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
