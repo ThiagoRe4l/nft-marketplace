@@ -29,7 +29,11 @@ async function enableMocking() {
 
   const { resumePendingOrders } = await import('./mocks/handlers/checkout')
   resumePendingOrders()
-  
+
+  const { setScenario } = await import('./mocks/scenarios')
+  const fromUrl = new URLSearchParams(window.location.search).get('scenario')
+  if (fromUrl) setScenario(fromUrl)
+
   await worker.start({ onUnhandledRequest: 'bypass' })
 }
 

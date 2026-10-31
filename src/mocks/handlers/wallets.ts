@@ -2,6 +2,7 @@ import { http, HttpResponse } from 'msw'
 import { UpsertWalletInput, Wallet, WalletSlot } from '@/contracts/wallet'
 import { db } from '../db/store'
 import { apiError, parseBody, requireSession } from '../lib/http'
+import { getScenario } from '../scenarios'
 
 // lança 422 se o slot da URL não for "primary" nem "secondary"
 function parseSlot(value: unknown) {
@@ -35,6 +36,9 @@ export const walletHandlers = [
 
   http.post('/api/wallets/:slot/connect', ({ request, params }) => {
     const { userId } = requireSession(request)
+        if (getScenario() === 'wallet-rejected') {
+      return apiError('WALLET_REJECTED', 'A conexão com a carteira foi recusada.')
+    }
     const slot = parseSlot(params.slot)
     const wallet = db.read().wallets.find((w) => w.userId === userId && w.slot === slot)
     if (!wallet) return apiError('NOT_FOUND', 'Nenhuma carteira neste slot')

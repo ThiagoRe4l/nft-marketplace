@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw'
+import { http, HttpResponse, delay } from 'msw'
 import { CreateOrderInput, Order } from '@/contracts/order'
 import { Quote } from '@/contracts/quote'
 import { db } from '../db/store'
@@ -6,6 +6,7 @@ import type { DbCart, DbOrder, DbState } from '../db/types'
 import { apiError, parseBody, requireSession } from '../lib/http'
 import { checkCoupon, findEdition, maxQuantity, quoteFromCart } from '../lib/pricing'
 import { publishNftUpdated, publishOrderUpdated } from '../realtime/events'
+import { getScenario } from '../scenarios'
 
 const QUOTE_TTL_MS = 10 * 60 * 1000 // cotação vale 10 minutos
 const SETTLE_MS = 3000             // a simulação decide o pagamento em 3 segundos
@@ -195,7 +196,7 @@ export const checkoutHandlers = [
         explorerUrl: null,
         rejectionReason: null,
         settleAt: new Date(now.getTime() + SETTLE_MS).toISOString(),
-        outcome: 'confirmed', // Bloco 6: o cenário "pagamento recusado" muda isto
+        outcome: getScenario() === 'payment-rejected' ? 'rejected' : 'confirmed',
       }
 
       adjustStock(s, order, -1) // reserva o estoque já na criação
@@ -208,6 +209,8 @@ export const checkoutHandlers = [
     if (result instanceof Response) return result
     publishNftsOf(result) // estoque reservado
     scheduleSettlement(result)
+    // o pedido JÁ existe; só a resposta se perde. O app reenvia com a mesma chave e recupera o pedido.
+    if (getScenario() === 'order-timeout') await delay(15_000)
     return HttpResponse.json(Order.parse(result), { status: 201 })
   }),
 

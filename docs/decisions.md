@@ -18,6 +18,11 @@
 - Pedido de outro usuário responde 404, não 403, para não revelar que existe.
 - Recibo é cópia das linhas da cotação; txHash determinístico derivado do id do pedido; link do explorer é simulado.
 - Slider de preço usa os limites reais do catálogo (priceRange da API, sobre o preço do card), e não os valores fixos do Figma (0,02 – 12,30).
+- Cenários de rede num handler único em primeiro lugar (http.all('/api/*')), que aplica latência ou falha e deixa a requisição seguir. Seleção por ?scenario= na URL ou POST /api/__mock/scenario; persistido em localStorage; o reset volta ao padrão.
+- Determinismo: latência variável segue uma sequência fixa (reinicia ao trocar de cenário); nada de Math.random.
+- Cenário padrão com 120 ms de latência (é o usado no Lighthouse).
+- order-timeout atrasa só a resposta da criação (15 s, acima do timeout do Axios); o reenvio com a mesma chave responde rápido e recupera o pedido.
+- Endpoints /api/__mock/* nunca sofrem falhas de cenário.
 
 ## Tempo real
 - Socket mockado via ws.link com URL explícita (VITE_SOCKET_URL + /*); o socket.io-client usa transports: ['websocket'], pois o MSW intercepta WebSocket e não long-polling.

@@ -7,8 +7,10 @@ import { nftHandlers } from './nfts'
 import { profileHandlers } from './profile'
 import { walletHandlers } from './wallets'
 import { controlHandlers } from './control'
+import { networkHandler } from '../scenarios'
 
 export const handlers = [
+  networkHandler,
   http.get('/api/health', () => HttpResponse.json({ status: 'ok' })),
   ...authHandlers,
   ...cartHandlers,
