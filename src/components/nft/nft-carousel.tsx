@@ -3,12 +3,16 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { NftCard } from '@/components/nft/nft-card'
 import { NftCardSkeleton } from '@/components/nft/nft-card-skeleton'
 import type { NftSummary } from '@/contracts/nft'
-import { comingSoon } from '@/shared/lib/coming-soon'
+
+import { useFavoriteIds, useToggleFavorite } from '@/features/favorites/queries'
 
 const navButton =
   'inline-flex size-8 items-center justify-center rounded-full border border-border-strong text-foreground outline-none transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring'
 
 const itemClass = 'w-[10.5rem] shrink-0 snap-start md:w-[calc((100%-3rem)/5)]'
+
+const favoriteIds = useFavoriteIds()
+const toggleFavorite = useToggleFavorite()
 
 type NftCarouselProps = {
   id: string
@@ -55,7 +59,12 @@ export function NftCarousel({ id, title, listLabel, items, isPending, onAddToCar
             ))
           : items.map((item) => (
               <li key={item.id} className={itemClass}>
-                <NftCard nft={item} onAddToCart={onAddToCart} onToggleFavorite={comingSoon} />
+                <NftCard 
+                  nft={item} 
+                  isFavorite={favoriteIds.has(item.id)}
+                  onAddToCart={onAddToCart} 
+                  onToggleFavorite={toggleFavorite} 
+                />
               </li>
             ))}
       </ul>

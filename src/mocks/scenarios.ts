@@ -12,6 +12,7 @@ export const SCENARIOS = {
   'order-timeout': 'O pedido é criado, mas a resposta demora mais que o timeout do app',
   'payment-rejected': 'O pagamento é recusado',
   'wallet-rejected': 'A conexão da carteira é recusada',
+  'mutation-error': 'Falha nas alterações: 503 em toda escrita (exceto login)',
 } as const
 export type Scenario = keyof typeof SCENARIOS
 
@@ -62,6 +63,11 @@ export const networkHandler = http.all('/api/*', async ({ request }) => {
   if (scenario === 'server-error' && request.method === 'GET') {
     return apiError('TRANSIENT', 'Serviço temporariamente indisponível. Tente novamente.')
   }
+
+  if (scenario === 'mutation-error' && request.method !== 'GET' && !url.pathname.startsWith('/api/auth')) {
+    return apiError('TRANSIENT', 'Serviço temporariamente indisponível. Tente novamente.')
+  }
+
   if (scenario === 'empty' && request.method === 'GET' && url.pathname === '/api/nfts') {
     return HttpResponse.json({
       items: [],

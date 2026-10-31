@@ -55,13 +55,14 @@ export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite
             className={cn(
               actionClass,
               revealClass,
+              isFavorite && 'text-primary',
               'absolute top-0 right-0 opacity-100 md:top-auto md:right-[2.625rem] md:bottom-0 md:opacity-0',
             )}
             aria-label={isFavorite ? `Remover ${nft.name} dos favoritos` : `Favoritar ${nft.name}`}
             aria-pressed={isFavorite}
             onClick={() => onToggleFavorite(nft)}
           >
-            <HeartIcon className={cn('size-4', isFavorite && 'fill-primary text-primary')} />
+           <HeartIcon className={cn('size-4', isFavorite && 'fill-current')} />
           </button>
           <button
             type="button"

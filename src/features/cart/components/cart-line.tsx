@@ -48,7 +48,7 @@ export function CartLine({ line }: { line: Cart['items'][number] }) {
           <Link
             to="/nft/$id"
             params={{ id: line.nftId }}
-            className="block truncate text-sm font-bold outline-none hover:text-primary focus-visible:ring-3 focus-visible:ring-ring"
+            className="line-clamp-2 text-sm font-bold break-words outline-none hover:text-primary focus-visible:ring-3 focus-visible:ring-ring"
           >
             {nft.name}
           </Link>

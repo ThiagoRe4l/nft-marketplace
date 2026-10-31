@@ -6,15 +6,19 @@ import { Button } from '@/components/ui/button'
 import type { Nft } from '@/contracts/nft'
 import { useAddToCart } from '@/features/cart/queries'
 import { toAppError } from '@/shared/api/errors'
-import { comingSoon } from '@/shared/lib/coming-soon'
+import { useFavoriteIds, useToggleFavorite } from '@/features/favorites/queries'
 import { formatEth } from '@/shared/lib/money'
 import { defaultEdition, isSoldOut, maxQuantity, quantityHint } from '../purchase'
 import { EditionPicker } from './edition-picker'
 import { QuantityStepper } from './quantity-stepper'
+import { cn } from 'cn'
 
 export function PurchasePanel({ nft }: { nft: Nft }) {
   const navigate = useNavigate()
   const addToCart = useAddToCart()
+  const favoriteIds = useFavoriteIds()
+  const toggleFavorite = useToggleFavorite()
+  const isFavorite = favoriteIds.has(nft.id)
   const [editionId, setEditionId] = useState<string | null>(null)
   const [requested, setRequested] = useState(1)
 
@@ -68,8 +72,15 @@ export function PurchasePanel({ nft }: { nft: Nft }) {
           >
             {addToCart.isPending ? 'Adicionando...' : 'Comprar'}
           </Button>
-          <Button variant="outline" size="lg" className="h-9 border-border-strong px-4" onClick={comingSoon}>
-            <HeartIcon /> Favoritar
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="h-9 border-border-strong px-4" 
+            aria-pressed={isFavorite}
+            onClick={() => toggleFavorite(nft)}
+          >
+            <HeartIcon aria-hidden="true" className={cn('size-4', isFavorite && 'fill-primary text-primary')} />
+            Favoritar
           </Button>
         </div>
       </div>

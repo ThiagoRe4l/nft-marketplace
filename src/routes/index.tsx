@@ -9,8 +9,8 @@ import { PromoBanners } from '@/features/catalog/components/promo-banners'
 import { nftListQuery, useFeatured } from '@/features/catalog/queries'
 import { CatalogSearch, useCatalogFilters } from '@/features/catalog/search'
 import { useSubmitSearch } from '@/features/catalog/use-submit-search'
-import { comingSoon } from '@/shared/lib/coming-soon'
 import { useQuickAdd } from '@/features/cart/use-quick-add'
+import { useFavoriteIds, useToggleFavorite } from '@/features/favorites/queries'
 
 export const Route = createFileRoute('/')({
   validateSearch: CatalogSearch,
@@ -21,8 +21,6 @@ export const Route = createFileRoute('/')({
   },
   component: Home,
 })
-
-const NO_FAVORITES: ReadonlySet<string> = new Set()
 
 function Home() {
   const { search } = useCatalogFilters()
@@ -68,10 +66,10 @@ function Home() {
       <CatalogSection
         spotlight={spotlight}
         isSpotlightLoading={featured.isPending}
-        favoriteIds={NO_FAVORITES}
+        favoriteIds={useFavoriteIds()}
         onAddToCart={quickAdd}
         // provisório: ligar ao carrinho e aos favoritos quando esses dados existirem
-        onToggleFavorite={comingSoon}
+        onToggleFavorite={useToggleFavorite()}
         filtersOpen={filtersOpen}
         onFiltersOpenChange={setFiltersOpen}
       />

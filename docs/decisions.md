@@ -70,3 +70,9 @@
 - Filtros na URL no formato padrão do TanStack Router (JSON): as aspas mantêm os valores ETH como texto.
 - Busca pelo header ou pelo campo mobile inicia uma pesquisa nova (descarta os outros filtros).
 - Conteúdo editorial (Diário, banners) é estático; "Ler mais", newsletter e itens fora do escopo mostram "Disponível em breve nesta demonstração".
+
+## Favoritos
+- Atualização otimista com rollback: onMutate cancela buscas em andamento, guarda o estado e aplica a mudança; onError devolve o estado guardado e avisa; onSettled revalida com o servidor.
+- Cache guarda só os ids (o coração funciona igual no card e no detalhe); chave com o userId.
+- Visitante que tenta favoritar abre o diálogo de login e volta para a mesma página.
+- Cenário mutation-error (503 em toda escrita, exceto auth) para exercitar o rollback.
