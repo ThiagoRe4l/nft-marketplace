@@ -11,6 +11,12 @@
 - Login com credenciais erradas devolve mensagem genérica (não revela se o e-mail existe).
 - Cadastro calcula o hash antes de checar duplicidade, para checagem e gravação acontecerem sem await no meio.
 - Usuário público gerado com User.parse: o Zod descarta passwordHash e passwordSalt.
+- Idempotência: chave guardada por usuário (userId:key) com o hash do corpo. Mesma chave e mesmo corpo devolvem o mesmo pedido no estado atual (200); corpo diferente devolve 409. Checagem e gravação da chave acontecem no mesmo write, sem await, o que cobre envios simultâneos.
+- Cotação vale 10 min e uma por usuário. O pedido compara a cotação com os valores recalculados; qualquer diferença (preço, estoque, cupom, quantidade) devolve QUOTE_STALE e exige nova confirmação.
+- Estoque reservado na criação do pedido e devolvido se o pagamento for recusado.
+- Pagamento decidido 3 s após a criação; a decisão é retomada ao iniciar o mock e ao consultar o pedido, então sobrevive a refresh.
+- Pedido de outro usuário responde 404, não 403, para não revelar que existe.
+- Recibo é cópia das linhas da cotação; txHash determinístico derivado do id do pedido; link do explorer é simulado.
 
 ## Tempo real
 - Socket mockado via ws.link com URL explícita (VITE_SOCKET_URL + /*); o socket.io-client usa transports: ['websocket'], pois o MSW intercepta WebSocket e não long-polling.

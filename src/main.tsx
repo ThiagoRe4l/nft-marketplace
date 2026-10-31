@@ -24,7 +24,12 @@ async function enableMocking() {
   if (import.meta.env.VITE_ENABLE_MOCKS !== 'true') return
   const { worker } = await import('./mocks/browser')
   const { db } = await import('./mocks/db/store')
+
   db.init()
+
+  const { resumePendingOrders } = await import('./mocks/handlers/checkout')
+  resumePendingOrders()
+  
   await worker.start({ onUnhandledRequest: 'bypass' })
 }
 

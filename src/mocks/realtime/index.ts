@@ -1,23 +1,30 @@
 import { ws } from 'msw'
 import { toSocketIo } from '@mswjs/socket.io-binding'
+import { db } from '../db/store'
+import { addClient, removeClient, type RealtimeClient } from './hub'
 
-// o socket.io-client conecta em .../socket.io/?EIO=4&transport=websocket
 export const realtime = ws.link(`${import.meta.env.VITE_SOCKET_URL}/*`)
 
 export const socketHandlers = [
   realtime.addEventListener('connection', (connection) => {
-    const io = toSocketIo(connection)
+    // o cliente manda o token na query da URL; sem token válido, é visitante
+    const token = connection.client.url.searchParams.get('token')
+    const session = token
+      ? db.read().sessions.find((s) => s.token === token && new Date(s.expiresAt) > new Date())
+      : undefined
 
-    io.client.on('ping:test', (...args) => {
-      console.log('[mock] recebeu ping:test', args)
-      io.client.emit('pong:test', { at: Date.now() })
+    const client: RealtimeClient = {
+      io: toSocketIo(connection),
+      userId: session?.userId ?? null,
+      ready: false,
+      close: () => connection.client.close(),
+    }
+
+    // "40" é o pacote do Socket.IO para entrar no namespace: só depois dele a conexão recebe eventos
+    connection.client.addEventListener('message', (event) => {
+      if (typeof event.data === 'string' && event.data.startsWith('40')) client.ready = true
     })
-
-    // simula o servidor empurrando eventos
-    const timer = setInterval(() => {
-      io.client.emit('nft.updated', { eventId: crypto.randomUUID(), version: Date.now() })
-    }, 3000)
-
-    connection.client.addEventListener('close', () => clearInterval(timer))
+    connection.client.addEventListener('close', () => removeClient(client))
+    addClient(client)
   }),
 ]

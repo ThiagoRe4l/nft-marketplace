@@ -2,6 +2,7 @@ import Big from 'big.js'
 import type { PriceSummary } from '@/contracts/common'
 import type { Edition } from '@/contracts/nft'
 import type { Coupon, DbCartItem, DbState } from '../db/types'
+import type { DbCart } from '../db/types'
 
 type Db = Readonly<DbState>
 
@@ -45,4 +46,25 @@ export function summarize(s: Db, items: DbCartItem[], couponCode: string | null)
     networkFee: networkFee.toFixed(),
     total: subtotal.minus(discount).plus(networkFee).toFixed(),
   }
+}
+
+// monta as linhas e os valores da cotação a partir do carrinho e do catálogo ATUAL
+export function quoteFromCart(s: Db, cart: DbCart) {
+  const lines = cart.items.flatMap((item) => {
+    const found = findEdition(s, item.nftId, item.editionId)
+    if (!found) return []
+    const { nft, edition } = found
+    return [{
+      nftId: nft.id,
+      editionId: edition.id,
+      name: nft.name,
+      tokenId: nft.tokenId,
+      image: nft.images[0],
+      editionLabel: edition.label,
+      unitPrice: edition.price,
+      quantity: item.quantity,
+      lineTotal: new Big(edition.price).times(item.quantity).toFixed(),
+    }]
+  })
+  return { lines, couponCode: cart.couponCode, ...summarize(s, cart.items, cart.couponCode) }
 }
