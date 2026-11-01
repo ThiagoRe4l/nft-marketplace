@@ -1,13 +1,14 @@
 import { Link } from '@tanstack/react-router'
 import { StarIcon } from 'lucide-react'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
+import { NotFoundPage } from '@/components/layout/status-pages'
 import type { Nft } from '@/contracts/nft'
 import { useNft } from '@/features/catalog/queries'
 import { toAppError } from '@/shared/api/errors'
 import { MoreFromCollection } from './more-from-collection'
 import { NftGallery } from './nft-gallery'
 import { NftInfoTabs } from './nft-info-tabs'
-import { NftDetailSkeleton, NftLoadError, NftNotFound } from './nft-states'
+import { NftDetailSkeleton, NftLoadError } from './nft-states'
 import { EditionPicker } from './edition-picker'
 import { EditionPrice, PurchaseActions } from './purchase-panel'
 import { useEditionSelection } from '../use-edition-selection'
@@ -17,6 +18,8 @@ const linkClass = 'outline-none hover:text-primary focus-visible:ring-3 focus-vi
 
 export function NftDetail({ id }: { id: string }) {
   const query = useNft(id)
+
+  if (query.isError && toAppError(query.error).code === 'NOT_FOUND') return <NotFoundPage />
 
   return (
     <div className="mx-auto w-full max-w-page px-gutter py-6 md:pt-8 md:pb-10">
@@ -39,11 +42,7 @@ export function NftDetail({ id }: { id: string }) {
       {query.isPending ? (
         <NftDetailSkeleton />
       ) : query.isError ? (
-        toAppError(query.error).code === 'NOT_FOUND' ? (
-          <NftNotFound />
-        ) : (
-          <NftLoadError message={toAppError(query.error).message} onRetry={() => query.refetch()} />
-        )
+        <NftLoadError message={toAppError(query.error).message} onRetry={() => query.refetch()} />
       ) : (
         // key: trocar de NFT (ex.: pelo carrossel) reinicia edição e quantidade
         <NftContent key={query.data.id} nft={query.data} />

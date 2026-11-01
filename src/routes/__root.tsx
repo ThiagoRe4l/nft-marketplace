@@ -11,6 +11,7 @@ import { useLogout, useSession } from '@/features/auth/session'
 import { AuthDialog } from '@/features/auth/components/auth-dialog'
 import { withoutAuthParams } from '@/features/auth/redirect'
 import { cartItemCount, useCart } from '@/features/cart/queries'
+import { NotFoundPage } from '@/components/layout/status-pages'
 import { RealtimeBridge } from '@/features/realtime/realtime-bridge'
 
 // parâmetros do diálogo de login/cadastro: valem em qualquer página
@@ -70,5 +71,5 @@ function RootLayout() {
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
     validateSearch: RootSearch,
     component: RootLayout,
-    notFoundComponent: () => <p className="p-4">Página não encontrada</p>,
+    notFoundComponent: NotFoundPage,
 })

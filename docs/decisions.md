@@ -49,9 +49,8 @@
 - Carteiras por slot fixo (primary/secondary), como no Figma.
 
 ## Pendências
-- maxPerOrder das fixtures (5 para edições acima de 1/10) não permite reproduzir o carrinho do Figma (quantidades 2, 6 e 9). Avaliar subir para 10 antes de gerar as baselines de regressão visual.
+- maxPerOrder nas fixtures: 1 (única), 2 (até 1/10), 5 (acima de 1/10) e 10 (ABERTA). Quantidades como 6 e 9 do carrinho do Figma só cabem em edições abertas; avaliar subir o limite das limitadas se as baselines de regressão visual precisarem delas.
 - Bundle inicial: ver a seção Lighthouse (o JS do app e do backend simulado limita o Performance no mobile).
-- Domingo: após a rodada final dos testes, copiar playwright-report/ para docs/e2e-report/ (relatório HTML é entregável).
 
 ## Integração
 - Axios com interceptor de identidade (Bearer ou X-Cart-Id) e de 401; o cliente só avisa, a camada de sessão decide (sem dependência circular com router/Query).
