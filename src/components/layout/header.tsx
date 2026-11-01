@@ -217,7 +217,7 @@ function UserMenu({ user, onLogout }: { user: HeaderUser; onLogout: () => void }
         <span className="max-w-32 truncate">{user.displayName}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={comingSoon}>Meu perfil</DropdownMenuItem>
+        <DropdownMenuItem render={<Link to="/perfil" />}>Meu perfil</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={onLogout}>
           <LogOutIcon /> Sair

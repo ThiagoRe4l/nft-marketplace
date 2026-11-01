@@ -307,7 +307,7 @@ test.describe('checkout: Bruno (sem carteira)', () => {
     await openCheckout(page, 'bruno')
     await page.getByRole('link', { name: 'Cadastrar carteira' }).first().click()
     await expect(page).toHaveURL(/\/carteiras$/)
-    await expect(page.getByText('Carteiras (provisório)')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Carteira principal' })).toBeVisible()
   })
 })
 

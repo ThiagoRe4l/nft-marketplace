@@ -7,11 +7,12 @@ import { isHomeActive, isMarketActive } from './nav'
 const itemClass =
   'relative flex size-12 items-center justify-center rounded-full text-muted-foreground outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring'
 
-// barra inferior do mobile (frame do Figma); Favoritos, Escanear e Perfil ainda não existem
+// barra inferior do mobile (frame do Figma); Favoritos e Escanear ainda não existem
 export function MobileNav({ cartCount }: { cartCount: number }) {
   const { pathname, hash } = useRouterState({ select: (state) => state.location })
   const home = isHomeActive(pathname, hash) || isMarketActive(pathname, hash)
   const cartActive = pathname === '/carrinho'
+  const profileActive = pathname === '/perfil'
 
   return (
     <nav
@@ -47,9 +48,14 @@ export function MobileNav({ cartCount }: { cartCount: number }) {
             </span>
           )}
         </Link>
-        <button type="button" aria-label="Perfil" className={itemClass} onClick={comingSoon}>
-          <UserIcon className="size-6" />
-        </button>
+        <Link
+          to="/perfil"
+          aria-label="Perfil"
+          aria-current={profileActive ? 'page' : undefined}
+          className={cn(itemClass, profileActive && 'text-primary')}
+        >
+          <UserIcon className={cn('size-6', profileActive && 'fill-primary')} />
+        </Link>
         <button
           type="button"
           aria-label="Escanear"

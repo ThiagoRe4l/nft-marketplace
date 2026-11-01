@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Controller, type UseFormReturn } from 'react-hook-form'
+import { FormField } from '@/components/form/form-field'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -13,41 +14,6 @@ import type { CheckoutValues } from '../schema'
 
 const NETWORK_ITEMS = Network.options.map((value) => ({ value, label: NETWORK_LABELS[value] }))
 const TYPE_ITEMS = WalletType.options.map((value) => ({ value, label: WALLET_TYPE_LABELS[value] }))
-
-// rótulo visível (o Figma tem rótulo acima do campo) + controle + mensagem ligada por aria-describedby
-function FormField({
-  id,
-  label,
-  required = true,
-  error,
-  children,
-}: {
-  id: string
-  label: string
-  required?: boolean
-  error?: string
-  children: ReactNode
-}) {
-  return (
-    <div className="space-y-1.5">
-      <Label htmlFor={id} className="text-sm">
-        {label}
-        {required && (
-          <span aria-hidden="true" className="text-primary">
-            {' '}
-            *
-          </span>
-        )}
-      </Label>
-      {children}
-      {error && (
-        <p id={`${id}-error`} className="text-xs text-destructive">
-          {error}
-        </p>
-      )}
-    </div>
-  )
-}
 
 export function CheckoutFields({ form }: { form: UseFormReturn<CheckoutValues> }) {
   const {

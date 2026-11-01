@@ -94,4 +94,12 @@
 - Recibo usa só o snapshot do pedido (linhas, carteira, valores); o link do Etherscan é simulado e abre em nova aba com rel="noopener noreferrer".
 - Desvio do Figma (mobile): o frame mobile só tem escolha de carteira, total e Confirmar; o app empilha as mesmas seções do desktop (formulário, itens, carteira, Confirmar).
 - Desvio do Figma (recibo): vira a página /pedidos/$id em vez de modal; o "X" leva ao início; a ilustração "THANK YOU" é um ícone do lucide por falta de asset.
-- /carteiras é uma rota provisória e privada, só para o Link ser tipado; será substituída pela tela de Carteiras.
+
+## Telas de conta (/perfil e /carteiras)
+- Layout com menu lateral (lg+); abaixo disso vira lista horizontal rolável. Dados do perfil e Carteiras são Links com aria-current; Sair usa useLogout; os demais itens chamam comingSoon(). "Meu perfil" do Header e o botão Perfil do menu mobile levam a /perfil.
+- Cada parte salva separadamente (dados, avatar, senha, cada carteira), com toast. Avatar: validação de tipo e 2 MB no cliente, e erro da API (422) também aparece sob o avatar.
+- O ".eth" do Figma é um adorno fixo (o ensName é guardado sem sufixo), como no checkout.
+- Carteira sem cadastro mostra estado vazio + "Adicionar"; com cadastro, o formulário preenchido já está visível e o botão some. "Igual à carteira principal" é derivado: marcado enquanto os campos coincidem com a principal; marcar copia, desmarcar volta ao salvo.
+- Foco no primeiro campo com erro (aria-invalid) após validação ou erro da API, via efeito depois do commit (useFocusFirstError).
+- FormField (rótulo visível + erro ligado por aria-describedby) vive em src/components/form e é usado pelo checkout e pela conta.
+
