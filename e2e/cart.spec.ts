@@ -26,14 +26,19 @@ async function applyCoupon(page: Page, code: string) {
 }
 
 test.describe('carrinho', () => {
-  test('o carrinho do visitante persiste após o refresh', async ({ page }) => {
+  test('o carrinho do visitante persiste após o refresh', async ({ page, isMobile }) => {
     await guestBuy(page, 3)
     await expect(quantity(page)).toHaveText('3')
 
     await page.reload()
     await expect(items(page)).toHaveCount(1)
     await expect(quantity(page)).toHaveText('3')
-    await expect(page.getByRole('link', { name: /^Carrinho(?!, vazio)/ })).toBeVisible()
+    if (isMobile) {
+      // o carrinho mobile não tem barra inferior com o contador: o painel do resumo mostra o subtotal de 3 × 1.19
+      await expect(page.getByRole('definition').filter({ hasText: '3.57 ETH' }).first()).toBeVisible()
+    } else {
+      await expect(page.getByRole('link', { name: /^Carrinho(?!, vazio)/ })).toBeVisible()
+    }
   })
 
   test('login faz o merge do carrinho do visitante com o da conta, somando até o limite', async ({ page }) => {
