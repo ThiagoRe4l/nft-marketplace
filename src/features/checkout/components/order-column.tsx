@@ -3,6 +3,8 @@ import Big from 'big.js'
 import type { Cart } from '@/contracts/cart'
 import type { PriceSummary } from '@/contracts/common'
 import type { Quote } from '@/contracts/quote'
+import { useState } from 'react'
+import { CouponForm } from '@/features/cart/components/coupon-form'
 import { formatEth } from '@/shared/lib/money'
 
 type Line = { key: string; image: string; name: string; tokenId: string; quantity: number; lineTotal: string }
@@ -69,6 +71,8 @@ export function OrderColumn({ cart, quote }: { cart: Cart; quote: Quote | null }
         ))}
       </ul>
 
+      <PromoCode couponCode={cart.couponCode} />
+
       <dl aria-label={quote ? 'Valores da cotação' : 'Resumo do carrinho'} className="mt-4 text-sm">
         <div className="flex h-8 items-center justify-between">
           <dt>Subtotal</dt>
@@ -88,9 +92,35 @@ export function OrderColumn({ cart, quote }: { cart: Cart; quote: Quote | null }
           <dd className="text-primary">{formatEth(summary.total)}</dd>
         </div>
       </dl>
-      <p className="mt-2 text-xs text-muted-foreground">
-        {quote ? 'Valores confirmados pela cotação.' : 'Estimativa do carrinho: os valores finais saem da revisão.'}
-      </p>
+      {quote && <p className="mt-2 text-xs text-muted-foreground">Valores confirmados pela cotação.</p>}
     </section>
+  )
+}
+
+// "Tem um código promocional? Aplique aqui" (Figma): abre o mesmo formulário do carrinho.
+// Aplicar ou remover o cupom muda o carrinho; se já havia cotação, o fluxo a marca como desatualizada.
+function PromoCode({ couponCode }: { couponCode: string | null }) {
+  const [open, setOpen] = useState(false)
+  const panelId = 'checkout-promo'
+  // com cupom aplicado o formulário fica à vista, para poder remover
+  const expanded = open || couponCode !== null
+
+  return (
+    <div className="mt-4">
+      {!expanded && (
+        <button
+          type="button"
+          aria-expanded={false}
+          aria-controls={panelId}
+          onClick={() => setOpen(true)}
+          className="block w-full text-center text-sm outline-none hover:text-primary focus-visible:ring-3 focus-visible:ring-ring"
+        >
+          Tem um código promocional? <span className="underline underline-offset-4">Aplique aqui</span>
+        </button>
+      )}
+      <div id={panelId} hidden={!expanded}>
+        {expanded && <CouponForm couponCode={couponCode} />}
+      </div>
+    </div>
   )
 }

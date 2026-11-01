@@ -27,8 +27,8 @@ export function CheckoutFields({ form }: { form: UseFormReturn<CheckoutValues> }
     const id = `checkout-${name}`
     const error = errors[name]?.message
     return {
-      field: (children: ReactNode, label: string) => (
-        <FormField id={id} label={label} error={error} required={required}>
+      field: (children: ReactNode, label: string, hideLabel = false) => (
+        <FormField id={id} label={label} error={error} required={required} hideLabel={hideLabel}>
           {children}
         </FormField>
       ),
@@ -93,7 +93,7 @@ export function CheckoutFields({ form }: { form: UseFormReturn<CheckoutValues> }
   return (
     <div>
       <h2 className="mb-4 text-base font-bold">Perfil do colecionador</h2>
-      <div className="grid gap-x-8 gap-y-5 md:grid-cols-2">
+      <div className="grid gap-x-8 gap-y-5 md:grid-cols-2 lg:gap-x-6">
         {displayName.field(<Input autoComplete="name" {...displayName.input} />, 'Nome de exibição')}
         {profileName.field(<Input autoComplete="username" {...profileName.input} />, 'Nome de usuário')}
         {selectField('network', 'Rede', 'Selecione uma rede', NETWORK_ITEMS)}
@@ -104,12 +104,13 @@ export function CheckoutFields({ form }: { form: UseFormReturn<CheckoutValues> }
         )}
         {secondary.field(
           <Input
-            placeholder="ENS ou endereço (opcional)"
+            placeholder="ENS ou carteira secundária (opcional)"
             autoComplete="off"
             spellCheck={false}
             {...secondary.input}
           />,
-          'Carteira secundária',
+          'Carteira secundária (opcional)',
+          true,
         )}
         {selectField('type', 'Tipo de carteira', 'Selecione uma carteira', TYPE_ITEMS)}
         {referral.field(<Input autoComplete="off" {...referral.input} />, 'Código de indicação')}
@@ -126,7 +127,7 @@ export function CheckoutFields({ form }: { form: UseFormReturn<CheckoutValues> }
       </div>
 
       <div className="mt-5 space-y-1.5">
-        <Label htmlFor="checkout-note" className="text-sm">
+        <Label htmlFor="checkout-note" className="text-sm md:text-[0.9375rem]">
           Observação do colecionador (opcional)
         </Label>
         <Textarea

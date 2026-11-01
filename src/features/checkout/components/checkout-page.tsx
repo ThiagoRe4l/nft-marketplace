@@ -20,7 +20,7 @@ const linkClass = 'outline-none hover:text-primary focus-visible:ring-3 focus-vi
 
 function CheckoutSkeleton() {
   return (
-    <div role="status" aria-label="Carregando pagamento" className="grid gap-y-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-x-16">
+    <div role="status" aria-label="Carregando pagamento" className="grid gap-y-10 lg:grid-cols-[minmax(0,1fr)_25.3125rem] lg:gap-x-8">
       <div className="grid gap-x-8 gap-y-5 md:grid-cols-2">
         {Array.from({ length: 10 }, (_, i) => (
           <Skeleton key={i} className="h-16 w-full" />

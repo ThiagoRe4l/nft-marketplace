@@ -1,4 +1,4 @@
-import { useId, useState, type FormEvent } from 'react'
+import { useId, useState, type KeyboardEvent } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -32,8 +32,8 @@ export function CouponForm({ couponCode }: { couponCode: string | null }) {
     )
   }
 
-  const submit = (event: FormEvent) => {
-    event.preventDefault()
+  // não é um <form>: o mesmo bloco também aparece dentro do formulário do pagamento, e form dentro de form é inválido
+  const submit = () => {
     const trimmed = code.trim()
     if (!trimmed) {
       setError('Informe o cupom')
@@ -48,8 +48,15 @@ export function CouponForm({ couponCode }: { couponCode: string | null }) {
     })
   }
 
+  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== 'Enter') return
+    // Enter aqui aplica o cupom e nunca envia o formulário em volta
+    event.preventDefault()
+    submit()
+  }
+
   return (
-    <form onSubmit={submit} noValidate>
+    <div role="group" aria-label="Cupom promocional">
       <Label htmlFor={inputId} className="mb-2 text-xs font-bold max-lg:sr-only">
         Código promocional
       </Label>
@@ -61,19 +68,20 @@ export function CouponForm({ couponCode }: { couponCode: string | null }) {
             setCode(event.target.value)
             setError(null)
           }}
+          onKeyDown={onKeyDown}
           placeholder="Digite o código promocional..."
           autoComplete="off"
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
           className="h-10 rounded-r-none border-border-strong text-xs max-lg:rounded-l-full"
         />
-        <Button type="submit" disabled={apply.isPending} className="h-10 rounded-l-none px-5 font-bold max-lg:rounded-r-full">
+        <Button type="button" onClick={submit} disabled={apply.isPending} className="h-10 rounded-l-none px-5 font-bold max-lg:rounded-r-full">
           Aplicar
         </Button>
       </div>
       <p id={errorId} aria-live="polite" className="mt-1.5 min-h-4 text-xs text-destructive">
         {error}
       </p>
-    </form>
+    </div>
   )
 }

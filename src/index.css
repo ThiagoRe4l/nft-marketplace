@@ -32,6 +32,8 @@
   --surface-raised: #38220f;
   --border-strong: #915e36;
   --primary-hover: #b77743;
+  /* "Text/Accent" do Figma: texto e itens ativos (o --primary é o fundo de botões e traços) */
+  --highlight: #e89b55;
 }
 
 @theme inline {
@@ -56,6 +58,7 @@
   --color-surface-raised: var(--surface-raised);
   --color-border-strong: var(--border-strong);
   --color-primary-hover: var(--primary-hover);
+  --color-highlight: var(--highlight);
 }
 
 @theme {
@@ -69,8 +72,8 @@
   --radius-lg: 0.75rem;
   --radius-xl: 1.25rem;
 
-  /* container de 1200px (120px de margem a 1440px), gutter de 24px no mobile */
-  --container-page: 75rem;
+  /* conteúdo de 1200px (120px de margem a 1440px): 1200 + o gutter de 24px de cada lado, que também é a margem do mobile */
+  --container-page: 78rem;
   --spacing-gutter: 1.5rem;
   --spacing-header: 5rem;
 
@@ -104,5 +107,9 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
+  }
+  /* o <picture> usa display: contents (NftImage): sem isto os <source> viram itens vazios de flex e o gap empurra a imagem */
+  picture > source {
+    display: none;
   }
 }

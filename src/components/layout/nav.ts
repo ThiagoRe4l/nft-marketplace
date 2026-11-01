@@ -9,3 +9,9 @@ export function isMarketActive(pathname: string, hash: string) {
 export function isHomeActive(pathname: string, hash: string) {
   return pathname === '/' && hash !== 'catalogo'
 }
+
+// A linha sob o header existe só na Início, no Perfil e em Carteiras (e no login/cadastro, que são a Início).
+// As telas do Mercado (detalhe, carrinho, pagamento e pedido) usam o header sem a linha, como no Figma.
+const DIVIDER_PATHS = ['/', '/login', '/cadastro', '/perfil', '/carteiras']
+
+export const hasHeaderDivider = (pathname: string) => DIVIDER_PATHS.includes(pathname)

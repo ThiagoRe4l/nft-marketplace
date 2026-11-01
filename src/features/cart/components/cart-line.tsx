@@ -53,9 +53,10 @@ export function CartLine({ line }: { line: Cart['items'][number] }) {
             className="line-clamp-2 text-sm font-bold break-words outline-none hover:text-primary focus-visible:ring-3 focus-visible:ring-ring"
           >
             {nft.name}
+            {/* a edição não aparece na linha (Figma), mas continua no nome acessível */}
+            <span className="sr-only"> (edição {nft.editionLabel})</span>
           </Link>
           <p className="text-xs text-muted-foreground">ID do token: {nft.tokenId}</p>
-          <p className="text-xs text-muted-foreground">Edição: {nft.editionLabel}</p>
         </div>
       </div>
 
@@ -72,6 +73,7 @@ export function CartLine({ line }: { line: Cart['items'][number] }) {
           <QuantityStepper
             value={line.quantity}
             max={max}
+            size="sm"
             disabled={busy}
             onChange={(quantity) => update.mutate({ itemId: line.id, quantity }, { onError })}
           />

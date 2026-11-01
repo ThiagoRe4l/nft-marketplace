@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
-import { EyeIcon, HeartIcon, ShoppingCartIcon } from 'lucide-react'
+import { EyeIcon } from 'lucide-react'
+import { HeartIcon, ShoppingIcon } from '@/components/icons'
 import { cn } from "@/lib/utils"
 import { NftImage } from '@/components/nft/nft-image'
 import type { NftSummary } from '@/contracts/nft'
@@ -66,7 +67,7 @@ export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite
             aria-pressed={isFavorite}
             onClick={() => onToggleFavorite(nft)}
           >
-           <HeartIcon className={cn('size-4', isFavorite && 'fill-current')} />
+           <HeartIcon filled={isFavorite} className="size-4" />
           </button>
           <button
             type="button"
@@ -75,7 +76,7 @@ export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite
             disabled={nft.soldOut}
             onClick={() => onAddToCart(nft)}
           >
-            <ShoppingCartIcon className="size-4" />
+            <ShoppingIcon className="size-4" />
           </button>
         </div>
       </div>

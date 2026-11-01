@@ -1,0 +1,1434 @@
+.desktop-inicio {
+    /* Mobile / Detalhes do NFT */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+isolation: isolate;
+
+position: relative;
+width: 414px;
+height: 896px;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+background: #140D0A;
+border-radius: 40px;
+
+
+/* Hero */
+
+width: 414px;
+height: 506px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: -114px 0px;
+z-index: 0;
+
+
+/* Rectangle 6 */
+
+position: absolute;
+width: 414px;
+height: 506px;
+left: 0px;
+top: 0px;
+
+background: linear-gradient(143.28deg, #241612 -12%, #2F1D15 106.59%);
+
+
+/* Group 62 */
+
+position: absolute;
+width: 56px;
+height: 7px;
+left: 179px;
+top: 365px;
+
+
+
+/* Ellipse 2 */
+
+position: absolute;
+width: 7px;
+height: 7px;
+left: 214px;
+top: 365px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+background: #D28A4C;
+
+
+/* Ellipse 3 */
+
+position: absolute;
+width: 7px;
+height: 7px;
+left: 228px;
+top: 365px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+background: #D28A4C;
+
+
+/* Rectangle 98 */
+
+position: absolute;
+width: 28px;
+height: 7px;
+left: 179px;
+top: 365px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+background: #D28A4C;
+border-radius: 25px;
+
+
+/* Frame 427 */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 8px;
+
+position: absolute;
+width: 361px;
+height: 399px;
+left: 28px;
+top: 23px;
+
+
+
+/* Frame 426 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 291px;
+
+width: 361px;
+height: 35px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Back */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 35px;
+height: 35px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 424 */
+
+box-sizing: border-box;
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 8px;
+gap: 10px;
+
+width: 35px;
+height: 35px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 17.5px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Iconly/Curved/Arrow - Left 2 */
+
+width: 20px;
+height: 20px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Arrow - Left 2 */
+
+position: absolute;
+width: 11.67px;
+height: 5.83px;
+left: 7.08px;
+top: 4.17px;
+
+transform: rotate(90deg);
+
+
+/* Stroke 1 */
+
+position: absolute;
+left: 35.42%;
+right: 6.25%;
+top: 20.83%;
+bottom: 50%;
+
+/* Text/Secondary
+
+#CFB28C — vinculado à variável color/text-secondary
+*/
+border: 1.5px solid #CFB28C;
+transform: rotate(90deg);
+
+
+/* Heart */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 35px;
+height: 35px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 57 */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 35px;
+height: 35px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 425 */
+
+box-sizing: border-box;
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 35px;
+height: 35px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 17.5px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Vector */
+
+width: 16px;
+height: 14.23px;
+
+/* Text/Accent
+
+#E89B55 — vinculado à variável color/text-accent
+*/
+background: #E89B55;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Mobile NFT Hero Artwork */
+
+width: 361px;
+height: 356px;
+
+background: url(.png);
+mix-blend-mode: normal;
+border-radius: 24px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Details Sheet */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 32px 24px 24px;
+gap: 12px;
+
+width: 414px;
+height: 504px;
+
+/* Color/Surface Card
+
+#241612 — vinculado à variável color/text-primary
+*/
+background: #241612;
+border-radius: 31px 31px 0px 0px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Title Row */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+
+width: 366px;
+height: 27px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Emerald Ape #042 */
+
+width: 193px;
+height: 16px;
+
+/* Title/20 Bold · lh 16
+
+combo:20|Bold|16px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 80% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Review */
+
+width: 82.58px;
+height: 27px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Iconly/Bold/Star */
+
+position: absolute;
+left: 78.96%;
+right: 17.21%;
+top: 22.22%;
+bottom: 25.93%;
+
+
+
+/* Star */
+
+position: absolute;
+width: 11.67px;
+height: 11.08px;
+left: 1.17px;
+top: 1.46px;
+
+
+
+/* Star */
+
+position: absolute;
+left: 8.33%;
+right: 8.32%;
+top: 10.42%;
+bottom: 10.41%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Group 63 */
+
+position: absolute;
+width: 82.58px;
+height: 27px;
+left: 283.42px;
+top: 0px;
+
+
+
+/* (19) */
+
+position: absolute;
+width: 34px;
+height: 16px;
+left: 332px;
+top: 6px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+
+/* 4.8 */
+
+position: absolute;
+width: 26px;
+height: 16px;
+left: 307px;
+top: 6px;
+
+/* Body/14 Medium · lh 16 · ls 0%
+
+combo:14|Medium|16px|0% | usos: 11
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Rectangle 99 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 80.16px;
+height: 27px;
+left: 283.42px;
+top: 0px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1px solid #D28A4C;
+border-radius: 32px;
+
+
+/* Um colecionável digital 1/50 finalizado à mão da coleção Kurio Editions, verificado na Ethereum. */
+
+width: 361px;
+height: 71px;
+
+/* Body/14 Regular · lh 24
+
+combo:14|Regular|24px|0% | usos: 12
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 24px;
+/* ou 171% */
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 66 */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+width: 232px;
+height: 52px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Edição: */
+
+width: 64px;
+height: 16px;
+
+/* Body/15 Bold · lh 16
+
+combo:15|Bold|16px|0% | usos: 21
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 107% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 432 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+width: 232px;
+height: 28px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 428 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+isolation: isolate;
+
+width: 42px;
+height: 28px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Ellipse 25 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 42px;
+height: 28px;
+left: 0px;
+top: 0px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* 1/10 */
+
+width: 34px;
+height: 16px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+text-align: center;
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Frame 431 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+isolation: isolate;
+
+width: 42px;
+height: 28px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ellipse 25 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 42px;
+height: 28px;
+left: 0px;
+top: 0px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* 1/10 */
+
+width: 34px;
+height: 16px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+text-align: center;
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Frame 429 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+isolation: isolate;
+
+width: 46px;
+height: 28px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Ellipse 26 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 46px;
+height: 28px;
+left: 0px;
+top: 0px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1px solid #D28A4C;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* 1/50 */
+
+width: 34px;
+height: 16px;
+
+/* Body/14 Medium · lh 16 · ls 0%
+
+combo:14|Medium|16px|0% | usos: 11
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+text-align: center;
+
+/* Text/Accent */
+color: #E89B55;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Frame 430 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+isolation: isolate;
+
+width: 66px;
+height: 28px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Ellipse 27 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 66px;
+height: 28px;
+left: 0px;
+top: 0px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* ABERTA */
+
+width: 51px;
+height: 16px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+text-align: center;
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Token Info */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+width: 307px;
+height: 84px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* ID do token: #0042 */
+
+width: 163px;
+height: 20px;
+
+/* Body/15 Regular · lh 16
+
+combo:15|Regular|16px|0% | usos: 66
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 20px;
+/* idêntico à altura da caixa */
+
+/* Color/Secondary */
+color: #B39463;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Coleção: Kurio Apes */
+
+width: 172px;
+height: 20px;
+
+/* Body/15 Regular · lh 16
+
+combo:15|Regular|16px|0% | usos: 66
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 20px;
+/* idêntico à altura da caixa */
+
+/* Color/Secondary */
+color: #B39463;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Atributos: Óculos, Esmeralda, Raro */
+
+width: 307px;
+height: 20px;
+
+/* Body/15 Regular · lh 16
+
+combo:15|Regular|16px|0% | usos: 66
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 20px;
+/* idêntico à altura da caixa */
+
+/* Color/Secondary */
+color: #B39463;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Buy Bar */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 20px 24px 36px;
+gap: 10px;
+
+position: absolute;
+height: 164px;
+left: 0px;
+right: 0px;
+bottom: 0px;
+
+/* Color/Surface Card
+
+#241612 — vinculado à variável color/text-primary
+*/
+background: #241612;
+box-shadow: 0px 0px 20px rgba(10, 6, 4, 0.45);
+border-radius: 40px 40px 0px 0px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+flex-grow: 0;
+z-index: 2;
+
+
+/* Frame 438 */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 20px;
+
+width: 366px;
+height: 110px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 434 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 142px;
+
+width: 366px;
+height: 30px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 67 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 8px;
+
+width: 120px;
+height: 30px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Qtd. */
+
+width: 37px;
+height: 16px;
+
+/* Body/15 Medium
+
+combo:15|Medium|16px|0% | usos: 6
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 107% */
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 433 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+width: 75px;
+height: 30px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Add Button */
+
+box-sizing: border-box;
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 20px;
+height: 30px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+background: #D28A4C;
+border: 1px solid #140D0A;
+box-shadow: 0px 4px 12px -2px rgba(20, 13, 10, 0.14902);
+border-radius: 20px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.83%;
+right: 20.83%;
+top: 45.83%;
+bottom: 45.83%;
+
+/* Color/Black
+
+#000000 — vinculado à variável color/black
+*/
+background: #000000;
+
+
+/* 1 */
+
+width: 11px;
+height: 25px;
+
+/* Body Large/18 Medium
+
+combo:18|Medium|10px|0% | usos: 1
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 25px;
+/* idêntico à altura da caixa ou 139% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Add Button */
+
+box-sizing: border-box;
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 20px;
+height: 30px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+background: #D28A4C;
+border: 1px solid #140D0A;
+box-shadow: 0px 4px 12px -2px rgba(20, 13, 10, 0.14902);
+border-radius: 20px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.83%;
+right: 20.83%;
+top: 20.83%;
+bottom: 20.83%;
+
+/* Color/Black
+
+#000000 — vinculado à variável color/black
+*/
+background: #000000;
+
+
+/* 1.19 ETH */
+
+width: 97px;
+height: 16px;
+
+/* Title/20 Bold · lh 16
+
+combo:20|Bold|16px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 80% */
+text-align: right;
+
+/* Text/Accent */
+color: #E89B55;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 437 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+width: 268px;
+height: 60px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 435 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 20px 44px 20px 48px;
+gap: 10px;
+
+width: 196px;
+height: 60px;
+
+background: linear-gradient(93.21deg, #D28A4C -3.96%, rgba(210, 138, 76, 0.8) 121.97%);
+border-radius: 40px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Comprar NFT */
+
+width: 106px;
+height: 20px;
+
+/* Body Large/16 Bold · lh 20
+
+combo:16|Bold|20px|0% | usos: 7
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 20px;
+/* idêntico à altura da caixa ou 125% */
+
+/* Color/Ink */
+color: #140D0A;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 436 */
+
+box-sizing: border-box;
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 20px;
+gap: 10px;
+
+width: 60px;
+height: 60px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 40px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shop */
+
+width: 20px;
+height: 20px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 4.17%;
+right: 8.33%;
+top: 8.33%;
+bottom: 8.33%;
+
+/* Color/Secondary
+
+#B39463 — vinculado à variável color/secondary
+*/
+background: #B39463;
+
+}

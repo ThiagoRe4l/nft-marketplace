@@ -1,0 +1,12 @@
+import type { SVGProps } from 'react'
+
+// Exportado do Figma (docs/figma/icons/Location.svg); cores trocadas por currentColor.
+// Decorativo por padrão: o nome acessível vem do botão ou link que o contém.
+export function LocationIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg width="14" height="17" viewBox="0 0 14 17" fill="none" aria-hidden="true" {...props}>
+      <path d="M6.87557 5.41699C6.0714 5.41699 5.41724 6.07116 5.41724 6.87616C5.41724 7.68033 6.0714 8.33366 6.87557 8.33366C7.67974 8.33366 8.3339 7.68033 8.3339 6.87616C8.3339 6.07116 7.67974 5.41699 6.87557 5.41699M6.87557 9.58366C5.38224 9.58366 4.16724 8.36949 4.16724 6.87616C4.16724 5.38199 5.38224 4.16699 6.87557 4.16699C8.3689 4.16699 9.5839 5.38199 9.5839 6.87616C9.5839 8.36949 8.3689 9.58366 6.87557 9.58366" fillRule="evenodd" clipRule="evenodd" fill="currentColor"/>
+      <path d="M6.87476 1.25C3.77309 1.25 1.24976 3.7975 1.24976 6.9275C1.24976 10.91 5.93642 14.79 6.87476 14.9967C7.81309 14.7892 12.4998 10.9092 12.4998 6.9275C12.4998 3.7975 9.97642 1.25 6.87476 1.25V1.25ZM6.87476 16.25C5.37976 16.25 -0.000244141 11.6233 -0.000244141 6.9275C-0.000244141 3.1075 3.08392 0 6.87476 0C10.6656 0 13.7498 3.1075 13.7498 6.9275C13.7498 11.6233 8.36976 16.25 6.87476 16.25V16.25Z" fillRule="evenodd" clipRule="evenodd" fill="currentColor"/>
+    </svg>
+  )
+}

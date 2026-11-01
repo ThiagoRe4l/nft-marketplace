@@ -130,21 +130,13 @@ export function OrderReceipt({ order }: { order: Order }) {
               Ver no Etherscan
               <span className="sr-only"> (abre em nova aba)</span>
             </a>
-            <p className="text-xs text-muted-foreground">
-              Demonstração: esta transação é simulada e não existe na rede real.
-            </p>
           </div>
         )}
 
-        <div className="mt-5 text-center">
-          <Link
-            to="/"
-            hash="catalogo"
-            className="text-sm text-primary underline-offset-4 outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring"
-          >
-            Continuar explorando
-          </Link>
-        </div>
+        {/* o aviso vale para qualquer recibo, com ou sem link do explorador; o X do topo já leva ao catálogo */}
+        <p className="mt-4 text-center text-xs text-muted-foreground">
+          Demonstração: esta transação é simulada e não existe na rede real.
+        </p>
       </div>
     </article>
   )

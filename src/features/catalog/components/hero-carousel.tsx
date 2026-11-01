@@ -37,20 +37,20 @@ export function HeroCarousel({ slides, isLoading, error, onRetry }: HeroCarousel
     <section
       aria-roledescription="carousel"
       aria-label="Destaques"
-      className="mx-auto w-full max-w-page px-gutter py-4 md:py-10"
+      className="mx-auto w-full max-w-page px-gutter py-4 md:pt-8 md:pb-10 lg:pb-0"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={onBlur}
     >
-      <div className="grid grid-cols-[1fr_8.5rem] items-center gap-4 rounded-xl bg-gradient-to-br from-surface-raised to-card p-5 md:grid-cols-1 md:gap-10 md:rounded-none md:bg-none md:p-0 lg:grid-cols-[1fr_28rem]">
+      <div className="grid grid-cols-[1fr_8.5rem] items-center gap-4 rounded-xl bg-gradient-to-br from-surface-raised to-card p-5 md:grid-cols-1 md:gap-10 md:rounded-none md:bg-none md:p-0 lg:min-h-[28.125rem] lg:grid-cols-[minmax(0,37.5rem)_28.125rem] lg:justify-between lg:pl-10">
         <div>
           <div>
-            <p className="text-xs md:text-sm">Bem-vindo à Kurio</p>
-            <h1 className="mt-3 text-xl leading-snug font-bold uppercase md:mt-6 md:text-4xl md:leading-[1.6]">
+            <p className="text-xs md:text-sm lg:leading-4 lg:font-medium lg:tracking-[0.1em]">Bem-vindo à Kurio</p>
+            <h1 className="mt-3 text-xl leading-snug font-bold uppercase md:mt-6 md:text-4xl md:leading-[1.6] lg:mt-2 lg:text-[2.6875rem] lg:leading-[4.375rem]">
               Seja dono do futuro da arte digital
             </h1>
-            <p className="mt-3 max-w-md text-xs leading-5 text-muted-foreground md:mt-4 md:text-sm md:leading-6">
+            <p className="mt-3 max-w-md text-xs leading-5 text-muted-foreground md:mt-4 md:text-sm md:leading-6 lg:mt-1 lg:max-w-[34.8125rem]">
               Descubra NFTs selecionados de criadores emergentes e consagrados. Colecione arte digital rara, apoie
               artistas e tenha uma parte da cultura da internet.
             </p>
@@ -58,12 +58,19 @@ export function HeroCarousel({ slides, isLoading, error, onRetry }: HeroCarousel
               to="/"
               hash="catalogo"
               className={buttonVariants({
-                className: 'mt-4 h-9 rounded-full px-5 font-bold uppercase md:mt-8 md:h-10 md:rounded-md md:px-6',
+                className:
+                  'mt-4 h-9 rounded-full px-5 font-bold uppercase md:mt-8 md:h-10 md:rounded-md md:px-6 lg:pr-9 lg:pl-7 lg:text-base',
               })}
             >
               Explorar
             </Link>
           </div>
+          {/* desktop: os pontos ficam no fim da coluna de texto, à direita (Figma) */}
+          {slides.length > 1 && (
+            <div className="mt-11 hidden justify-end gap-2 lg:flex">
+              <Dots count={slides.length} index={index} onSelect={setIndex} />
+            </div>
+          )}
         </div>
 
         <div>
@@ -78,7 +85,7 @@ export function HeroCarousel({ slides, isLoading, error, onRetry }: HeroCarousel
             </div>
           ) : (
             <div
-              className="mx-auto grid w-full max-w-md"
+              className="mx-auto grid w-full max-w-md lg:max-w-none"
               aria-live={autoplay ? 'off' : 'polite'}
             >
               {slides.map((nft, i) => (
@@ -90,7 +97,7 @@ export function HeroCarousel({ slides, isLoading, error, onRetry }: HeroCarousel
                   aria-hidden={i !== index}
                   tabIndex={i === index ? 0 : -1}
                   className={cn(
-                    'col-start-1 row-start-1 overflow-hidden rounded-xl outline-none transition-opacity duration-500 focus-visible:ring-3 focus-visible:ring-ring motion-reduce:transition-none',
+                    'col-start-1 row-start-1 overflow-hidden rounded-xl outline-none lg:rounded-3xl transition-opacity duration-500 focus-visible:ring-3 focus-visible:ring-ring motion-reduce:transition-none',
                     i === index ? 'opacity-100' : 'pointer-events-none opacity-0',
                   )}
                 >
@@ -113,7 +120,7 @@ export function HeroCarousel({ slides, isLoading, error, onRetry }: HeroCarousel
         </div>
       </div>
       {slides.length > 1 && (
-        <div className="mt-3 flex justify-center gap-1">
+        <div className="mt-3 flex justify-center gap-1 lg:hidden">
           <Dots count={slides.length} index={index} onSelect={setIndex} />
         </div>
       )}
@@ -131,9 +138,10 @@ function Dots({ count, index, onSelect }: { count: number; index: number; onSele
           aria-label={`Ir para o slide ${i + 1}`}
           aria-current={i === index}
           onClick={() => onSelect(i)}
-          className="group flex size-6 items-center justify-center rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring"
+          // desktop: pontos de 8 px com 8 px entre eles (Figma); a área de clique de 24 px vem do ::after
+          className="group relative flex size-6 items-center justify-center rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring lg:size-2 lg:after:absolute lg:after:-inset-2 lg:after:content-['']"
         >
-          <span className={cn('size-2.5 rounded-full bg-primary transition-opacity', i === index ? 'opacity-100' : 'opacity-40 group-hover:opacity-70')} />
+          <span className={cn('size-2.5 rounded-full bg-primary transition-opacity lg:size-2', i === index ? 'opacity-100' : 'opacity-40 group-hover:opacity-70')} />
         </button>
       ))}
     </>

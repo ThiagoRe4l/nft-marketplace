@@ -1,0 +1,1203 @@
+.desktop-inicio {
+/* Mobile / Cadastro */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 80px 28px 24px;
+gap: 40px;
+
+position: relative;
+width: 414px;
+height: 896px;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+background: #140D0A;
+border-radius: 40px;
+
+
+/* Logo */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 358px;
+height: 136px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* KURIO Wordmark */
+
+width: 109px;
+height: 42px;
+
+/* Display/32 Bold
+
+combo:32|Bold|AUTO|10% | usos: 2
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 42px;
+text-align: center;
+letter-spacing: 0.1em;
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Title */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+
+width: 358px;
+height: 16px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Criar perfil de colecionador */
+
+width: 303px;
+height: 16px;
+
+/* Body Large/18 Bold · lh 16
+
+combo:18|Bold|16px|0% | usos: 95
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 89% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Form */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+width: 358px;
+height: 236px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Container */
+
+box-sizing: border-box;
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px 16px;
+gap: 10px;
+
+width: 358px;
+height: 50px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 10px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* User Name */
+
+margin: 0 auto;
+width: 127px;
+height: 16px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Color/Secondary */
+color: #B39463;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 447 */
+
+box-sizing: border-box;
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px 16px;
+gap: 10px;
+
+width: 358px;
+height: 50px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 10px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Digite seu e-mail */
+
+width: 143px;
+height: 16px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Color/Secondary */
+color: #B39463;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 449 */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px 16px;
+gap: 10px;
+isolation: isolate;
+
+width: 358px;
+height: 50px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Rectangle 49 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 358px;
+height: 50px;
+left: 0px;
+top: 0px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 10px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* Frame 448 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
+padding: 0px;
+gap: 269px;
+
+width: 326px;
+height: 18px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Senha */
+
+width: 43px;
+height: 16px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Color/Secondary */
+color: #B39463;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Iconly/Curved/Hide */
+
+width: 18px;
+height: 18px;
+
+border-radius: 10px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Hide */
+
+position: absolute;
+width: 13.88px;
+height: 11.83px;
+left: 2.06px;
+top: 3.19px;
+
+
+
+/* Stroke 1 */
+
+position: absolute;
+left: 11.46%;
+right: 26.71%;
+top: 20.17%;
+bottom: 26.13%;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.5px solid #55321F;
+
+
+/* Stroke 3 */
+
+position: absolute;
+left: 39.04%;
+right: 11.42%;
+top: 35.88%;
+bottom: 19%;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.5px solid #55321F;
+
+
+/* Stroke 5 */
+
+position: absolute;
+left: 36.84%;
+right: 40.69%;
+top: 37.38%;
+bottom: 40.14%;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.5px solid #55321F;
+
+
+/* Stroke 7 */
+
+position: absolute;
+left: 52.39%;
+right: 37.04%;
+top: 52.91%;
+bottom: 36.49%;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.5px solid #55321F;
+
+
+/* Stroke 9 */
+
+position: absolute;
+left: 17.16%;
+right: 17.12%;
+top: 17.71%;
+bottom: 16.57%;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.5px solid #55321F;
+
+
+/* Frame 451 */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-start;
+padding: 0px 16px;
+isolation: isolate;
+
+width: 358px;
+height: 50px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Group 98 */
+
+position: absolute;
+width: 358px;
+height: 50px;
+left: 0px;
+top: 0px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* Rectangle 49 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 358px;
+height: 50px;
+left: 0px;
+top: 0px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 10px;
+
+
+/* Frame 450 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 185px;
+
+margin: 0 auto;
+width: 326px;
+height: 18px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Confirmar senha */
+
+width: 127px;
+height: 16px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Color/Secondary */
+color: #B39463;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Iconly/Curved/Hide */
+
+width: 18px;
+height: 18px;
+
+border-radius: 10px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Hide */
+
+position: absolute;
+width: 13.88px;
+height: 11.83px;
+left: 2.06px;
+top: 3.19px;
+
+
+
+/* Stroke 1 */
+
+position: absolute;
+left: 11.46%;
+right: 26.71%;
+top: 20.17%;
+bottom: 26.13%;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.5px solid #55321F;
+
+
+/* Stroke 3 */
+
+position: absolute;
+left: 39.04%;
+right: 11.42%;
+top: 35.88%;
+bottom: 19%;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.5px solid #55321F;
+
+
+/* Stroke 5 */
+
+position: absolute;
+left: 36.84%;
+right: 40.69%;
+top: 37.38%;
+bottom: 40.14%;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.5px solid #55321F;
+
+
+/* Stroke 7 */
+
+position: absolute;
+left: 52.39%;
+right: 37.04%;
+top: 52.91%;
+bottom: 36.49%;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.5px solid #55321F;
+
+
+/* Stroke 9 */
+
+position: absolute;
+left: 17.16%;
+right: 17.12%;
+top: 17.71%;
+bottom: 16.57%;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.5px solid #55321F;
+
+
+/* Create Profile Button */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 358px;
+height: 60px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+background: #D28A4C;
+border-radius: 10px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Criar perfil */
+
+width: 116px;
+height: 16px;
+
+/* Body Large/16 Bold · lh 16
+
+combo:16|Bold|16px|0% | usos: 58
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 100% */
+
+/* Color/Ink */
+color: #140D0A;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Mobile Social Block
+
+Mobile social sign-in block: labelled divider plus Google and Facebook buttons. Desktop variants differ in spacing and are intentionally not instances of this.
+*/
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+width: 358px;
+height: 124px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 4;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 4 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 358px;
+height: 16px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Line 7 */
+
+width: 110px;
+height: 0px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Ou continue com */
+
+width: 118px;
+height: 16px;
+
+/* Caption/13 Regular · lh 16
+
+combo:13|Regular|16px|0% | usos: 6
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 13px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 123% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Line 8 */
+
+width: 110px;
+height: 0px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+flex-grow: 1;
+
+
+/* Frame 370 */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 358px;
+height: 96px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Social Button
+
+Third-party sign-in button. Provider picks the brand mark and label. Always FILL width — the parent container owns the horizontal inset (80px inside the auth modals, 0 on the mobile screens).
+*/
+
+box-sizing: border-box;
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 358px;
+height: 40px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 5px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Content */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+width: 189px;
+height: 20px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* google 1 */
+
+width: 20px;
+height: 20px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Group */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 7.11%;
+right: 17.83%;
+top: 57.68%;
+bottom: 0%;
+
+/* Logo/Google Green
+
+#59C36A — vinculado à variável logo/google-green
+*/
+background: #59C36A;
+
+
+/* Vector */
+
+position: absolute;
+left: 50%;
+right: 17.83%;
+top: 71.33%;
+bottom: 0%;
+
+/* Color/Success
+
+#00A66C — vinculado à variável color/success
+*/
+background: #00A66C;
+
+
+/* Connected_Home_1_ */
+
+position: absolute;
+left: 0%;
+right: 75.25%;
+top: 24.69%;
+bottom: 24.69%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 0%;
+right: 75.25%;
+top: 24.69%;
+bottom: 24.69%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 0%;
+right: 75.25%;
+top: 24.69%;
+bottom: 24.69%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 0%;
+right: 75.25%;
+top: 24.69%;
+bottom: 24.69%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 75.25%;
+top: 24.69%;
+bottom: 24.69%;
+
+/* Logo/Google Yellow
+
+#FFDA2D — vinculado à variável logo/google-yellow
+*/
+background: #FFDA2D;
+
+
+/* Vector */
+
+position: absolute;
+left: 47.07%;
+right: 0%;
+top: 38.28%;
+bottom: 11.97%;
+
+/* Logo/Google Blue
+
+#4086F4 — vinculado à variável logo/google-blue
+*/
+background: #4086F4;
+
+
+/* Vector */
+
+position: absolute;
+left: 50%;
+right: 0%;
+top: 38.28%;
+bottom: 11.97%;
+
+/* Logo/Blue
+
+#4175DF — vinculado à variável logo/blue
+*/
+background: #4175DF;
+
+
+/* Vector */
+
+position: absolute;
+left: 7.11%;
+right: 17.01%;
+top: 0%;
+bottom: 57.68%;
+
+/* Logo/Orange
+
+#FF641A — vinculado à variável logo/orange
+*/
+background: #FF641A;
+
+
+/* Vector */
+
+position: absolute;
+left: 50%;
+right: 17.01%;
+top: 0%;
+bottom: 70.51%;
+
+/* Text/Coral
+
+#EA6B4F — vinculado à variável color/accent
+*/
+background: #F0805F;
+
+
+/* Continuar com Google */
+
+width: 157px;
+height: 16px;
+
+/* Caption/13 Medium
+
+combo:13|Medium|16px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 123% */
+text-align: center;
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Social Button
+
+Third-party sign-in button. Provider picks the brand mark and label. Always FILL width — the parent container owns the horizontal inset (80px inside the auth modals, 0 on the mobile screens).
+*/
+
+box-sizing: border-box;
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 358px;
+height: 40px;
+
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 5px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Content */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+width: 204px;
+height: 20px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* facebook 1 */
+
+width: 20px;
+height: 20px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 25.78%;
+right: 24.22%;
+top: 0%;
+bottom: 0%;
+
+/* Logo/Facebook
+
+#3B5999 — vinculado à variável logo/facebook
+*/
+background: #3B5999;
+
+
+/* Continuar com Facebook */
+
+width: 172px;
+height: 16px;
+
+/* Caption/13 Medium
+
+combo:13|Medium|16px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 123% */
+text-align: center;
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Login Link */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: flex-end;
+padding: 0px;
+
+width: 358px;
+height: 20px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 5;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Já tem uma conta? Entre */
+
+width: 208px;
+height: 20px;
+
+/* Body/15 Regular · lh 16
+
+combo:15|Regular|16px|0% | usos: 66
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 20px;
+/* idêntico à altura da caixa */
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+}

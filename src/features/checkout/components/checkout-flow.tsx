@@ -131,7 +131,7 @@ export function CheckoutFlow({
       onSubmit={onSubmit}
       noValidate
       aria-label="Pagamento"
-      className="grid gap-y-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-x-16"
+      className="grid gap-y-10 lg:grid-cols-[minmax(0,1fr)_25.3125rem] lg:gap-x-8"
     >
       <CheckoutFields form={form} />
 

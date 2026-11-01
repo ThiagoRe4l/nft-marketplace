@@ -1,0 +1,2108 @@
+.desktop-inicio {
+    /* Mobile / Pagamento */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 32px 28px;
+
+position: relative;
+width: 414px;
+height: 896px;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+background: #140D0A;
+border-radius: 40px;
+
+
+/* Content */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 358px;
+height: 832px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 1;
+
+
+/* Frame 442 */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+margin: 0 auto;
+width: 358px;
+height: 605px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Screen Header */
+
+width: 358px;
+height: 44px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Back */
+
+position: absolute;
+width: 35px;
+height: 35px;
+left: 0px;
+top: 0px;
+
+
+
+/* Ellipse 38 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 35px;
+height: 35px;
+left: 0px;
+top: 0px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+
+
+/* Iconly/Curved/Arrow - Left 2 */
+
+position: absolute;
+left: 1.96%;
+right: 92.46%;
+top: 15.91%;
+bottom: 38.64%;
+
+
+
+/* Arrow - Left 2 */
+
+position: absolute;
+width: 11.67px;
+height: 5.83px;
+left: 7.08px;
+top: 4.17px;
+
+transform: rotate(90deg);
+
+
+/* Stroke 1 */
+
+position: absolute;
+left: 35.42%;
+right: 6.25%;
+top: 20.83%;
+bottom: 50%;
+
+/* Color/Secondary
+
+#B39463 — vinculado à variável color/secondary
+*/
+border: 1.5px solid #B39463;
+transform: rotate(90deg);
+
+
+/* Pagamento com carteira */
+
+position: absolute;
+width: 265px;
+height: 16px;
+left: 59px;
+top: 9px;
+
+/* Title/20 Bold · lh 16
+
+combo:20|Bold|16px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 80% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Frame 2 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 122px;
+
+width: 358px;
+height: 16px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Carteira conectada */
+
+width: 173px;
+height: 16px;
+
+/* Body Large/16 Bold · lh 16
+
+combo:16|Bold|16px|0% | usos: 58
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 100% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Trocar carteira */
+
+width: 127px;
+height: 16px;
+
+/* Body/14 Bold · lh 16
+
+combo:14|Bold|16px|0% | usos: 9
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Text/Accent */
+color: #E89B55;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Wallet Cards */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 20px;
+
+width: 358px;
+height: 206px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Wallet Card — Reserva */
+
+width: 358px;
+height: 93px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Rectangle 102 */
+
+position: absolute;
+width: 358px;
+height: 93px;
+left: 0px;
+top: 0px;
+
+/* Color/Surface Card
+
+#241612 — vinculado à variável color/text-primary
+*/
+background: #241612;
+box-shadow: 0px 20px 20px rgba(10, 6, 4, 0.45);
+border-radius: 14px;
+
+
+/* Reserva */
+
+position: absolute;
+width: 68px;
+height: 16px;
+left: 54px;
+top: 15px;
+
+/* Body Large/16 Bold · lh 16
+
+combo:16|Bold|16px|0% | usos: 58
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 100% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* nova.kurio.eth Rede Polygon */
+
+position: absolute;
+width: 201px;
+height: 44px;
+left: 54px;
+top: 38px;
+
+/* Body/14 Regular · lh 22
+
+combo:14|Regular|22px|0% | usos: 37
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 22px;
+/* ou 157% */
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+
+/* Group 87 */
+
+position: absolute;
+width: 3px;
+height: 15px;
+left: 336px;
+top: 39px;
+
+
+
+/* Ellipse 46 */
+
+position: absolute;
+width: 3px;
+height: 3px;
+left: 336px;
+top: 39px;
+
+/* Color/Secondary
+
+#B39463 — vinculado à variável color/secondary
+*/
+background: #B39463;
+
+
+/* Ellipse 47 */
+
+position: absolute;
+width: 3px;
+height: 3px;
+left: 336px;
+top: 45px;
+
+/* Color/Secondary
+
+#B39463 — vinculado à variável color/secondary
+*/
+background: #B39463;
+
+
+/* Ellipse 48 */
+
+position: absolute;
+width: 3px;
+height: 3px;
+left: 336px;
+top: 51px;
+
+/* Color/Secondary
+
+#B39463 — vinculado à variável color/secondary
+*/
+background: #B39463;
+
+
+/* Group 90 */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 19px;
+top: 39px;
+
+
+
+/* Ellipse 34 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 19px;
+top: 39px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1.2px solid #D28A4C;
+
+
+/* Ellipse 35 */
+
+position: absolute;
+width: 8px;
+height: 8px;
+left: 23px;
+top: 43px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+background: #D28A4C;
+
+
+/* Wallet Card — Principal */
+
+width: 358px;
+height: 93px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Rectangle 106 */
+
+position: absolute;
+width: 358px;
+height: 93px;
+left: 0px;
+top: 0px;
+
+/* Color/Surface Card
+
+#241612 — vinculado à variável color/text-primary
+*/
+background: #241612;
+border-radius: 14px;
+
+
+/* Principal */
+
+position: absolute;
+width: 87px;
+height: 16px;
+left: 54px;
+top: 16px;
+
+/* Body Large/16 Bold · lh 16
+
+combo:16|Bold|16px|0% | usos: 58
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 100% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* 0xA91F…E82C
+Ethereum Mainnet */
+
+position: absolute;
+width: 203px;
+height: 44px;
+left: 54px;
+top: 38px;
+
+/* Body/14 Regular · lh 22
+
+combo:14|Regular|22px|0% | usos: 37
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 22px;
+/* ou 157% */
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+
+/* Group 88 */
+
+position: absolute;
+width: 3px;
+height: 15px;
+left: 336px;
+top: 39px;
+
+
+
+/* Ellipse 46 */
+
+position: absolute;
+width: 3px;
+height: 3px;
+left: 336px;
+top: 39px;
+
+/* Color/Secondary
+
+#B39463 — vinculado à variável color/secondary
+*/
+background: #B39463;
+
+
+/* Ellipse 47 */
+
+position: absolute;
+width: 3px;
+height: 3px;
+left: 336px;
+top: 45px;
+
+/* Color/Secondary
+
+#B39463 — vinculado à variável color/secondary
+*/
+background: #B39463;
+
+
+/* Ellipse 48 */
+
+position: absolute;
+width: 3px;
+height: 3px;
+left: 336px;
+top: 51px;
+
+/* Color/Secondary
+
+#B39463 — vinculado à variável color/secondary
+*/
+background: #B39463;
+
+
+/* Ellipse 46 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 19px;
+top: 38px;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.2px solid #55321F;
+
+
+/* Wallet Options */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 359px;
+height: 259px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Carteira e rede */
+
+width: 145px;
+height: 16px;
+
+/* Body Large/16 Bold · lh 16
+
+combo:16|Bold|16px|0% | usos: 58
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 100% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Option — WalletConnect */
+
+width: 359px;
+height: 65px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Rectangle 105 */
+
+position: absolute;
+width: 359px;
+height: 65px;
+left: 0px;
+top: 0px;
+
+/* Color/Surface Card
+
+#241612 — vinculado à variável color/text-primary
+*/
+background: #241612;
+box-shadow: 0px 0px 20px rgba(10, 6, 4, 0.45);
+border-radius: 15px;
+
+
+/* Ellipse 44 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: 14px;
+top: 13px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+
+
+/* WalletConnect */
+
+position: absolute;
+width: 110px;
+height: 16px;
+left: 65px;
+top: 25px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Ellipse 45 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 326px;
+top: 25px;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.2px solid #55321F;
+
+
+/* Frame */
+
+position: absolute;
+visibility: hidden;
+width: 29px;
+height: 17.36px;
+left: 20px;
+top: 24px;
+
+
+
+/* Group */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 40.15%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 40.15%;
+top: 0%;
+bottom: 0%;
+
+/* Color/Error
+
+#ED1B2E — vinculado à variável color/error
+*/
+background: #ED1B2E;
+
+
+/* Vector */
+
+position: absolute;
+left: 46.5%;
+right: 37.6%;
+top: 16.46%;
+bottom: 80.83%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 44.11%;
+right: 37.6%;
+top: 22.5%;
+bottom: 74.78%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.34%;
+right: 37.6%;
+top: 28.52%;
+bottom: 68.76%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.11%;
+right: 37.6%;
+top: 34.56%;
+bottom: 62.73%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.32%;
+right: 37.55%;
+top: 63.74%;
+bottom: 33.55%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.59%;
+right: 37.55%;
+top: 69.77%;
+bottom: 27.52%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 44.46%;
+right: 37.56%;
+top: 75.79%;
+bottom: 21.49%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 47.01%;
+right: 37.56%;
+top: 81.82%;
+bottom: 15.45%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 40.4%;
+right: 37.6%;
+top: 40.58%;
+bottom: 56.71%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 53.8%;
+right: 37.81%;
+top: 57.72%;
+bottom: 39.57%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 54.47%;
+right: 37.81%;
+top: 51.68%;
+bottom: 45.59%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 39.84%;
+right: 57.98%;
+top: 51.68%;
+bottom: 45.59%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 27.3%;
+right: 63.71%;
+top: 44.14%;
+bottom: 37.36%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 27.3%;
+right: 63.71%;
+top: 44.14%;
+bottom: 37.36%;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+border: 0.216px solid #140D0A;
+
+
+/* Vector */
+
+position: absolute;
+left: 36.18%;
+right: 57.76%;
+top: 40.41%;
+bottom: 37.44%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 36.18%;
+right: 57.76%;
+top: 40.41%;
+bottom: 37.44%;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+border: 0.216px solid #140D0A;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.52%;
+right: 48.72%;
+top: 44.14%;
+bottom: 37.44%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.52%;
+right: 48.72%;
+top: 44.14%;
+bottom: 37.44%;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+border: 0.216px solid #140D0A;
+
+
+/* Vector */
+
+position: absolute;
+left: 58.24%;
+right: 30.95%;
+top: 39.65%;
+bottom: 37.46%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 58.24%;
+right: 30.95%;
+top: 39.65%;
+bottom: 37.46%;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+border: 0.216px solid #140D0A;
+
+
+/* Vector */
+
+position: absolute;
+left: 84.15%;
+right: 4.32%;
+top: 40.5%;
+bottom: 37.2%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 84.15%;
+right: 4.32%;
+top: 40.5%;
+bottom: 37.2%;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+border: 0.216px solid #140D0A;
+
+
+/* Vector */
+
+position: absolute;
+left: 87.4%;
+right: 8.46%;
+top: 48.55%;
+bottom: 41.52%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 17.63%;
+right: 72.09%;
+top: 44.28%;
+bottom: 37.16%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 17.63%;
+right: 72.09%;
+top: 44.28%;
+bottom: 37.16%;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+border: 0.216px solid #140D0A;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.78%;
+right: 75.6%;
+top: 54.11%;
+bottom: 41.19%;
+
+/* Color/Error
+
+#ED1B2E — vinculado à variável color/error
+*/
+background: #ED1B2E;
+
+
+/* Vector */
+
+position: absolute;
+left: 2.85%;
+right: 81.35%;
+top: 40.41%;
+bottom: 37.44%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 2.85%;
+right: 81.35%;
+top: 40.41%;
+bottom: 37.44%;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+border: 0.216px solid #140D0A;
+
+
+/* Vector */
+
+position: absolute;
+left: 67.79%;
+right: 21.96%;
+top: 44.28%;
+bottom: 37.16%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 76.45%;
+right: 23.01%;
+top: 58.8%;
+bottom: 37.33%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 73.91%;
+right: 23.48%;
+top: 62.44%;
+bottom: 37.33%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 73.92%;
+right: 25.91%;
+top: 60.53%;
+bottom: 37.44%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 70.16%;
+right: 25.91%;
+top: 60.53%;
+bottom: 37.06%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 67.71%;
+right: 29.82%;
+top: 57.72%;
+bottom: 37.18%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 67.71%;
+right: 28.66%;
+top: 51.24%;
+bottom: 42.29%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 71.34%;
+right: 26.58%;
+top: 50.88%;
+bottom: 48.56%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 73.42%;
+right: 25.1%;
+top: 50.88%;
+bottom: 48.8%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 74.78%;
+right: 24.99%;
+top: 49.99%;
+bottom: 48.89%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 73.68%;
+right: 25%;
+top: 48.1%;
+bottom: 50.01%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 69.35%;
+right: 26.32%;
+top: 48.07%;
+bottom: 50.77%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 69.35%;
+right: 29.82%;
+top: 44.98%;
+bottom: 50.84%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 70.1%;
+right: 25.41%;
+top: 44.15%;
+bottom: 54.81%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 74.59%;
+right: 21.9%;
+top: 44.2%;
+bottom: 50.08%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 76.87%;
+right: 21.95%;
+top: 49.89%;
+bottom: 41.17%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 70.92%;
+right: 25.51%;
+top: 54.09%;
+bottom: 41.19%;
+
+/* Color/Amber
+
+#E3A44E — vinculado à variável color/amber
+*/
+background: #E3A44E;
+
+
+/* Vector */
+
+position: absolute;
+left: 95.29%;
+right: 1.89%;
+top: 57.97%;
+bottom: 39.76%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 96.2%;
+right: 2.75%;
+top: 59.24%;
+bottom: 39.76%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 95.28%;
+right: 1.88%;
+top: 60.24%;
+bottom: 37.28%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 96.2%;
+right: 2.79%;
+top: 60.24%;
+bottom: 38.73%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 95.28%;
+right: 1.88%;
+top: 57.96%;
+bottom: 37.27%;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+border: 0.216px solid #140D0A;
+
+
+/* Vector */
+
+position: absolute;
+left: 77.69%;
+right: 14.74%;
+top: 44.3%;
+bottom: 37.44%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 77.69%;
+right: 14.74%;
+top: 44.3%;
+bottom: 37.44%;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+border: 0.216px solid #140D0A;
+
+
+/* Vector */
+
+position: absolute;
+left: 50.96%;
+right: 41.01%;
+top: 44.3%;
+bottom: 37.44%;
+
+/* Color/White
+
+#FFFFFF — vinculado à variável color/white
+*/
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 50.96%;
+right: 41.01%;
+top: 44.3%;
+bottom: 37.44%;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+border: 0.216px solid #140D0A;
+
+
+/* Wallet mark W */
+
+position: absolute;
+width: 9px;
+height: 18px;
+left: 27px;
+top: 24px;
+
+/* Body/14 Bold · lh auto · ls 0%
+
+combo:14|Bold|AUTO|0% | usos: 2
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 18px;
+
+/* Text/Accent */
+color: #E89B55;
+
+
+
+/* Option — MetaMask */
+
+width: 359px;
+height: 65px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Rectangle 104 */
+
+position: absolute;
+width: 359px;
+height: 65px;
+left: 0px;
+top: 0px;
+
+/* Color/Surface Card
+
+#241612 — vinculado à variável color/text-primary
+*/
+background: #241612;
+box-shadow: 0px 0px 20px rgba(10, 6, 4, 0.45);
+border-radius: 15px;
+
+
+/* Ellipse 42 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: 14px;
+top: 13px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+
+
+/* MetaMask */
+
+position: absolute;
+width: 68px;
+height: 16px;
+left: 65px;
+top: 25px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Ellipse 43 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 326px;
+top: 25px;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 1.2px solid #55321F;
+
+
+/* Group 86 */
+
+position: absolute;
+visibility: hidden;
+width: 22px;
+height: 22px;
+left: 24px;
+top: 23px;
+
+
+
+/* paypal 1 */
+
+position: absolute;
+width: 22px;
+height: 22px;
+left: 24px;
+top: 23px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 26.32%;
+right: 7.33%;
+top: 22.71%;
+bottom: 0%;
+
+/* Logo/Light Blue
+
+#03A9F4 — vinculado à variável logo/light-blue
+*/
+background: #03A9F4;
+
+
+/* Vector */
+
+position: absolute;
+left: 7.33%;
+right: 15.57%;
+top: 0%;
+bottom: 12.5%;
+
+/* Logo/Indigo
+
+#283593 — vinculado à variável logo/indigo
+*/
+background: #283593;
+
+
+/* Wallet mark M */
+
+position: absolute;
+width: 9px;
+height: 18px;
+left: 28px;
+top: 24px;
+
+/* Body/14 Bold · lh auto · ls 0%
+
+combo:14|Bold|AUTO|0% | usos: 2
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 18px;
+
+/* Text/Accent */
+color: #E89B55;
+
+
+
+/* Option — Coinbase */
+
+width: 359px;
+height: 65px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Rectangle 88 */
+
+position: absolute;
+width: 359px;
+height: 65px;
+left: 0px;
+top: 0px;
+
+/* Color/Surface Card
+
+#241612 — vinculado à variável color/text-primary
+*/
+background: #241612;
+box-shadow: 0px 0px 40px rgba(10, 6, 4, 0.45);
+border-radius: 15px;
+
+
+/* Ellipse 40 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: 14px;
+top: 13px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+
+
+/* Coinbase Wallet */
+
+position: absolute;
+width: 127px;
+height: 16px;
+left: 65px;
+top: 25px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Group 89 */
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 326px;
+top: 25px;
+
+
+
+/* Ellipse 34 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 16px;
+height: 16px;
+left: 326px;
+top: 25px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1.2px solid #D28A4C;
+
+
+/* Ellipse 35 */
+
+position: absolute;
+width: 8px;
+height: 8px;
+left: 330px;
+top: 29px;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+background: #D28A4C;
+
+
+/* Iconly/Curved/Wallet */
+
+position: absolute;
+left: 6.13%;
+right: 87.19%;
+top: 32.31%;
+bottom: 30.77%;
+
+
+
+/* Wallet */
+
+position: absolute;
+width: 18.6px;
+height: 17.08px;
+left: 2.71px;
+top: 3.71px;
+
+
+
+/* Stroke 1 */
+
+position: absolute;
+left: 61.34%;
+right: 11.79%;
+top: 39.79%;
+bottom: 38.85%;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1.5px solid #D28A4C;
+
+
+/* Stroke 3 */
+
+position: absolute;
+left: 71.24%;
+right: 24.79%;
+top: 48.24%;
+bottom: 47.8%;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1.5px solid #D28A4C;
+
+
+/* Stroke 5 */
+
+position: absolute;
+left: 31.69%;
+right: 51.39%;
+top: 31.95%;
+bottom: 64.08%;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1.5px solid #D28A4C;
+
+
+/* Stroke 7 */
+
+position: absolute;
+left: 11.31%;
+right: 11.19%;
+top: 15.47%;
+bottom: 13.37%;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1.5px solid #D28A4C;
+
+
+/* Total Row */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: flex-end;
+align-items: flex-start;
+padding: 0px;
+
+width: 358px;
+height: 16px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 4;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 3 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 28px;
+
+width: 184px;
+height: 16px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Total: */
+
+width: 58px;
+height: 16px;
+
+/* Body Large/16 Bold · lh 16
+
+combo:16|Bold|16px|0% | usos: 58
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 100% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 8.936 ETH */
+
+width: 98px;
+height: 16px;
+
+/* Body Large/18 Bold · lh 16
+
+combo:18|Bold|16px|0% | usos: 95
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 89% */
+text-align: right;
+
+/* Text/Accent */
+color: #E89B55;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Confirm Button */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+margin: 0 auto;
+width: 358px;
+height: 60px;
+
+background: linear-gradient(93.21deg, #D28A4C -3.96%, rgba(210, 138, 76, 0.8) 121.97%);
+border-radius: 40px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Confirmar compra */
+
+width: 145px;
+height: 16px;
+
+/* Body/15 Bold · lh 16
+
+combo:15|Bold|16px|0% | usos: 21
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 107% */
+text-align: center;
+
+/* Color/Ink */
+color: #140D0A;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}

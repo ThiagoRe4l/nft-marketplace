@@ -1,15 +1,13 @@
-import { useRef } from 'react'
-import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 import { NftCard } from '@/components/nft/nft-card'
 import { NftCardSkeleton } from '@/components/nft/nft-card-skeleton'
 import type { NftSummary } from '@/contracts/nft'
+import { cn } from '@/lib/utils'
 
 import { useFavoriteIds, useToggleFavorite } from '@/features/favorites/queries'
 
-const navButton =
-  'inline-flex size-8 items-center justify-center rounded-full border border-border-strong text-foreground outline-none transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring'
-
 const itemClass = 'w-[10.5rem] shrink-0 snap-start md:w-[calc((100%-3rem)/5)]'
+const GAP = 12 // gap-3
 
 type NftCarouselProps = {
   id: string
@@ -20,35 +18,53 @@ type NftCarouselProps = {
   onAddToCart: (nft: NftSummary) => void
 }
 
+// uma "página" é uma largura visível da lista; os pontos abaixo levam de página em página
+function measurePages(el: HTMLElement) {
+  const step = el.clientWidth + GAP
+  const pages = Math.max(1, Math.ceil((el.scrollWidth - el.clientWidth - 1) / step) + 1)
+  const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 1
+  return { pages, page: atEnd ? pages - 1 : Math.min(pages - 1, Math.round(el.scrollLeft / step)) }
+}
+
+function usePages(itemCount: number) {
+  const track = useRef<HTMLUListElement>(null)
+  const [state, setState] = useState({ pages: 1, page: 0 })
+
+  // o ResizeObserver mede ao observar e a cada mudança de largura; itemCount refaz a observação quando a lista carrega
+  useEffect(() => {
+    const el = track.current
+    if (!el || typeof ResizeObserver === 'undefined') return
+    const observer = new ResizeObserver(() => setState(measurePages(el)))
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [itemCount])
+
+  return { track, ...state, onScroll: (event: React.UIEvent<HTMLUListElement>) => setState(measurePages(event.currentTarget)) }
+}
+
 export function NftCarousel({ id, title, listLabel, items, isPending, onAddToCart }: NftCarouselProps) {
   const favoriteIds = useFavoriteIds()
   const toggleFavorite = useToggleFavorite()
-  const track = useRef<HTMLUListElement>(null)
+  const { track, pages, page, onScroll } = usePages(items.length)
 
-  const scroll = (direction: 1 | -1) => {
+  const goTo = (index: number) => {
     const el = track.current
-    if (el) el.scrollBy({ left: direction * el.clientWidth * 0.9, behavior: 'smooth' })
+    if (el) el.scrollTo({ left: index * (el.clientWidth + GAP), behavior: 'smooth' })
   }
 
   return (
-    <section aria-labelledby={id} className="mt-16">
-      <div className="flex items-center justify-between border-b pb-3">
-        <h2 id={id} className="text-base font-bold text-primary">
+    <section aria-labelledby={id} className="mt-16 md:mt-24">
+      {/* a linha fica a 12 px do título (Figma) */}
+      <div className="border-b pb-3">
+        <h2 id={id} className="text-base leading-4 font-bold text-highlight md:text-[1.0625rem]">
           {title}
         </h2>
-        <div className="flex gap-2">
-          <button type="button" className={navButton} aria-label="Anterior" onClick={() => scroll(-1)}>
-            <ChevronLeftIcon className="size-4" />
-          </button>
-          <button type="button" className={navButton} aria-label="Próximo" onClick={() => scroll(1)}>
-            <ChevronRightIcon className="size-4" />
-          </button>
-        </div>
       </div>
       <ul
         ref={track}
         aria-label={listLabel}
-        className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 md:gap-3"
+        onScroll={onScroll}
+        className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 md:mt-8 md:gap-3"
       >
         {isPending
           ? Array.from({ length: 5 }, (_, i) => (
@@ -58,15 +74,33 @@ export function NftCarousel({ id, title, listLabel, items, isPending, onAddToCar
             ))
           : items.map((item) => (
               <li key={item.id} className={itemClass}>
-                <NftCard 
-                  nft={item} 
+                <NftCard
+                  nft={item}
                   isFavorite={favoriteIds.has(item.id)}
-                  onAddToCart={onAddToCart} 
-                  onToggleFavorite={toggleFavorite} 
+                  onAddToCart={onAddToCart}
+                  onToggleFavorite={toggleFavorite}
                 />
               </li>
             ))}
       </ul>
+
+      {pages > 1 && (
+        <div role="group" aria-label={`Páginas de ${listLabel}`} className="mt-4 flex items-center justify-center gap-2 md:mt-6">
+          {Array.from({ length: pages }, (_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Ir para a página ${i + 1} de ${pages}`}
+              aria-current={i === page ? 'true' : undefined}
+              onClick={() => goTo(i)}
+              className={cn(
+                "relative size-3 rounded-full border-[1.3px] border-primary outline-none transition-colors after:absolute after:-inset-2 after:content-[''] focus-visible:ring-3 focus-visible:ring-ring",
+                i === page ? 'bg-primary' : 'bg-transparent hover:bg-primary/40',
+              )}
+            />
+          ))}
+        </div>
+      )}
     </section>
   )
 }

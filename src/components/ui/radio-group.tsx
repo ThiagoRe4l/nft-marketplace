@@ -12,7 +12,7 @@ function RadioPill({ className, ...props }: Radio.Root.Props) {
     <Radio.Root
       data-slot="radio-pill"
       className={cn(
-        "inline-flex h-7 cursor-pointer items-center rounded-full border border-border px-3 text-xs text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring data-checked:border-primary data-checked:text-foreground data-disabled:cursor-not-allowed data-disabled:opacity-60",
+        "inline-flex h-7 cursor-pointer items-center rounded-full border border-border px-3 text-xs text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring md:text-sm data-checked:border-primary data-checked:font-medium data-checked:text-highlight data-disabled:cursor-not-allowed data-disabled:opacity-60",
         className
       )}
       {...props}

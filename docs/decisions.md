@@ -50,7 +50,6 @@
 
 ## Pendências
 - maxPerOrder das fixtures (5 para edições acima de 1/10) não permite reproduzir o carrinho do Figma (quantidades 2, 6 e 9). Avaliar subir para 10 antes de gerar as baselines de regressão visual.
-- No Figma, o detalhe do Emerald Ape mostra a edição 1/50 selecionada com 1.19 ETH; nas fixtures, 1.19 é a edição mais barata e a 1/50 custa 1.79. Decidir na tela de detalhe: selecionar por padrão a edição mais barata, ou ajustar a fixture.
 - Bundle inicial: ver a seção Lighthouse (o JS do app e do backend simulado limita o Performance no mobile).
 - Domingo: após a rodada final dos testes, copiar playwright-report/ para docs/e2e-report/ (relatório HTML é entregável).
 
@@ -60,8 +59,8 @@
 - Erros normalizados em AppError, incluindo NETWORK_ERROR e TIMEOUT, que não têm resposta HTTP.
 - Sessão como query (staleTime infinito). Login, cadastro, logout e 401 limpam o cache inteiro (queryClient.clear): nenhum dado privado atravessa a troca de usuário. Chaves de dados privados também levam o userId.
 - Merge do carrinho de visitante no login; o id só é descartado se o merge der certo.
-- Rotas privadas sob o layout _auth (beforeLoad + ensureQueryData); redirect só aceita caminhos internos (evita open redirect).
-- Expiração durante a navegação leva a /login?redirect=<página>&reason=expired.
+- Rotas privadas usam `beforeLoad: requireAuth` em cada rota (ensureQueryData da sessão), e não um layout `_auth`: um `_auth.tsx` sem filhas conflita com "/" no gerador de rotas (comentário em src/features/auth/require-auth.ts). Sem sessão, redireciona para /?auth=login&redirect=<página>. O redirect só aceita caminhos internos (evita open redirect).
+- Expiração durante a navegação leva a /?auth=login&redirect=<página>&reason=expired (diálogo de login sobre a Início, com o aviso de sessão expirada). /login e /cadastro só redirecionam para esse formato.
 - Tipo de retorno do queryFn da sessão declarado explicitamente (Promise<Session | null>): a inferência se perdia ao passar pela função genérica request e pelo try/catch.
 
 ## Interface
@@ -69,6 +68,7 @@
 - Barra inferior do mobile reta (o Figma tem um recorte curvo) e hero mobile com uma imagem (o Figma sobrepõe duas). Desvios visuais por tempo.
 - Filtros na URL no formato padrão do TanStack Router (JSON): as aspas mantêm os valores ETH como texto.
 - Busca pelo header ou pelo campo mobile inicia uma pesquisa nova (descarta os outros filtros).
+- O detalhe do NFT abre com a edição mais barata disponível selecionada (`defaultEdition`, em src/features/nft/purchase.ts; se todas estiverem esgotadas, a mais barata de todas). É a mesma regra do preço do card, então o valor que o usuário viu na lista é o que aparece ao abrir o detalhe. O Figma mostra o Emerald Ape com a edição 1/50 a 1.19 ETH, mas nas fixtures 1.19 é a edição mais barata e a 1/50 custa 1.79; seguimos a regra em vez de ajustar a fixture.
 - Conteúdo editorial (Diário, banners) é estático; "Ler mais", newsletter e itens fora do escopo mostram "Disponível em breve nesta demonstração".
 
 ## Favoritos
@@ -101,6 +101,29 @@
 - Carteira sem cadastro mostra estado vazio + "Adicionar"; com cadastro, o formulário preenchido já está visível e o botão some. "Igual à carteira principal" é derivado: marcado enquanto os campos coincidem com a principal; marcar copia, desmarcar volta ao salvo.
 - Foco no primeiro campo com erro (aria-invalid) após validação ou erro da API, via efeito depois do commit (useFocusFirstError).
 - FormField (rótulo visível + erro ligado por aria-describedby) vive em src/components/form e é usado pelo checkout e pela conta.
+
+## Fidelidade visual ao Figma (desktop)
+Medidas, tipografia e cores vêm de docs/figma/css; o mobile não foi alterado (as regras novas usam md:/lg:). Desvios e escolhas:
+- Cor de destaque do texto (`text-highlight`, #E89B55 do "Text/Accent") separada do `--primary` (#D28A4C: fundos e traços).
+- `--container-page` passou de 75rem para 78rem: com o gutter de 24px de cada lado o conteúdo fica com os 1200px do Figma (antes ficava com 1152px). Valores como a grade de 842px e a coluna de 595px dependem disso.
+- Linha do header só na Início, Perfil e Carteiras (e no /login e /cadastro, que são a Início); detalhe, carrinho, pagamento e pedido usam o header sem a linha (`hasHeaderDivider` em nav.ts). A linha de 0,3px do Figma vira 1px com o token `--border` (≈ a cor que o Figma renderiza). No mobile o header continua com a linha de sempre.
+- Header logado: o menu do usuário é mais largo que o botão "Entrar" (100px), então a nav desloca alguns pixels em relação ao Figma, que só mostra o estado deslogado.
+- Hero: o título quebra em outro ponto que o do Figma (o texto do Figma é em inglês e tem outro comprimento). Os pontos ficam no fim da coluna de texto, mas o ponto do slide atual tem opacidade total e os outros 40% (no Figma os três são iguais), para o estado continuar visível.
+- Filtros: botões com `aria-pressed` (seleção múltipla mantida). Pelo CSS do Figma só a contagem de Coleções é negrito; a de Rede é regular.
+- Detalhe, galeria: uma miniatura por edição, todas com a imagem do NFT; a imagem central é sempre a primeira de `images` (as demais não aparecem mais no detalhe). Estado de edição e quantidade vive em `useEditionSelection` (galeria, preço, seletor e botões compartilham).
+- Detalhe, avaliações: no desktop só as estrelas e a contagem aparecem (o número da nota fica para leitores de tela). As estrelas continuam do lucide (não há SVG exportado).
+- Detalhe, quantidade: o texto de limite só aparece com o botão + desabilitado e fica posicionado sem deslocar o layout. Os botões do Figma (33×49,5 no detalhe, 20×30 no carrinho) são exportados com altura esticada; viraram círculos de 33px e 20px.
+- Detalhe, aba de detalhes: ordem Rede, Contrato, Direitos autorais como no Figma, mas com o conteúdo certo em cada rótulo. **Desvio:** no Figma os textos de Contrato e Direitos autorais estão trocados (Contrato mostra o royalty e Direitos autorais mostra o endereço). O texto de Rede é o dado real da NFT, não o parágrafo do Figma.
+- Carrosséis ("Mais desta coleção", "Colecionadores também viram"): pontos no lugar das setas; cada ponto é um botão ("Ir para a página N de M"). Uma página é uma largura visível da lista; com uma página só, os pontos não aparecem (o Figma mostra 3 pontos com 10 itens).
+- Carrinho: a edição sai da linha e fica no nome acessível do link ("Emerald Ape #042 (edição ABERTA)"). Ícone de lixeira, busca, e-mail, menu, setas de select e estrelas seguem do lucide: não há SVG exportado deles.
+- Ícones do Figma (src/components/icons, `currentColor`, `aria-hidden`): carrinho, logout/entrar, usuário, coração, "shopping" (card), localização, atividade, download, alerta, e as marcas Facebook, Instagram, Twitter e LinkedIn. O coração ganhou a prop `filled` (única edição à mão) para o estado de favorito. O YouTube não foi exportado e continua com o traço próprio. A barra inferior do mobile continua com lucide.
+- Pagamento: o rótulo "Endereço da carteira" já era visível acima do campo; a carteira secundária fica sem rótulo visível (como no Figma, só o placeholder) mas com rótulo só para leitores de tela. O asterisco segue na cor primária (o Figma usa um coral, #F0805F, que não existe nos tokens).
+- Pagamento: sem o texto de estimativa abaixo do total (fica só "Taxa estimada" na taxa). "Valores confirmados pela cotação." continua depois da revisão. A coluna do pedido passou a 405px com 32px de espaço.
+- Pagamento, cupom: "Tem um código promocional? Aplique aqui" abre o mesmo `CouponForm` do carrinho. Como o formulário fica dentro do `<form>` do pagamento, o `CouponForm` deixou de ser um `<form>` (form dentro de form é inválido): é um grupo com Aplicar (botão) e Enter tratado à mão, sem enviar o pagamento. Aplicar ou remover cupom muda o carrinho e a cotação desatualizada já era tratada.
+- Recibo: sem "Continuar explorando" (o X leva ao catálogo); o aviso de transação simulada virou uma linha discreta e aparece sempre, não só com o link do explorador.
+- Correção de bug visual: `<picture>` com `display: contents` deixava os `<source>` como itens vazios de flex, e o `gap` empurrava as imagens (carrinho e pedido ficavam com 24 a 32px de vazio à esquerda). `picture > source { display: none }` em index.css.
+- Fora do escopo e não alterado: breadcrumb, cards dos carrosséis (219px no Figma, 230px aqui), rodapé (colunas mais estreitas, então alguns títulos quebram) e as telas de login, cadastro e pedido.
+- Regressão visual (e2e/visual.spec.ts): Início, Detalhe (emerald-ape-042), Carrinho (3 itens fixos) e Pagamento, em desktop e mobile, com `maxDiffPixelRatio` de 1% (playwright.config.ts). As baselines têm o sufixo `-win32`: em outro sistema operacional é preciso gerá-las (`npx playwright test visual --update-snapshots=all`). Com o padrão `--update-snapshots` só as imagens que passam do limite são reescritas.
 
 ## Lighthouse
 Metas: Performance >= 90, Accessibility >= 95, Best Practices >= 95, SEO >= 90. Medição: `npm run lighthouse` (build de produção, mocks ativos, 3 execuções por página e perfil, mediana em lighthouse/SUMMARY.md). A variação entre execuções chega a ±5 pontos de Performance; diferenças menores que isso não são sinal.

@@ -1,0 +1,1817 @@
+.desktop-inicio {
+    /* Mobile / Carrinho de NFTs */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 32px 0px 0px;
+gap: 4px;
+
+position: relative;
+width: 414px;
+height: 896px;
+
+/* Color/Ink
+
+#140D0A — vinculado à variável color/ink
+*/
+background: #140D0A;
+border-radius: 40px;
+
+
+/* Content */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 28px;
+gap: 12px;
+
+width: 414px;
+height: 518px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Screen Header */
+
+width: 358px;
+height: 44px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Back */
+
+position: absolute;
+width: 35px;
+height: 35px;
+left: 0px;
+top: 0px;
+
+
+
+/* Ellipse 38 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 35px;
+height: 35px;
+left: 0px;
+top: 0px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+
+
+/* Iconly/Curved/Arrow - Left 2 */
+
+position: absolute;
+left: 1.96%;
+right: 92.46%;
+top: 15.91%;
+bottom: 38.64%;
+
+
+
+/* Arrow - Left 2 */
+
+position: absolute;
+width: 11.67px;
+height: 5.83px;
+left: 7.08px;
+top: 4.17px;
+
+transform: rotate(90deg);
+
+
+/* Stroke 1 */
+
+position: absolute;
+left: 35.42%;
+right: 6.25%;
+top: 20.83%;
+bottom: 50%;
+
+/* Color/Secondary
+
+#B39463 — vinculado à variável color/secondary
+*/
+border: 1.5px solid #B39463;
+transform: rotate(90deg);
+
+
+/* Carrinho de NFTs */
+
+position: absolute;
+width: 193px;
+height: 16px;
+left: 96px;
+top: 9px;
+
+/* Title/20 Bold · lh 16
+
+combo:20|Bold|16px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 80% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Cart Items */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 20px;
+
+width: 358px;
+height: 462px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Item 1 */
+
+width: 358px;
+height: 100px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Rectangle 102 */
+
+position: absolute;
+width: 358px;
+height: 100px;
+left: 0px;
+top: 0px;
+
+background: linear-gradient(93.11deg, #241612 -0.94%, #241612 105.02%);
+box-shadow: 0px 6px 20px rgba(10, 6, 4, 0.45);
+border-radius: 14px;
+
+
+/* Rectangle 106 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 0px;
+top: 0px;
+
+background: url(.png);
+border-radius: 14px 0px 0px 14px;
+
+
+/* Mobile Cart NFT 2 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 1px;
+top: 2px;
+
+background: url(.png);
+mix-blend-mode: multiply;
+border-radius: 14px;
+
+
+/* Emerald Ape #042 */
+
+position: absolute;
+width: 145px;
+height: 16px;
+left: 109px;
+top: 13px;
+
+/* Body/15 Bold · lh 16
+
+combo:15|Bold|16px|0% | usos: 21
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 107% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Edição: 1/50 */
+
+position: absolute;
+width: 101px;
+height: 16px;
+left: 109px;
+top: 35px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+
+/* 1.19 ETH */
+
+position: absolute;
+width: 87px;
+height: 16px;
+left: 109px;
+top: 69px;
+
+/* Body Large/18 Bold · lh 16
+
+combo:18|Bold|16px|0% | usos: 95
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 89% */
+
+/* Text/Accent */
+color: #E89B55;
+
+
+
+/* Group 81 */
+
+position: absolute;
+width: 81px;
+height: 29px;
+left: 261px;
+top: 38px;
+
+
+
+/* 1 */
+
+position: absolute;
+width: 10px;
+height: 22px;
+left: 298px;
+top: 45px;
+
+/* Body Large/16 Regular · lh 10
+
+combo:16|Regular|10px|0% | usos: 4
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 22px;
+/* idêntico à altura da caixa ou 138% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Group 65 */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 261px;
+top: 38px;
+
+
+
+/* Rectangle 79 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 261px;
+top: 38px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 29px;
+
+
+/* Line 9 */
+
+position: absolute;
+width: 8.88px;
+height: 0px;
+left: 268.9px;
+top: 51.71px;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 2px solid #55321F;
+
+
+/* Group 64 */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 318px;
+top: 38px;
+
+
+
+/* Rectangle 80 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 318px;
+top: 38px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 31px;
+
+
+/* + */
+
+position: absolute;
+width: 11.84px;
+height: 13.71px;
+left: 323.91px;
+top: 43px;
+
+/* Title/21 Regular
+
+combo:21|Regular|16px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 21px;
+line-height: 16px;
+/* ou 76% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Item 2 */
+
+width: 358px;
+height: 100px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Rectangle 107 */
+
+position: absolute;
+width: 358px;
+height: 100px;
+left: 0px;
+top: 0px;
+
+background: linear-gradient(93.11deg, #241612 -0.94%, #241612 105.02%);
+box-shadow: 0px 6px 20px rgba(10, 6, 4, 0.45);
+border-radius: 14px;
+
+
+/* Rectangle 108 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 0px;
+top: 0px;
+
+background: url(.png);
+border-radius: 14px 0px 0px 14px;
+
+
+/* Mobile Cart NFT 3 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 1px;
+top: 0px;
+
+background: url(.png);
+mix-blend-mode: multiply;
+border-radius: 14px;
+
+
+/* Violet Nomad #314 */
+
+position: absolute;
+width: 154px;
+height: 16px;
+left: 109px;
+top: 13px;
+
+/* Body/15 Bold · lh 16
+
+combo:15|Bold|16px|0% | usos: 21
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 107% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Edição: 1/1 */
+
+position: absolute;
+width: 93px;
+height: 16px;
+left: 109px;
+top: 35px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+
+/* 1.39 ETH */
+
+position: absolute;
+width: 87px;
+height: 16px;
+left: 109px;
+top: 69px;
+
+/* Body Large/18 Bold · lh 16
+
+combo:18|Bold|16px|0% | usos: 95
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 89% */
+
+/* Text/Accent */
+color: #E89B55;
+
+
+
+/* Group 85 */
+
+position: absolute;
+width: 81px;
+height: 29px;
+left: 261px;
+top: 38px;
+
+
+
+/* 1 */
+
+position: absolute;
+width: 10px;
+height: 22px;
+left: 298px;
+top: 45px;
+
+/* Body Large/16 Regular · lh 10
+
+combo:16|Regular|10px|0% | usos: 4
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 22px;
+/* idêntico à altura da caixa ou 138% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Group 65 */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 261px;
+top: 38px;
+
+
+
+/* Rectangle 79 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 261px;
+top: 38px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 29px;
+
+
+/* Line 9 */
+
+position: absolute;
+width: 8.88px;
+height: 0px;
+left: 268.9px;
+top: 51.71px;
+
+/* Color/Border Soft
+
+#55321F — vinculado à variável color/border-soft
+*/
+border: 2px solid #55321F;
+
+
+/* Group 64 */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 318px;
+top: 38px;
+
+
+
+/* Rectangle 80 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 318px;
+top: 38px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 31px;
+
+
+/* + */
+
+position: absolute;
+width: 11.84px;
+height: 13.71px;
+left: 323.91px;
+top: 43px;
+
+/* Title/21 Regular
+
+combo:21|Regular|16px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 21px;
+line-height: 16px;
+/* ou 76% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Item 3 */
+
+width: 358px;
+height: 102px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Rectangle 109 */
+
+position: absolute;
+width: 358px;
+height: 100px;
+left: 0px;
+top: 242px;
+
+background: linear-gradient(93.11deg, #241612 -0.94%, #241612 105.02%);
+box-shadow: 0px 6px 20px rgba(10, 6, 4, 0.45);
+border-radius: 14px;
+
+
+/* Rectangle 110 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 0px;
+top: 242px;
+
+background: url(.png);
+border-radius: 14px 0px 0px 14px;
+
+
+/* Group 83 */
+
+position: absolute;
+width: 81px;
+height: 29px;
+left: 261px;
+top: 280px;
+
+
+
+/* 2 */
+
+position: absolute;
+width: 10px;
+height: 22px;
+left: 297px;
+top: 287px;
+
+/* Body Large/16 Regular · lh 10
+
+combo:16|Regular|10px|0% | usos: 4
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 22px;
+/* idêntico à altura da caixa ou 138% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Group 72 */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 261px;
+top: 280px;
+
+
+
+/* Rectangle 79 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 261px;
+top: 280px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 29px;
+
+
+/* Line 9 */
+
+position: absolute;
+width: 8.88px;
+height: 0px;
+left: 268.9px;
+top: 293.71px;
+
+/* Color/Foreground
+
+#F5F1EB — vinculado à variável color/background
+*/
+border: 2px solid #F5F1EB;
+
+
+/* Group 73 */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 318px;
+top: 280px;
+
+
+
+/* Rectangle 80 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 318px;
+top: 280px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 31px;
+
+
+/* + */
+
+position: absolute;
+width: 11.84px;
+height: 13.71px;
+left: 323.91px;
+top: 285px;
+
+/* Title/21 Regular
+
+combo:21|Regular|16px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 21px;
+line-height: 16px;
+/* ou 76% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Ivory Baron #088 */
+
+position: absolute;
+width: 145px;
+height: 16px;
+left: 109px;
+top: 255px;
+
+/* Body/15 Bold · lh 16
+
+combo:15|Bold|16px|0% | usos: 21
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 107% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Edição: 1/10 */
+
+position: absolute;
+width: 101px;
+height: 16px;
+left: 109px;
+top: 277px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+
+/* 3.58 ETH */
+
+position: absolute;
+width: 87px;
+height: 16px;
+left: 109px;
+top: 311px;
+
+/* Body Large/18 Bold · lh 16
+
+combo:18|Bold|16px|0% | usos: 95
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 89% */
+
+/* Text/Accent */
+color: #E89B55;
+
+
+
+/* Mobile Cart NFT 4 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 0px;
+top: 240px;
+
+background: url(.png);
+mix-blend-mode: multiply;
+border-radius: 14px;
+
+
+/* Iconly/Curved/Delete */
+
+position: absolute;
+left: 87.43%;
+right: 5.87%;
+top: 61.04%;
+bottom: 33.77%;
+
+
+
+/* Delete */
+
+position: absolute;
+width: 16.15px;
+height: 18.48px;
+left: 4.21px;
+top: 2.71px;
+
+
+
+/* Stroke 1 */
+
+position: absolute;
+left: 23.45%;
+right: 21.04%;
+top: 39.81%;
+bottom: 11.68%;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1.5px solid #D28A4C;
+
+
+/* Stroke 3 */
+
+position: absolute;
+left: 17.56%;
+right: 15.15%;
+top: 25.01%;
+bottom: 71.02%;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1.5px solid #D28A4C;
+
+
+/* Stroke 5 */
+
+position: absolute;
+left: 36.84%;
+right: 34.42%;
+top: 11.31%;
+bottom: 73%;
+
+/* Color/Primary
+
+#D28A4C — vinculado à variável color/primary
+*/
+border: 1.5px solid #D28A4C;
+
+
+/* Item 4 */
+
+width: 358px;
+height: 100px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Rectangle 111 */
+
+position: absolute;
+width: 358px;
+height: 100px;
+left: 0px;
+top: 0px;
+
+background: linear-gradient(93.11deg, #241612 -0.94%, #241612 105.02%);
+box-shadow: 0px 6px 20px rgba(10, 6, 4, 0.45);
+border-radius: 14px;
+
+
+/* Rectangle 112 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 0px;
+top: 0px;
+
+background: url(.png);
+border-radius: 14px 0px 0px 14px;
+
+
+/* Mobile Cart NFT 1 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 0px;
+top: 0px;
+
+background: url(.png);
+mix-blend-mode: multiply;
+border-radius: 14px;
+
+
+/* Golden Beat #207 */
+
+position: absolute;
+width: 145px;
+height: 16px;
+left: 109px;
+top: 13px;
+
+/* Body/15 Bold · lh 16
+
+combo:15|Bold|16px|0% | usos: 21
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 107% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Edição: 1/50 */
+
+position: absolute;
+width: 101px;
+height: 16px;
+left: 109px;
+top: 35px;
+
+/* Body/14 Regular · lh 16
+
+combo:14|Regular|16px|0% | usos: 62
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 114% */
+
+/* Text/Secondary */
+color: #CFB28C;
+
+
+
+/* 1.98 ETH */
+
+position: absolute;
+width: 87px;
+height: 16px;
+left: 109px;
+top: 69px;
+
+/* Body Large/18 Bold · lh 16
+
+combo:18|Bold|16px|0% | usos: 95
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 89% */
+
+/* Text/Accent */
+color: #E89B55;
+
+
+
+/* Group 86 */
+
+position: absolute;
+width: 81px;
+height: 29px;
+left: 261px;
+top: 38px;
+
+
+
+/* 2 */
+
+position: absolute;
+width: 10px;
+height: 22px;
+left: 297px;
+top: 45px;
+
+/* Body Large/16 Regular · lh 10
+
+combo:16|Regular|10px|0% | usos: 4
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 22px;
+/* idêntico à altura da caixa ou 138% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Group 72 */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 261px;
+top: 38px;
+
+
+
+/* Rectangle 79 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 261px;
+top: 38px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 29px;
+
+
+/* Line 9 */
+
+position: absolute;
+width: 8.88px;
+height: 0px;
+left: 268.9px;
+top: 51.71px;
+
+/* Color/Foreground
+
+#F5F1EB — vinculado à variável color/background
+*/
+border: 2px solid #F5F1EB;
+
+
+/* Group 73 */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 318px;
+top: 38px;
+
+
+
+/* Rectangle 80 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 318px;
+top: 38px;
+
+/* Color/Surface Raised
+
+#2F1D15 — vinculado à variável color/text-secondary
+*/
+background: #2F1D15;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+border-radius: 31px;
+
+
+/* + */
+
+position: absolute;
+width: 11.84px;
+height: 13.71px;
+left: 323.91px;
+top: 43px;
+
+/* Title/21 Regular
+
+combo:21|Regular|16px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 21px;
+line-height: 16px;
+/* ou 76% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+
+/* Payment Summary */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+padding: 24px 24px 36px;
+gap: 12px;
+
+width: 414px;
+height: 342px;
+
+/* Color/Surface Card
+
+#241612 — vinculado à variável color/text-primary
+*/
+background: #241612;
+border-radius: 40px 40px 0px 0px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 1;
+
+
+/* Frame 441 */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 12px;
+
+margin: 0 auto;
+width: 366px;
+height: 190px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Promo Input */
+
+box-sizing: border-box;
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px 0px 0px 16px;
+
+width: 366px;
+height: 50px;
+
+/* Color/Surface Card
+
+#241612 — vinculado à variável color/text-primary
+*/
+background: #241612;
+/* Color/Border
+
+#3F2319 — vinculado à variável color/border
+*/
+border: 1px solid #3F2319;
+box-shadow: 0px 6px 20px rgba(10, 6, 4, 0.45);
+border-radius: 40px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Digite o código promocional... */
+
+width: 253px;
+height: 22px;
+
+/* Caption/13 Regular · lh 22
+
+combo:13|Regular|22px|0% | usos: 5
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 13px;
+line-height: 22px;
+/* idêntico à altura da caixa ou 169% */
+
+/* Color/Secondary */
+color: #B39463;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Frame 439 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 97px;
+height: 50px;
+
+background: linear-gradient(93.11deg, rgba(210, 138, 76, 0.54) -0.94%, #D28A4C 105.02%);
+border-radius: 40px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Aplicar */
+
+width: 64px;
+height: 16px;
+
+/* Body/15 Bold · lh 16
+
+combo:15|Bold|16px|0% | usos: 21
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 107% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Subtotal */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
+padding: 0px;
+
+width: 366px;
+height: 20px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Subtotal */
+
+width: 73px;
+height: 20px;
+
+/* Body/15 Regular · lh 16
+
+combo:15|Regular|16px|0% | usos: 66
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 20px;
+/* idêntico à altura da caixa */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 8.92 ETH */
+
+width: 77px;
+height: 16px;
+
+/* Body Large/16 Regular · lh 16
+
+combo:16|Regular|16px|0% | usos: 31
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 100% */
+text-align: right;
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Discount */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
+padding: 0px;
+
+width: 366px;
+height: 20px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Desconto do lançamento */
+
+width: 199px;
+height: 20px;
+
+/* Body/15 Regular · lh 16
+
+combo:15|Regular|16px|0% | usos: 66
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 20px;
+/* idêntico à altura da caixa */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* (-) 00.00 */
+
+width: 82px;
+height: 20px;
+
+/* Body/15 Regular · lh 16
+
+combo:15|Regular|16px|0% | usos: 66
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 20px;
+/* idêntico à altura da caixa */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Network Fee */
+
+/* Layout automático */
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+padding: 0px;
+
+width: 366px;
+height: 36px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 440 */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 162px;
+
+width: 366px;
+height: 20px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Taxa de rede */
+
+width: 109px;
+height: 20px;
+
+/* Body/15 Regular · lh 16
+
+combo:15|Regular|16px|0% | usos: 66
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 20px;
+/* idêntico à altura da caixa */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 0.016 ETH */
+
+width: 87px;
+height: 16px;
+
+/* Body Large/16 Regular · lh 16
+
+combo:16|Regular|16px|0% | usos: 31
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 100% */
+text-align: right;
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Taxa estimada */
+
+width: 94px;
+height: 16px;
+
+/* Caption/12 Regular · lh 16
+
+combo:12|Regular|16px|0% | usos: 4
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 133% */
+
+/* Text/Accent */
+color: #E89B55;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Total */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
+padding: 0px;
+
+width: 366px;
+height: 16px;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 4;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Total */
+
+width: 49px;
+height: 16px;
+
+/* Body Large/16 Bold · lh 16
+
+combo:16|Bold|16px|0% | usos: 58
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 100% */
+
+/* Color/Foreground */
+color: #F5F1EB;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 8.936 ETH */
+
+width: 98px;
+height: 16px;
+
+/* Body Large/18 Bold · lh 16
+
+combo:18|Bold|16px|0% | usos: 95
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 89% */
+text-align: right;
+
+/* Text/Accent */
+color: #E89B55;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Checkout Button */
+
+/* Layout automático */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+margin: 0 auto;
+width: 366px;
+height: 60px;
+
+background: linear-gradient(93.21deg, #D28A4C -3.96%, rgba(210, 138, 76, 0.8) 121.97%);
+border-radius: 40px;
+
+/* Auto layout por dentro */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Conectar e finalizar */
+
+width: 193px;
+height: 16px;
+
+/* Body Large/16 Bold · lh 16
+
+combo:16|Bold|16px|0% | usos: 58
+*/
+font-family: 'Roboto Mono';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 16px;
+/* idêntico à altura da caixa ou 100% */
+text-align: center;
+
+/* Color/Ink */
+color: #140D0A;
+
+
+/* Auto layout por dentro */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}

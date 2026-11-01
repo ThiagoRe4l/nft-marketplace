@@ -52,8 +52,8 @@ export function CatalogSection({
     : null
 
   return (
-    <section id="catalogo" aria-label="Catálogo de NFTs" className="mx-auto w-full max-w-page px-gutter py-8 md:py-12">
-      <div className="grid gap-8 lg:grid-cols-[19.5rem_1fr] lg:items-start lg:gap-10">
+    <section id="catalogo" aria-label="Catálogo de NFTs" className="mx-auto w-full max-w-page px-gutter py-8 md:py-12 lg:pt-24">
+      <div className="grid gap-8 lg:grid-cols-[19.375rem_1fr] lg:items-start lg:gap-12">
         <aside aria-label="Filtros" className="hidden lg:block">
           {filtersPanel}
         </aside>

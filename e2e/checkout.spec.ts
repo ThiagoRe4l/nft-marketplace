@@ -109,6 +109,9 @@ test.describe('checkout: Ana (com carteira)', () => {
     await expect(explorer).toHaveAttribute('target', '_blank')
     await expect(explorer).toHaveAttribute('rel', 'noopener noreferrer')
     await expect(receipt.getByText(/simulada/)).toBeVisible()
+    // o X do topo já leva ao catálogo: o recibo não repete o link "Continuar explorando"
+    await expect(receipt.getByRole('link', { name: 'Fechar e voltar ao início' })).toBeVisible()
+    await expect(receipt.getByRole('link', { name: 'Continuar explorando' })).toHaveCount(0)
 
     // pedido terminal: a tentativa guardada foi encerrada
     expect(await page.evaluate((key) => localStorage.getItem(key), ATTEMPT_KEY.ana)).toBeNull()

@@ -1,8 +1,7 @@
-import { useId, useState } from 'react'
+import { useState } from 'react'
 import Big from 'big.js'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Label } from '@/components/ui/label'
+import { cn } from '@/lib/utils'
 import { Slider } from '@/components/ui/slider'
 import type { Category, Network, NftListResponse } from '@/contracts/nft'
 import type { CatalogSearch } from '../search'
@@ -19,9 +18,10 @@ type FiltersPanelProps = {
 
 export function FiltersPanel({ facets, priceRange, value, onChange }: FiltersPanelProps) {
   return (
-    <div className="space-y-8 bg-card p-5 md:rounded-sm">
-      <CheckboxGroup
+    <div className="space-y-10 bg-card p-5 md:rounded-sm">
+      <FilterGroup
         legend="Coleções"
+        boldCount
         options={facets?.categories}
         labels={CATEGORY_LABELS}
         selected={value.category}
@@ -35,7 +35,7 @@ export function FiltersPanel({ facets, priceRange, value, onChange }: FiltersPan
         maxPrice={value.maxPrice}
         onApply={onChange}
       />
-      <CheckboxGroup
+      <FilterGroup
         legend="Rede"
         options={facets?.networks}
         labels={NETWORK_LABELS}
@@ -46,39 +46,44 @@ export function FiltersPanel({ facets, priceRange, value, onChange }: FiltersPan
   )
 }
 
-type CheckboxGroupProps<T extends Category | Network> = {
+type FilterGroupProps<T extends Category | Network> = {
   legend: string
   options: { value: T; count: number }[] | undefined
   labels: Record<T, string>
   selected: T[] | undefined
   onChange: (next: T[] | undefined) => void
+  /** Coleções traz a contagem em negrito; Rede, em peso normal (Figma) */
+  boldCount?: boolean
 }
 
-function CheckboxGroup<T extends Category | Network>({ legend, options, labels, selected, onChange }: CheckboxGroupProps<T>) {
-  const prefix = useId()
-  const toggle = (option: T, checked: boolean) => {
+// Sem checkbox (Figma): cada item é um botão com aria-pressed; o ativo ganha a cor de destaque. A seleção continua múltipla.
+function FilterGroup<T extends Category | Network>({ legend, options, labels, selected, onChange, boldCount }: FilterGroupProps<T>) {
+  const toggle = (option: T, active: boolean) => {
     const current = selected ?? []
-    const next = checked ? [...current, option] : current.filter((item) => item !== option)
+    const next = active ? current.filter((item) => item !== option) : [...current, option]
     onChange(next.length > 0 ? next : undefined)
   }
 
   return (
     <fieldset>
-      <legend className="mb-3 text-base font-bold">{legend}</legend>
-      <ul className="space-y-3 text-sm">
+      <legend className="mb-3 text-lg leading-4 font-bold">{legend}</legend>
+      <ul className="px-3">
         {options?.map((option) => {
-          const id = `${prefix}-${option.value}`
+          const active = selected?.includes(option.value) ?? false
           return (
-            <li key={option.value} className="flex items-center gap-2">
-              <Checkbox
-                id={id}
-                checked={selected?.includes(option.value) ?? false}
-                onCheckedChange={(checked) => toggle(option.value, checked)}
-              />
-              <Label htmlFor={id} className="flex-1 justify-between gap-2 text-muted-foreground">
+            <li key={option.value}>
+              <button
+                type="button"
+                aria-pressed={active}
+                onClick={() => toggle(option.value, active)}
+                className={cn(
+                  'flex h-10 w-full items-center justify-between gap-2 text-left text-[0.9375rem] outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring',
+                  active ? 'text-highlight' : 'text-muted-foreground',
+                )}
+              >
                 <span>{labels[option.value]}</span>
-                <span className="text-foreground">({option.count})</span>
-              </Label>
+                <span className={cn('shrink-0', boldCount && 'font-bold')}>({option.count})</span>
+              </button>
             </li>
           )
         })}
@@ -107,7 +112,7 @@ function PriceFilter({ priceRange, minPrice, maxPrice, onApply }: PriceFilterPro
   if (!limits) {
     return (
       <fieldset disabled>
-        <legend className="mb-3 text-base font-bold">Faixa de preço</legend>
+        <legend className="mb-3 text-lg leading-4 font-bold">Faixa de preço</legend>
         <p className="text-sm text-muted-foreground">Carregando faixa...</p>
       </fieldset>
     )
@@ -127,7 +132,7 @@ function PriceFilter({ priceRange, minPrice, maxPrice, onApply }: PriceFilterPro
 
   return (
     <fieldset>
-      <legend className="mb-3 text-base font-bold">Faixa de preço</legend>
+      <legend className="mb-3 text-lg leading-4 font-bold">Faixa de preço</legend>
       <Slider
         min={low}
         max={high}
@@ -138,10 +143,10 @@ function PriceFilter({ priceRange, minPrice, maxPrice, onApply }: PriceFilterPro
           if (Array.isArray(next)) setDraft(next)
         }}
       />
-      <p className="mt-4 text-sm" aria-live="polite">
+      <p className="mt-4 text-[0.9375rem]" aria-live="polite">
         Preço: {label(current[0])} - {label(current[1])} ETH
       </p>
-      <Button type="button" className="mt-3 h-8 px-3 font-bold" onClick={apply}>
+      <Button type="button" className="mt-3 h-9 rounded-md px-3 text-base font-bold" onClick={apply}>
         Aplicar
       </Button>
     </fieldset>

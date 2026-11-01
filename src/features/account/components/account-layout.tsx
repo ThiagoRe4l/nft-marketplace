@@ -1,16 +1,15 @@
-import type { ReactNode } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
+import type { ComponentType, ReactNode, SVGProps } from 'react'
 import {
-  BellRingIcon,
+  ActivityIcon,
+  DangerTriangleIcon,
   DownloadIcon,
   HeartIcon,
-  LifeBuoyIcon,
-  LogOutIcon,
-  MapPinIcon,
-  ShoppingBagIcon,
+  LocationIcon,
+  LogoutIcon,
+  ShoppingIcon,
   UserIcon,
-  type LucideIcon,
-} from 'lucide-react'
+} from '@/components/icons'
 import { useLogout } from '@/features/auth/session'
 import { cn } from '@/lib/utils'
 import { comingSoon } from '@/shared/lib/coming-soon'
@@ -24,12 +23,12 @@ const itemClass = cn(
   "aria-[current=page]:before:content-['']",
 )
 
-const SOON: { label: string; icon: LucideIcon }[] = [
-  { label: 'Atividade', icon: ShoppingBagIcon },
+const SOON: { label: string; icon: ComponentType<SVGProps<SVGSVGElement>> }[] = [
+  { label: 'Atividade', icon: ShoppingIcon },
   { label: 'Lista de interesse', icon: HeartIcon },
-  { label: 'Ofertas', icon: BellRingIcon },
+  { label: 'Ofertas', icon: ActivityIcon },
   { label: 'Arquivos baixados', icon: DownloadIcon },
-  { label: 'Suporte', icon: LifeBuoyIcon },
+  { label: 'Suporte', icon: DangerTriangleIcon },
 ]
 
 // menu lateral no desktop; no mobile vira uma lista horizontal rolável acima do conteúdo
@@ -46,18 +45,18 @@ export function AccountLayout({ children }: { children: ReactNode }) {
         <ul className="flex overflow-x-auto lg:block lg:overflow-visible">
           <li className="flex lg:block">
             <Link to="/perfil" className={itemClass} activeOptions={{ exact: true }}>
-              <UserIcon className="size-4" /> Dados do perfil
+              <UserIcon className="size-[1.125rem]" /> Dados do perfil
             </Link>
           </li>
           <li className="flex lg:block">
             <Link to="/carteiras" className={itemClass} activeOptions={{ exact: true }}>
-              <MapPinIcon className="size-4" /> Carteiras
+              <LocationIcon className="size-[1.125rem]" /> Carteiras
             </Link>
           </li>
           {SOON.map(({ label, icon: Icon }) => (
             <li key={label} className="flex lg:block">
               <button type="button" onClick={comingSoon} className={itemClass}>
-                <Icon className="size-4" /> {label}
+                <Icon className="size-[1.125rem]" /> {label}
               </button>
             </li>
           ))}
@@ -68,7 +67,7 @@ export function AccountLayout({ children }: { children: ReactNode }) {
               onClick={() => logout.mutate(undefined, { onSuccess: () => navigate({ to: '/' }) })}
               className={cn(itemClass, 'font-bold')}
             >
-              <LogOutIcon className="size-4" /> Sair
+              <LogoutIcon className="size-[1.125rem]" /> Sair
             </button>
           </li>
         </ul>

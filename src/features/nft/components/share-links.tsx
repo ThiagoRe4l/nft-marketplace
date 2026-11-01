@@ -1,5 +1,5 @@
 import { MailIcon } from 'lucide-react'
-import { LinkedinIcon, TwitterIcon } from '@/components/layout/social-icons'
+import { LinkedinIcon, TwitterIcon } from '@/components/icons'
 
 const linkClass =
   'inline-flex size-6 items-center justify-center text-foreground outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring [&_svg]:size-4'
@@ -14,7 +14,7 @@ export function ShareLinks({ name }: { name: string }) {
   ]
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm font-bold">Compartilhar este NFT:</span>
+      <span className="text-sm font-bold md:text-[0.9375rem]">Compartilhar este NFT:</span>
       {links.map((link) => (
         <a
           key={link.label}

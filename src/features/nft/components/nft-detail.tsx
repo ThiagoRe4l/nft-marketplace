@@ -8,7 +8,9 @@ import { MoreFromCollection } from './more-from-collection'
 import { NftGallery } from './nft-gallery'
 import { NftInfoTabs } from './nft-info-tabs'
 import { NftDetailSkeleton, NftLoadError, NftNotFound } from './nft-states'
-import { PurchasePanel } from './purchase-panel'
+import { EditionPicker } from './edition-picker'
+import { EditionPrice, PurchaseActions } from './purchase-panel'
+import { useEditionSelection } from '../use-edition-selection'
 import { ShareLinks } from './share-links'
 
 const linkClass = 'outline-none hover:text-primary focus-visible:ring-3 focus-visible:ring-ring'
@@ -17,7 +19,7 @@ export function NftDetail({ id }: { id: string }) {
   const query = useNft(id)
 
   return (
-    <div className="mx-auto w-full max-w-page px-gutter py-6 md:py-10">
+    <div className="mx-auto w-full max-w-page px-gutter py-6 md:pt-8 md:pb-10">
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -51,22 +53,40 @@ export function NftDetail({ id }: { id: string }) {
 }
 
 function NftContent({ nft }: { nft: Nft }) {
+  const selection = useEditionSelection(nft)
+
   return (
     <>
-      <div className="grid gap-8 lg:grid-cols-[5fr_6fr] lg:gap-10">
-        <NftGallery name={nft.name} images={nft.images} />
+      <div className="grid gap-8 lg:grid-cols-[35.8125rem_minmax(0,1fr)] lg:gap-8">
+        <NftGallery
+          name={nft.name}
+          image={nft.images[0]}
+          editions={nft.editions}
+          selectedEditionId={selection.edition.id}
+          onSelectEdition={selection.selectEdition}
+        />
 
-        <div className="min-w-0 space-y-4">
-          <h1 className="text-2xl font-bold md:text-3xl">{nft.name}</h1>
-          <Rating rating={nft.rating} count={nft.reviewCount} />
-          <PurchasePanel nft={nft} />
-
-          <div className="border-t pt-4">
-            <h2 className="text-sm font-bold">Sobre este NFT:</h2>
-            <p className="mt-2 text-xs leading-6 text-muted-foreground">{nft.description}</p>
+        {/* Figma: título, preço e avaliações, sobre o NFT, edição, quantidade e compra, dados do token, compartilhar */}
+        <div className="flex min-w-0 flex-col gap-5 lg:min-h-[28rem] lg:justify-between">
+          <div className="space-y-3">
+            <h1 className="text-2xl font-bold md:text-[1.75rem] md:leading-[2.3125rem]">{nft.name}</h1>
+            <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-b pb-3">
+              <EditionPrice selection={selection} />
+              <Rating rating={nft.rating} count={nft.reviewCount} />
+            </div>
           </div>
 
-          <dl className="space-y-2 text-sm text-muted-foreground">
+          <div className="space-y-3">
+            <h2 className="text-[0.9375rem] leading-4 font-bold">Sobre este NFT:</h2>
+            <p className="text-xs leading-6 text-muted-foreground md:text-sm">{nft.description}</p>
+          </div>
+
+          <EditionPicker editions={nft.editions} value={selection.edition.id} onChange={selection.selectEdition} />
+
+          <PurchaseActions nft={nft} selection={selection} />
+
+          <div className="space-y-3">
+          <dl className="space-y-3 text-sm text-muted-foreground md:text-[0.9375rem] md:leading-5">
             <div className="flex gap-1">
               <dt>ID do token:</dt>
               <dd>{nft.tokenId}</dd>
@@ -82,10 +102,11 @@ function NftContent({ nft }: { nft: Nft }) {
           </dl>
 
           <ShareLinks name={nft.name} />
+          </div>
         </div>
       </div>
 
-      <div className="mt-12">
+      <div className="mt-12 md:mt-24">
         <NftInfoTabs nft={nft} />
       </div>
 
@@ -97,13 +118,14 @@ function NftContent({ nft }: { nft: Nft }) {
 function Rating({ rating, count }: { rating: number; count: number }) {
   const filled = Math.round(rating)
   return (
-    <p className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-      <span className="flex" aria-hidden="true">
+    <p className="flex flex-wrap items-center gap-x-1 gap-y-1 text-xs text-muted-foreground md:text-[0.9375rem] md:leading-5 md:text-foreground">
+      <span className="mr-1 flex" aria-hidden="true">
         {Array.from({ length: 5 }, (_, i) => (
-          <StarIcon key={i} className={i < filled ? 'size-4 fill-primary text-primary' : 'size-4 text-border-strong'} />
+          <StarIcon key={i} className={i < filled ? 'size-4 fill-primary text-primary md:size-[0.9375rem]' : 'size-4 text-border-strong md:size-[0.9375rem]'} />
         ))}
       </span>
-      <span>
+      {/* no desktop o Figma mostra só as estrelas e a contagem */}
+      <span className="md:sr-only">
         <span className="sr-only">Nota </span>
         {rating.toFixed(1)}
       </span>
