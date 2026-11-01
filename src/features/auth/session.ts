@@ -1,7 +1,9 @@
 import { queryOptions, useMutation, useQuery, useQueryClient, type QueryClient } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
 import type { z } from 'zod'
+import { Cart } from '@/contracts/cart'
 import { AuthResponse, LoginInput, Session, SignupInput } from '@/contracts/auth'
+import { cartKeys } from '@/features/cart/queries'
 import { api, request } from '@/shared/api/client'
 import { cartIdStorage, tokenStorage } from '@/shared/api/storage'
 
@@ -25,28 +27,36 @@ export const sessionQuery = queryOptions({
 
 export const useSession = () => useQuery(sessionQuery)
 
+// Esvazia o cache, menos a sessão. NÃO usar queryClient.clear(): ele remove a query da sessão enquanto componentes ainda a
+// observam; eles ficam presos à query removida, não re-renderizam com o novo dono e a tela mostra dados do dono anterior.
+const clearCache = (queryClient: QueryClient) =>
+  queryClient.removeQueries({ predicate: (query) => query.queryKey[0] !== sessionQuery.queryKey[0] })
+
 // Troca de identidade: limpa TODO o cache, para nada do visitante ou do usuário anterior sobreviver, e só então grava a sessão nova.
 async function startSession(queryClient: QueryClient, auth: z.infer<typeof AuthResponse>) {
   tokenStorage.set(auth.token)
 
   const guestCartId = cartIdStorage.get()
+  let mergedCart: Cart | null = null
   if (guestCartId) {
     try {
-      await api.post('/cart/merge', { guestCartId })
+      mergedCart = await request(Cart, { method: 'POST', url: '/cart/merge', data: { guestCartId } })
       cartIdStorage.set(null) // só esquece o carrinho de visitante se o merge deu certo
     } catch {
       // merge falhou: o id fica guardado e o merge é tentado de novo no próximo login
     }
   }
 
-  queryClient.clear()
+  clearCache(queryClient)
   const session: Session = { user: auth.user, expiresAt: auth.expiresAt }
   queryClient.setQueryData(sessionQuery.queryKey, session)
+  // o merge devolve o carrinho já somado: grava no cache do dono (depois do clear), senão a tela fica com o carrinho de antes
+  if (mergedCart) queryClient.setQueryData(cartKeys.owner(auth.user.id), mergedCart)
 }
 
 export function endSession(queryClient: QueryClient) {
   tokenStorage.set(null)
-  queryClient.clear()
+  clearCache(queryClient)
   queryClient.setQueryData(sessionQuery.queryKey, null)
 }
 

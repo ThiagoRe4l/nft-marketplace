@@ -37,10 +37,6 @@ test.describe('carrinho', () => {
   })
 
   test('login faz o merge do carrinho do visitante com o da conta, somando até o limite', async ({ page }) => {
-    // BUG ENCONTRADO (não corrigido por falta de tempo): o servidor faz o merge certo (POST /cart/merge devolve a soma
-    // limitada ao máximo; GET /api/cart depois do login confirma), mas a tela do carrinho continua mostrando a quantidade
-    // anterior ao merge até recarregar. Reativar este teste depois de corrigir o cache do carrinho em startSession.
-    test.fixme(true, 'bug: a tela não reflete o carrinho mesclado logo após o login (ver comentário)')
     // a Ana já tem 8 unidades no carrinho da conta
     await gotoApp(page, '/')
     await loginAs(page, 'ana')
@@ -67,10 +63,6 @@ test.describe('carrinho', () => {
   })
 
   test('merge sem estouro: 3 do visitante + 2 da conta = 5', async ({ page }) => {
-    // BUG ENCONTRADO (não corrigido por falta de tempo): o servidor faz o merge certo (POST /cart/merge devolve a soma
-    // limitada ao máximo; GET /api/cart depois do login confirma), mas a tela do carrinho continua mostrando a quantidade
-    // anterior ao merge até recarregar. Reativar este teste depois de corrigir o cache do carrinho em startSession.
-    test.fixme(true, 'bug: a tela não reflete o carrinho mesclado logo após o login (ver comentário)')
     await gotoApp(page, '/')
     await loginAs(page, 'ana')
     await seedCart(page, [{ nftId: EMERALD, quantity: 2 }])

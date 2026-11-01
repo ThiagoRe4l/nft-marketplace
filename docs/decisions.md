@@ -125,6 +125,12 @@ Medidas, tipografia e cores vêm de docs/figma/css; o mobile não foi alterado (
 - Fora do escopo e não alterado: breadcrumb, cards dos carrosséis (219px no Figma, 230px aqui), rodapé (colunas mais estreitas, então alguns títulos quebram) e as telas de login, cadastro e pedido.
 - Regressão visual (e2e/visual.spec.ts): Início, Detalhe (emerald-ape-042), Carrinho (3 itens fixos) e Pagamento, em desktop e mobile, com `maxDiffPixelRatio` de 1% (playwright.config.ts). As baselines têm o sufixo `-win32`: em outro sistema operacional é preciso gerá-las (`npx playwright test visual --update-snapshots=all`). Com o padrão `--update-snapshots` só as imagens que passam do limite são reescritas.
 
+## Correção: tela do carrinho não refletia o merge no login
+- Sintoma (achado pelos testes E2E): ao entrar com carrinho de visitante, o servidor somava certo (8 + 4 → 10), mas a tela mostrava a quantidade de antes (4) até recarregar.
+- Causa: `startSession` e `endSession` usavam `queryClient.clear()`. O `clear()` remove também a query da sessão enquanto componentes ainda a observam; eles ficam presos à query removida, não re-renderizam com o novo dono e continuam com a chave do carrinho do visitante. A hipótese inicial (carrinho buscado antes do merge) não procedia: a ordem das operações já estava certa (token, merge, limpeza, sessão) e as respostas do servidor chegavam corretas.
+- Correção (`src/features/auth/session.ts`): `clearCache` remove tudo do cache **menos** a query da sessão (`removeQueries` com predicate), e o login grava a resposta do merge em `cartKeys.owner(userId)`, depois da limpeza, para não haver piscada do carrinho antigo. Dados privados continuam sem sobreviver à troca de identidade (as chaves levam o dono e o resto foi removido).
+- Regra: não usar `queryClient.clear()` neste app. Testes: `cart.spec.ts` (merge somando até o limite e sem estouro) e `auth-isolation.spec.ts`.
+
 ## Lighthouse
 Metas: Performance >= 90, Accessibility >= 95, Best Practices >= 95, SEO >= 90. Medição: `npm run lighthouse` (build de produção, mocks ativos, 3 execuções por página e perfil, mediana em lighthouse/SUMMARY.md). A variação entre execuções chega a ±5 pontos de Performance; diferenças menores que isso não são sinal.
 
