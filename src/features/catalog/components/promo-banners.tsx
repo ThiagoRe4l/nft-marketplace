@@ -1,3 +1,4 @@
+import { NftImage } from '@/components/nft/nft-image'
 import { Link } from '@tanstack/react-router'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -50,11 +51,12 @@ type BannerProps = {
 function Banner({ image, title, text, action, reverse }: BannerProps) {
   return (
     <article className={cn('grid grid-cols-[2fr_3fr] items-stretch overflow-hidden rounded-sm bg-card', reverse && 'md:grid-cols-[3fr_2fr]')}>
-      <img
+      <NftImage
         src={image}
         alt=""
         width={320}
         height={320}
+        sizes="(min-width: 768px) 320px, 40vw"
         loading="lazy"
         className={cn('h-full min-h-48 w-full object-cover', reverse && 'md:order-2')}
       />

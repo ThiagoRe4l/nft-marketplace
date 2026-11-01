@@ -1,3 +1,4 @@
+import { NftImage } from '@/components/nft/nft-image'
 import { Link } from '@tanstack/react-router'
 import Big from 'big.js'
 import { MailOpenIcon, XIcon } from 'lucide-react'
@@ -71,11 +72,12 @@ export function OrderReceipt({ order }: { order: Order }) {
               <tr key={`${line.nftId}:${line.editionId}`}>
                 <td className="py-2 pr-2">
                   <div className="flex items-center gap-3">
-                    <img
+                    <NftImage
                       src={line.image}
                       alt=""
                       width={65}
                       height={65}
+                      sizes="65px"
                       decoding="async"
                       className="size-12 shrink-0 rounded-sm object-cover sm:size-[4.0625rem]"
                     />

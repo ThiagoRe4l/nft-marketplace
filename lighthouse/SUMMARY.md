@@ -2,10 +2,10 @@
 
 | Página | Perfil | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| / | mobile | 73 | 99 | 100 | 83 | 3994 ms | 0.037 | 426 ms |
-| /nft/emerald-ape-042 | mobile | 84 | 100 | 100 | 83 | 3798 ms | 0.000 | 151 ms |
-| / | desktop | 95 | 99 | 100 | 83 | 1336 ms | 0.031 | 3 ms |
-| /nft/emerald-ape-042 | desktop | 90 | 100 | 100 | 83 | 1245 ms | 0.151 | 0 ms |
+| / | mobile | 77 | 99 | 100 | 100 | 3961 ms | 0.014 | 354 ms |
+| /nft/emerald-ape-042 | mobile | 74 | 100 | 100 | 100 | 4134 ms | 0.000 | 365 ms |
+| / | desktop | 95 | 99 | 100 | 100 | 1409 ms | 0.010 | 1 ms |
+| /nft/emerald-ape-042 | desktop | 95 | 100 | 100 | 100 | 1414 ms | 0.000 | 0 ms |
 
 - Lighthouse 12.6.1
 - Navegador: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36

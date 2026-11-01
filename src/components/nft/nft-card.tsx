@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { EyeIcon, HeartIcon, ShoppingCartIcon } from 'lucide-react'
 import { cn } from "@/lib/utils"
+import { NftImage } from '@/components/nft/nft-image'
 import type { NftSummary } from '@/contracts/nft'
 import { formatEth } from '@/shared/lib/money'
 
@@ -13,6 +14,8 @@ type NftCardProps = {
   onAddToCart: (nft: NftSummary) => void
   onToggleFavorite: (nft: NftSummary) => void
   className?: string
+  /** imagem acima da dobra: carrega já, sem lazy */
+  eager?: boolean
 }
 
 const actionClass =
@@ -22,16 +25,17 @@ const actionClass =
 const revealClass =
   'pointer-events-auto opacity-0 group-hover/card:opacity-100 group-focus-within/card:opacity-100 focus-visible:opacity-100'
 
-export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite, className }: NftCardProps) {
+export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite, className, eager = false }: NftCardProps) {
   return (
     <article className={cn('group/card', className)}>
       <div className="relative rounded-xl bg-card p-1.5 md:rounded-sm md:p-3">
-        <img
+        <NftImage
           src={nft.image}
           alt={nft.name}
           width={NFT_IMAGE_SIZE}
           height={NFT_IMAGE_SIZE}
-          loading="lazy"
+          sizes="(min-width: 768px) 240px, 45vw"
+          loading={eager ? 'eager' : 'lazy'}
           decoding="async"
           className="aspect-square w-full rounded-lg object-cover"
         />

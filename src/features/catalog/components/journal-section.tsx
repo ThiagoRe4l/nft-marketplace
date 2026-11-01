@@ -1,3 +1,4 @@
+import { NftImage } from '@/components/nft/nft-image'
 import { ComingSoonButton } from '@/components/layout/coming-soon-button'
 
 // conteúdo editorial estático: o blog está fora do escopo da demonstração
@@ -46,7 +47,7 @@ export function JournalSection() {
           return (
             <li key={post.title}>
               <article className="h-full overflow-hidden rounded-sm bg-card">
-                <img src={post.image} alt="" width={320} height={200} loading="lazy" className="aspect-[8/5] w-full object-cover" />
+                <NftImage src={post.image} alt="" width={320} height={200} sizes="(min-width: 768px) 270px, 90vw" loading="lazy" className="aspect-[8/5] w-full object-cover" />
                 <div className="space-y-2 p-4">
                   <p className="text-[0.6875rem] text-muted-foreground">
                     {post.date} <span aria-hidden="true">|</span> {post.readTime}

@@ -50,9 +50,8 @@
 
 ## Pendências
 - maxPerOrder das fixtures (5 para edições acima de 1/10) não permite reproduzir o carrinho do Figma (quantidades 2, 6 e 9). Avaliar subir para 10 antes de gerar as baselines de regressão visual.
-- Imagens dos NFTs estão em PNG 2x; converter para AVIF/WebP com dimensões fixas na fase do Lighthouse.
 - No Figma, o detalhe do Emerald Ape mostra a edição 1/50 selecionada com 1.19 ETH; nas fixtures, 1.19 é a edição mais barata e a 1/50 custa 1.79. Decidir na tela de detalhe: selecionar por padrão a edição mais barata, ou ajustar a fixture.
-- Bundle principal com 649 kB (208 kB gzip): investigar na fase do Lighthouse (o que entra no chunk inicial; mocks e zod são candidatos a separar).
+- Bundle inicial: ver a seção Lighthouse (o JS do app e do backend simulado limita o Performance no mobile).
 - Domingo: após a rodada final dos testes, copiar playwright-report/ para docs/e2e-report/ (relatório HTML é entregável).
 
 ## Integração
@@ -103,3 +102,39 @@
 - Foco no primeiro campo com erro (aria-invalid) após validação ou erro da API, via efeito depois do commit (useFocusFirstError).
 - FormField (rótulo visível + erro ligado por aria-describedby) vive em src/components/form e é usado pelo checkout e pela conta.
 
+## Lighthouse
+Metas: Performance >= 90, Accessibility >= 95, Best Practices >= 95, SEO >= 90. Medição: `npm run lighthouse` (build de produção, mocks ativos, 3 execuções por página e perfil, mediana em lighthouse/SUMMARY.md). A variação entre execuções chega a ±5 pontos de Performance; diferenças menores que isso não são sinal.
+
+### Diagnóstico (primeira rodada)
+- SEO 83: faltavam a meta description e um robots.txt válido (sem o arquivo, o preview devolvia o index.html). O <html> estava com lang="en".
+- LCP: 52% a 72% do tempo era atraso de carregamento (a imagem só entra no DOM depois de HTML, JS do mock, service worker, API e render). O peso da imagem pesava pouco. Na Início mobile o LCP era um card com loading="lazy": o hero tem 136 px no mobile e o card, 162 px, então o card vence.
+- Imagens: cinco PNG de ~420 a 447 KB (2 MB); economia estimada de 1,97 MiB com formatos modernos.
+- CLS: no detalhe desktop, 0,149 de 0,151 vinha do rodapé empurrado quando o conteúdo (abas, mais da coleção) substituía o skeleton, bem mais baixo. Na Início, o resto vinha da troca da fonte.
+- JS: 45 KiB sem uso, todos no chunk do backend simulado (fixtures e cenários), que é a entrega. Auth e react-hook-form sob demanda foram descartados: ganho desprezível.
+
+### O que mudou
+- SEO: lang="pt-BR", título e meta description, public/robots.txt.
+- Imagens: scripts/optimize-images.mjs (sharp, `npm run images`) gera AVIF e WebP em 200, 400 e 500 px, versionados em public/assets/nfts. Os PNG ficam como fallback. As fontes têm ~500 px, então não há 800 px (seria ampliar). O componente NftImage (<picture>, srcset, sizes, width e height) é usado em card, hero, destaque, galeria, carrinho, pedido, recibo, banners e diário. Um PNG de 420 KB passa a ~10 a 16 KB.
+- LCP: os quatro primeiros cards da grade carregam eager (primeira fileira). O hero e a imagem do detalhe já tinham eager/fetchpriority.
+- CLS: o skeleton do detalhe reserva uma tela de altura (min-h-dvh), então o rodapé não se move. Preload da fonte Roboto Mono (plugin em vite.config.ts, o nome tem hash).
+- TBT: as fixtures (nfts e cupons) só validam com o schema em desenvolvimento (import.meta.env.DEV); em produção o parse saía do caminho crítico.
+- Header: o badge do carrinho some quando cartCount é 0.
+
+### Testado e descartado
+- Importar o app em paralelo com o worker.start() (socket.io-client dinâmico dentro do RealtimeBridge): a Início mobile piorou (LCP ~5 s contra ~4 s). Revertido, inclusive o import dinâmico.
+- Promise.all dos imports dos mocks: sem diferença medível. Revertido.
+- modulepreload dos chunks de inicialização: FCP de 2,4 s para 4,6 s (36 chunks disputam a banda com os críticos). Revertido.
+- Prefetch no loader da Início (destaques) e do detalhe: sem efeito medível (as chamadas já saem em paralelo). Revertido.
+
+### Resultado (medianas)
+| Página | Perfil | Perf | A11y | BP | SEO | LCP | CLS | TBT |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| / | mobile | 77 | 99 | 100 | 100 | 3961 ms | 0,014 | 354 ms |
+| /nft/emerald-ape-042 | mobile | 74 | 100 | 100 | 100 | 4134 ms | 0,000 | 365 ms |
+| / | desktop | 95 | 99 | 100 | 100 | 1409 ms | 0,010 | 1 ms |
+| /nft/emerald-ape-042 | desktop | 95 | 100 | 100 | 100 | 1414 ms | 0,000 | 0 ms |
+
+Linha de base: mobile 73 e 84; desktop 95 e 90 (Performance), SEO 83 em todos.
+
+### Meta que continua abaixo: Performance no mobile (74 a 77)
+Causa: o app é só cliente e o backend é simulado no navegador. Antes do primeiro render o mobile (CPU 4x mais lenta, 1,6 Mbps) baixa e executa ~460 KB gzip de JS (app, zod e o chunk dos mocks), sobe o service worker do MSW e só então chama a API. Depois da otimização das imagens o LCP da Início mobile virou o texto do hero, não mais uma imagem: o limite é o tempo até o primeiro render (~4 s), não o conteúdo. Tirar o MSW ou o chunk dos mocks do caminho inicial quebraria a entrega, e a regra do enunciado proíbe simplificar só para a auditoria. O caminho que sobra é medir de novo com o backend real, onde o chunk dos mocks não existe.

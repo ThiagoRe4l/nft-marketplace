@@ -1,3 +1,4 @@
+import { NftImage } from '@/components/nft/nft-image'
 import { Link } from '@tanstack/react-router'
 import Big from 'big.js'
 import { CircleAlertIcon, Trash2Icon } from 'lucide-react'
@@ -35,11 +36,12 @@ export function CartLine({ line }: { line: Cart['items'][number] }) {
     >
       {/* no desktop, imagem e nome ocupam a primeira coluna; as demais ficam em células próprias */}
       <div className="contents lg:flex lg:items-center lg:gap-4">
-        <img
+        <NftImage
           src={nft.image}
           alt=""
           width={96}
           height={96}
+          sizes="96px"
           loading="lazy"
           decoding="async"
           className="row-span-3 size-24 object-cover lg:row-auto lg:size-[4.375rem] lg:shrink-0"

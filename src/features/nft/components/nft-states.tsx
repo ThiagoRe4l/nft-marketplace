@@ -2,10 +2,12 @@ import { Link } from '@tanstack/react-router'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 
-// mesmas dimensões da tela pronta: galeria (miniaturas + imagem) e coluna de informações
+// Mesmas dimensões da tela pronta: galeria (miniaturas + imagem) e coluna de informações.
+// min-h-dvh reserva a altura de uma tela: o rodapé fica abaixo da dobra antes e depois do carregamento,
+// em vez de ser empurrado para baixo quando o conteúdo (abas, mais da coleção) chega (era CLS 0,15).
 export function NftDetailSkeleton() {
   return (
-    <div role="status" aria-label="Carregando NFT" className="grid gap-8 lg:grid-cols-[5fr_6fr] lg:gap-10">
+    <div role="status" aria-label="Carregando NFT" className="grid min-h-dvh content-start gap-8 lg:grid-cols-[5fr_6fr] lg:gap-10">
       <div className="flex flex-col-reverse gap-4 md:flex-row md:items-start">
         <div className="flex gap-3 md:w-[5.5rem] md:shrink-0 md:flex-col">
           {Array.from({ length: 4 }, (_, i) => (

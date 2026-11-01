@@ -411,4 +411,8 @@ const rows: NftRow[] = [
   },
 ]
 
-export const nftFixtures: Nft[] = Nft.array().parse(rows.map(toNft))
+const built = rows.map(toNft) // toNft já devolve Nft (tipado)
+
+// A validação com o schema só roda em desenvolvimento: no build de produção ela ficaria no caminho
+// crítico de toda abertura (o módulo carrega antes do primeiro render) e atrasaria o TBT.
+export const nftFixtures: Nft[] = import.meta.env.DEV ? Nft.array().parse(built) : built

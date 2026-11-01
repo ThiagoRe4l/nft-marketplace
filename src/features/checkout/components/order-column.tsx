@@ -1,3 +1,4 @@
+import { NftImage } from '@/components/nft/nft-image'
 import Big from 'big.js'
 import type { Cart } from '@/contracts/cart'
 import type { PriceSummary } from '@/contracts/common'
@@ -43,11 +44,12 @@ export function OrderColumn({ cart, quote }: { cart: Cart; quote: Quote | null }
       <ul className="space-y-2">
         {lines.map((line) => (
           <li key={line.key} className="flex items-center gap-3 rounded-sm bg-card p-1.5 pr-3">
-            <img
+            <NftImage
               src={line.image}
               alt=""
               width={70}
               height={70}
+              sizes="70px"
               loading="lazy"
               decoding="async"
               className="size-[4.375rem] shrink-0 rounded-sm object-cover"

@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { NftImage } from '@/components/nft/nft-image'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { NftSummary } from '@/contracts/nft'
 import { formatEth } from '@/shared/lib/money'
@@ -21,11 +22,12 @@ export function SpotlightCard({ nft, isLoading }: { nft: NftSummary | undefined;
         aria-label={`${nft.name}, ${formatEth(nft.price)}`}
         className="block outline-none focus-visible:ring-3 focus-visible:ring-ring"
       >
-        <img
+        <NftImage
           src={nft.image}
           alt=""
           width={400}
           height={500}
+          sizes="(min-width: 768px) 400px, 90vw"
           loading="lazy"
           className="aspect-[4/5] w-full rounded-xl object-cover"
         />

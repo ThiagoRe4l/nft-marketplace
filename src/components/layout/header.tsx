@@ -91,12 +91,14 @@ export function Header({ cartCount, user, onLoginClick, onLogout, onSearch }: He
             aria-label={cartCount > 0 ? `Carrinho, ${cartCount} ${cartCount === 1 ? 'item' : 'itens'}` : 'Carrinho, vazio'}
           >
             <ShoppingCartIcon className="size-5" />
-            <span
-              aria-hidden="true"
-              className="absolute top-0.5 right-0 flex min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[0.625rem] leading-4 font-bold text-primary-foreground"
-            >
-              {cartCount}
-            </span>
+            {cartCount > 0 && (
+              <span
+                aria-hidden="true"
+                className="absolute top-0.5 right-0 flex min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[0.625rem] leading-4 font-bold text-primary-foreground"
+              >
+                {cartCount}
+              </span>
+            )}
           </Link>
 
           <div className="hidden md:block md:pl-3">

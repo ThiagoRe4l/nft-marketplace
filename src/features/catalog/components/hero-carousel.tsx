@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { Button, buttonVariants } from '@/components/ui/button'
+import { NftImage } from '@/components/nft/nft-image'
 import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import type { NftSummary } from '@/contracts/nft'
@@ -93,11 +94,12 @@ export function HeroCarousel({ slides, isLoading, error, onRetry }: HeroCarousel
                     i === index ? 'opacity-100' : 'pointer-events-none opacity-0',
                   )}
                 >
-                  <img
+                  <NftImage
                     src={nft.image}
                     alt={nft.name}
                     width={640}
                     height={640}
+                    sizes="(min-width: 1024px) 448px, (min-width: 768px) 448px, 136px"
                     // o primeiro slide é o LCP da página
                     loading={i === 0 ? 'eager' : 'lazy'}
                     fetchPriority={i === 0 ? 'high' : 'auto'}

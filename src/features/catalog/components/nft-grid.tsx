@@ -66,10 +66,12 @@ export function NftGrid({
       className={cn(gridClass, 'mt-8 transition-opacity', isRefreshing && 'opacity-50')}
       aria-busy={isRefreshing}
     >
-      {items.map((nft) => (
+      {items.map((nft, i) => (
         <li key={nft.id}>
           <NftCard
             nft={nft}
+            // a primeira fileira (2 colunas no mobile, 4 no desktop) está acima da dobra
+            eager={i < 4}
             isFavorite={favoriteIds.has(nft.id)}
             onAddToCart={onAddToCart}
             onToggleFavorite={onToggleFavorite}

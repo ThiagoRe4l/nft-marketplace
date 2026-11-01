@@ -1,3 +1,4 @@
+import { NftImage } from '@/components/nft/nft-image'
 import { useRef, useState } from 'react'
 import { SearchIcon } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
@@ -28,11 +29,12 @@ export function NftGallery({ name, images }: { name: string; images: string[] })
                 i === index && 'border-primary',
               )}
             >
-              <img
+              <NftImage
                 src={src}
                 alt=""
                 width={THUMB_SIZE}
                 height={THUMB_SIZE}
+                sizes="88px"
                 loading="lazy"
                 decoding="async"
                 className="aspect-square w-full object-cover"
@@ -43,11 +45,12 @@ export function NftGallery({ name, images }: { name: string; images: string[] })
       </ul>
 
       <div className="relative min-w-0 flex-1 rounded-xl bg-card p-3 md:rounded-sm md:p-5">
-        <img
+        <NftImage
           src={current}
           alt={name}
           width={MAIN_SIZE}
           height={MAIN_SIZE}
+          sizes="(min-width: 1024px) 520px, 90vw"
           fetchPriority="high"
           decoding="async"
           className="aspect-square w-full rounded-lg object-cover"
@@ -67,7 +70,7 @@ export function NftGallery({ name, images }: { name: string; images: string[] })
       <Dialog open={zoomOpen} onOpenChange={setZoomOpen}>
         <DialogContent finalFocus={zoomTrigger} className="w-auto max-w-[min(90vw,60rem)] bg-card p-3">
           <DialogTitle className="sr-only">Imagem ampliada de {name}</DialogTitle>
-          <img src={current} alt={name} className="max-h-[80dvh] w-full rounded-lg object-contain" />
+          <NftImage src={current} alt={name} width={MAIN_SIZE} height={MAIN_SIZE} sizes="90vw" className="max-h-[80dvh] w-full rounded-lg object-contain" />
         </DialogContent>
       </Dialog>
     </div>
