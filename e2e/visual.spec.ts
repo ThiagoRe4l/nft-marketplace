@@ -6,7 +6,8 @@ import { expect, gotoApp, loginAs, test, TOKEN_KEY } from './fixtures'
  *
  * Dados estáveis: cada teste roda num contexto novo, então o mock começa no estado inicial (seed) e no
  * cenário "default"; o reducedMotion do playwright.config.ts desliga o carrossel e as animações.
- * As baselines ficam em e2e/visual.spec.ts-snapshots/ (npx playwright test visual --update-snapshots).
+ * As baselines ficam em e2e/visual.spec.ts-snapshots/ (npm run test:visual -- --update-snapshots).
+ * Os testes levam a tag @visual: `test:e2e` os exclui (--grep-invert) e `test:visual` roda só eles.
  */
 
 // carrinho fixo: três NFTs, sempre pela edição aberta (sem limite de estoque)
@@ -63,7 +64,13 @@ async function expectScreenshot(page: Page, name: string) {
   await expect(page).toHaveScreenshot(name, { fullPage: true })
 }
 
-test.describe('regressão visual', () => {
+// As baselines foram geradas no Windows (sufixo -win32): em outro SO o render de fontes difere e elas não valem.
+test.skip(
+  process.platform !== 'win32',
+  'Baselines visuais geradas no Windows (-win32); gere as do seu SO com `npm run test:visual -- --update-snapshots`.',
+)
+
+test.describe('regressão visual', { tag: '@visual' }, () => {
   test('Início', async ({ page }) => {
     await gotoApp(page, '/')
     await expect(page.getByRole('region', { name: 'Catálogo de NFTs' }).getByRole('article')).toHaveCount(9)

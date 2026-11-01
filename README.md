@@ -36,7 +36,8 @@ Abra http://localhost:5173. Os mocks sobem junto com o app: não há backend par
 | `npm run preview` | Serve o build de produção |
 | `npm run typecheck` | Verificação de tipos (app, mocks e testes) |
 | `npm run lint` | ESLint |
-| `npm run test:e2e` | Testes Playwright (desktop e mobile, Chromium) |
+| `npm run test:e2e` | Testes Playwright funcionais (desktop e mobile, Chromium), sem os de regressão visual |
+| `npm run test:visual` | Regressão visual (`@visual`); baselines só do Windows, pula em outros SOs |
 | `npm run test:e2e:report` | Abre o relatório HTML da última execução |
 | `npm run lighthouse` | Auditoria Lighthouse (build, 3 medições por página e perfil, gera `lighthouse/SUMMARY.md`) |
 
@@ -148,9 +149,12 @@ O cliente reconecta sozinho e reconcilia catálogo, carrinho e pedidos com a API
 ## Testes
 
 ```bash
-npm run test:e2e
+npm run test:e2e        # funcionais (portáteis: Windows, Mac, Linux, CI)
+npm run test:visual     # regressão visual (@visual), só no Windows
 npm run test:e2e:report
 ```
+
+As baselines de `e2e/visual.spec.ts-snapshots/` têm sufixo `-win32`: o render de fontes muda entre sistemas e elas quebrariam em Mac/Linux/CI. Por isso esses testes têm a tag `@visual`, ficam fora de `test:e2e` e se pulam sozinhos quando `process.platform !== 'win32'`. Para gerar baselines do seu SO: `npm run test:visual -- --update-snapshots` (remova o `test.skip` de plataforma).
 
 Cada teste roda num contexto de navegador novo, então o banco do mock começa sempre no estado inicial. Os fluxos rodam em Chromium nos viewports desktop (1440×900) e mobile (390×844). Relatório da execução final: [docs/e2e-report](./docs/e2e-report).
 

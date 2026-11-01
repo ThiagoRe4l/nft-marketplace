@@ -99,3 +99,34 @@ export const test = base.extend<{ mock: MockControls }>({
 })
 
 export { expect }
+
+/** Chamada autenticada (token do localStorage) ao mock, feita de dentro da página. Falha se a resposta não for 2xx. */
+export async function api<T = unknown>(page: Page, method: string, url: string, body?: unknown): Promise<T> {
+  return page.evaluate(
+    async ({ method, url, body, tokenKey }) => {
+      const token = localStorage.getItem(tokenKey)
+      const response = await fetch(url, {
+        method,
+        headers: {
+          ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}),
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: body !== undefined ? JSON.stringify(body) : undefined,
+      })
+      const text = await response.text()
+      if (!response.ok) throw new Error(`${method} ${url} -> ${response.status}: ${text}`)
+      return text ? JSON.parse(text) : null
+    },
+    { method, url, body, tokenKey: TOKEN_KEY },
+  ) as Promise<T>
+}
+
+/** Coloca no carrinho a edição ABERTA (sem limite de estoque) de cada NFT. */
+export async function seedCart(page: Page, items: { nftId: string; quantity: number }[]) {
+  for (const { nftId, quantity } of items) {
+    const nft = await api<{ editions: { id: string; kind: string }[] }>(page, 'GET', `/api/nfts/${nftId}`)
+    const edition = nft.editions.find((e) => e.kind === 'open')
+    if (!edition) throw new Error(`${nftId} não tem edição aberta`)
+    await api(page, 'POST', '/api/cart/items', { nftId, editionId: edition.id, quantity })
+  }
+}
