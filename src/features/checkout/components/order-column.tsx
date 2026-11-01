@@ -30,20 +30,21 @@ const linesFromQuote = (quote: Quote): Line[] =>
   }))
 
 // "Seus NFTs": antes da revisão mostra o carrinho; depois, os valores da cotação, que são os que valem
-export function OrderColumn({ cart, quote }: { cart: Cart; quote: Quote | null }) {
+// mobile (Figma): sem a lista de NFTs, o cupom e as parcelas; só o total
+export function OrderColumn({ cart, quote, className }: { cart: Cart; quote: Quote | null; className?: string }) {
   const lines = quote ? linesFromQuote(quote) : linesFromCart(cart)
   const summary: PriceSummary = quote ?? cart.summary
 
   return (
-    <section aria-labelledby="checkout-items-title">
-      <h2 id="checkout-items-title" className="mb-3 text-base font-bold">
+    <section aria-labelledby="checkout-items-title" className={className}>
+      <h2 id="checkout-items-title" className="mb-3 text-base font-bold max-lg:hidden">
         Seus NFTs
       </h2>
-      <div aria-hidden="true" className="mb-3 flex justify-between border-b pb-2 text-sm font-bold">
+      <div aria-hidden="true" className="mb-3 flex justify-between border-b pb-2 text-sm font-bold max-lg:hidden">
         <span>NFTs</span>
         <span>Subtotal</span>
       </div>
-      <ul className="space-y-2">
+      <ul className="space-y-2 max-lg:hidden">
         {lines.map((line) => (
           <li key={line.key} className="flex items-center gap-3 rounded-sm bg-card p-1.5 pr-3">
             <NftImage
@@ -71,9 +72,11 @@ export function OrderColumn({ cart, quote }: { cart: Cart; quote: Quote | null }
         ))}
       </ul>
 
-      <PromoCode couponCode={cart.couponCode} />
+      <div className="max-lg:hidden">
+        <PromoCode couponCode={cart.couponCode} />
+      </div>
 
-      <dl aria-label={quote ? 'Valores da cotação' : 'Resumo do carrinho'} className="mt-4 text-sm">
+      <dl aria-label={quote ? 'Valores da cotação' : 'Resumo do carrinho'} className="mt-4 text-sm max-lg:mt-0 max-lg:[&>div:not(:last-child)]:hidden max-lg:[&>p]:hidden">
         <div className="flex h-8 items-center justify-between">
           <dt>Subtotal</dt>
           <dd>{formatEth(summary.subtotal)}</dd>
@@ -87,9 +90,9 @@ export function OrderColumn({ cart, quote }: { cart: Cart; quote: Quote | null }
           <dd>{formatEth(summary.networkFee)}</dd>
         </div>
         <p className="h-4 text-right text-[0.6875rem] text-primary">Taxa estimada</p>
-        <div className="mt-3 flex h-8 items-center justify-between border-t pt-3 font-bold">
+        <div className="mt-3 flex h-8 items-center justify-between border-t pt-3 font-bold max-lg:mt-0 max-lg:justify-end max-lg:gap-6 max-lg:border-t-0 max-lg:pt-0 max-lg:text-base">
           <dt>Total</dt>
-          <dd className="text-primary">{formatEth(summary.total)}</dd>
+          <dd className="text-primary max-lg:text-lg max-lg:text-highlight">{formatEth(summary.total)}</dd>
         </div>
       </dl>
       {quote && <p className="mt-2 text-xs text-muted-foreground">Valores confirmados pela cotação.</p>}

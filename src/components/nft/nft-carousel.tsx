@@ -16,6 +16,7 @@ type NftCarouselProps = {
   items: NftSummary[]
   isPending: boolean
   onAddToCart: (nft: NftSummary) => void
+  className?: string
 }
 
 // uma "página" é uma largura visível da lista; os pontos abaixo levam de página em página
@@ -42,7 +43,7 @@ function usePages(itemCount: number) {
   return { track, ...state, onScroll: (event: React.UIEvent<HTMLUListElement>) => setState(measurePages(event.currentTarget)) }
 }
 
-export function NftCarousel({ id, title, listLabel, items, isPending, onAddToCart }: NftCarouselProps) {
+export function NftCarousel({ id, title, listLabel, items, isPending, onAddToCart, className }: NftCarouselProps) {
   const favoriteIds = useFavoriteIds()
   const toggleFavorite = useToggleFavorite()
   const { track, pages, page, onScroll } = usePages(items.length)
@@ -53,7 +54,7 @@ export function NftCarousel({ id, title, listLabel, items, isPending, onAddToCar
   }
 
   return (
-    <section aria-labelledby={id} className="mt-16 md:mt-24">
+    <section aria-labelledby={id} className={cn('mt-16 md:mt-24', className)}>
       {/* a linha fica a 12 px do título (Figma) */}
       <div className="border-b pb-3">
         <h2 id={id} className="text-base leading-4 font-bold text-highlight md:text-[1.0625rem]">

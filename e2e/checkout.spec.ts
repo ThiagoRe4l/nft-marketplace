@@ -47,6 +47,13 @@ async function openCheckout(page: Page, user: UserKey, items = [{ nftId: EMERALD
   await gotoApp(page, '/checkout')
 }
 
+/** No mobile os campos da carteira ficam recolhidos até tocar em "Trocar carteira"; no desktop já estão à vista. */
+async function openWalletFields(page: Page) {
+  await expect(page.getByRole('form', { name: 'Pagamento' })).toBeVisible() // o formulário já montou
+  const toggle = page.getByRole('button', { name: 'Trocar carteira' })
+  if (await toggle.isVisible()) await toggle.click()
+}
+
 const reviewButton = (page: Page) => page.getByRole('button', { name: 'Revisar pedido' })
 const confirmButton = (page: Page) => page.getByRole('button', { name: /^(Confirmar compra|Enviando\.\.\.)$/ })
 
@@ -61,8 +68,9 @@ async function reviewAndConnect(page: Page) {
 const STALE = 'Os valores mudaram. Revise o pedido antes de confirmar.'
 
 test.describe('checkout: Ana (com carteira)', () => {
-  test('vem preenchido com o perfil e a carteira principal; compra até o recibo', async ({ page }) => {
+  test('vem preenchido com o perfil e a carteira principal; compra até o recibo', async ({ page, isMobile }) => {
     await openCheckout(page, 'ana')
+    await openWalletFields(page)
 
     // pré-preenchimento: perfil + carteira principal
     await expect(page.getByLabel('Nome de exibição')).toHaveValue('Ana Ribeiro')
@@ -72,7 +80,8 @@ test.describe('checkout: Ana (com carteira)', () => {
     await expect(page.getByRole('radio', { name: /Principal — MetaMask/ })).toBeChecked()
 
     // antes da revisão: resumo do carrinho (2 × 1.19 + 0.016 de taxa)
-    await expect(page.getByRole('list').getByText('Emerald Ape #042')).toBeVisible()
+    // (o mobile do Figma não lista os NFTs na tela de pagamento: só o total)
+    if (!isMobile) await expect(page.getByRole('list').getByText('Emerald Ape #042')).toBeVisible()
     await expect(page.getByRole('definition').filter({ hasText: '2.396 ETH' })).toBeVisible()
 
     await reviewButton(page).click()
@@ -187,6 +196,7 @@ test.describe('checkout: Ana (com carteira)', () => {
 
   test('valida os campos obrigatórios antes de criar a cotação', async ({ page }) => {
     await openCheckout(page, 'ana')
+    await openWalletFields(page)
     await page.getByLabel('Nome de exibição').fill('')
     await page.getByLabel(/^E-mail/).fill('isso-nao-e-email')
     await reviewButton(page).click()
@@ -247,6 +257,7 @@ test.describe('checkout: Ana (com carteira)', () => {
 
     await reviewAndConnect(page)
     await page.getByRole('radio', { name: /Secundária — Coinbase Wallet/ }).click()
+    await openWalletFields(page)
 
     await expect(page.getByLabel('Endereço da carteira')).toHaveValue('0x1111111111111111111111111111111111111111')
     await expect(page.getByRole('combobox', { name: /Rede/ })).toContainText('Polygon')
@@ -258,6 +269,7 @@ test.describe('checkout: Ana (com carteira)', () => {
 
   test('sessão expirada no checkout: o login devolve o formulário como estava', async ({ page, mock }) => {
     await openCheckout(page, 'ana')
+    await openWalletFields(page)
     await page.getByLabel('Nome de exibição').fill('Ana R.')
     await page.getByLabel('Observação do colecionador').fill('Entregar com carinho')
 
@@ -277,9 +289,31 @@ test.describe('checkout: Ana (com carteira)', () => {
 
   test('rascunho sobrevive a um refresh', async ({ page }) => {
     await openCheckout(page, 'ana')
+    await openWalletFields(page)
     await page.getByLabel('Observação do colecionador').fill('Rascunho')
     await page.reload()
     await expect(page.getByLabel('Observação do colecionador')).toHaveValue('Rascunho')
+  })
+
+  test('mobile: campos recolhidos até "Trocar carteira"; um erro de validação os abre', async ({ page, isMobile }) => {
+    test.skip(!isMobile, 'só o mobile recolhe os campos da carteira')
+    await openCheckout(page, 'ana')
+
+    const name = page.getByLabel('Nome de exibição')
+    await expect(name).toBeHidden()
+    await expect(page.getByRole('button', { name: 'Trocar carteira' })).toHaveAttribute('aria-expanded', 'false')
+    await expect(page.getByRole('radio', { name: /Principal — MetaMask/ })).toBeChecked()
+    await expect(page.getByRole('heading', { name: 'Carteira e rede' })).toBeVisible()
+
+    // deixa um campo inválido, recolhe os campos e tenta revisar: os campos reabrem com o erro à vista
+    await openWalletFields(page)
+    await name.fill('')
+    await page.getByRole('button', { name: 'Ocultar campos' }).click()
+    await expect(name).toBeHidden()
+    await reviewButton(page).click()
+    await expect(name).toBeVisible()
+    await expect(page.getByText('Obrigatório')).toBeVisible()
+    await expect(reviewButton(page)).toBeVisible() // continua sem cotação
   })
 
   test('carrinho vazio: mensagem e link para o catálogo', async ({ page }) => {

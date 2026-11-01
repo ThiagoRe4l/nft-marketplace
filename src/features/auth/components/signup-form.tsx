@@ -79,7 +79,7 @@ export function SignupForm({ onSuccess }: { onSuccess: (displayName: string) => 
           {...register('confirmPassword')}
         />
       </Field>
-      <Button type="submit" size="lg" className="mt-3 h-11 w-full font-bold" disabled={signup.isPending}>
+      <Button type="submit" size="lg" className="mt-3 h-11 w-full font-bold max-md:mt-7 max-md:h-[60px] max-md:rounded-[10px] max-md:text-base" disabled={signup.isPending}>
         {signup.isPending ? 'Criando conta...' : 'Criar conta'}
       </Button>
     </form>

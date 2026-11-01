@@ -8,12 +8,14 @@ import { formatEth } from '@/shared/lib/money'
 import { CouponForm } from './coupon-form'
 
 // mesmo contêiner para o resumo real e o skeleton: as dimensões não mudam ao carregar
-const panelClass = 'max-lg:-mx-gutter max-lg:rounded-t-3xl max-lg:bg-card max-lg:px-gutter max-lg:py-6'
+// mobile (Figma): painel de 40 px de raio que acompanha a rolagem e fica colado acima da barra inferior (sticky), sem cobrir o fim da lista
+const panelClass =
+  'max-lg:sticky max-lg:bottom-[calc(4.25rem+env(safe-area-inset-bottom))] max-lg:z-10 max-lg:-mx-gutter max-lg:rounded-t-[2.5rem] max-lg:bg-card max-lg:px-gutter max-lg:pt-6 max-lg:pb-9 max-lg:shadow-[0_-10px_30px_rgba(10,6,4,0.45)]'
 
-const rowClass = 'flex h-8 items-center justify-between text-sm'
+const rowClass = 'flex h-8 items-center justify-between text-sm max-lg:h-5 max-lg:text-[0.9375rem] max-lg:[&>dd]:text-base'
 const ctaClass = cn(
   buttonVariants({ size: 'lg' }),
-  'h-10 w-full font-bold max-lg:rounded-full max-lg:bg-gradient-to-r max-lg:from-primary max-lg:to-primary-hover',
+  'h-10 w-full font-bold max-lg:h-[3.75rem] max-lg:rounded-full max-lg:bg-[linear-gradient(93.21deg,var(--primary)_-3.96%,rgb(210_138_76/0.8)_121.97%)] max-lg:text-base',
 )
 
 function useTotalAnnouncement(total: string) {
@@ -40,31 +42,31 @@ export function CartSummary({ cart }: { cart: Cart }) {
       <div className="lg:py-6">
         <CouponForm couponCode={cart.couponCode} />
       </div>
-      <dl className="mt-2 lg:mt-0">
+      <dl className="mt-2 max-lg:mt-3 lg:mt-0">
         <div className={rowClass}>
           <dt>Subtotal</dt>
           <dd>{formatEth(summary.subtotal)}</dd>
         </div>
-        <div className={rowClass}>
+        <div className={cn(rowClass, 'max-lg:mt-3')}>
           <dt>Desconto do lançamento</dt>
           <dd>(-) {formatEth(summary.discount)}</dd>
         </div>
-        <div className={rowClass}>
+        <div className={cn(rowClass, 'max-lg:mt-3')}>
           <dt>Taxa de rede</dt>
           <dd>{formatEth(summary.networkFee)}</dd>
         </div>
-        <p className="h-4 text-right text-[0.6875rem] text-primary">Taxa estimada</p>
-        <div className="mt-3 flex h-8 items-center justify-between text-sm font-bold">
+        <p className="h-4 text-right text-[0.6875rem] text-primary max-lg:text-xs max-lg:text-highlight">Taxa estimada</p>
+        <div className="mt-3 flex h-8 items-center justify-between text-sm font-bold max-lg:h-4 max-lg:text-base">
           <dt>Total</dt>
-          <dd className="text-primary">{formatEth(summary.total)}</dd>
+          <dd className="text-primary max-lg:text-lg max-lg:text-highlight">{formatEth(summary.total)}</dd>
         </div>
       </dl>
       <p role="status" aria-live="polite" className="sr-only">
         {announcement}
       </p>
-      <div className="mt-6 space-y-3">
+      <div className="mt-6 space-y-3 max-lg:mt-8">
         {empty ? (
-          <Button type="button" size="lg" disabled className="h-10 w-full font-bold max-lg:rounded-full">
+          <Button type="button" size="lg" disabled className="h-10 w-full font-bold max-lg:h-[3.75rem] max-lg:rounded-full max-lg:text-base">
             Conectar e finalizar
           </Button>
         ) : (
@@ -75,7 +77,7 @@ export function CartSummary({ cart }: { cart: Cart }) {
         <Link
           to="/"
           hash="catalogo"
-          className="flex h-8 items-center justify-center rounded-lg text-sm text-primary outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring"
+          className="flex h-8 items-center justify-center rounded-lg text-sm text-primary outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring max-lg:hidden"
         >
           Continuar explorando
         </Link>

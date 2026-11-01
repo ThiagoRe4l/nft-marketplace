@@ -31,5 +31,5 @@ export const fieldProps = (id: string, error?: string) => ({
   id,
   'aria-invalid': error ? true : undefined,
   'aria-describedby': error ? `${id}-error` : undefined,
-  className: 'h-10 border-border bg-transparent px-4 focus-visible:border-primary md:text-sm dark:bg-transparent',
+  className: 'h-10 border-border bg-transparent px-4 focus-visible:border-primary md:text-sm dark:bg-transparent max-md:h-[50px] max-md:rounded-[10px] max-md:text-sm max-md:placeholder:text-soft-text',
 })

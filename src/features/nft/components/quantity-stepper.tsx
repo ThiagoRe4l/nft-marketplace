@@ -9,7 +9,7 @@ const sizes = {
 
 // botão redondo na cor primária, com borda e sombra do Figma; o ::after amplia a área de clique
 const buttonClass =
-  "relative inline-flex shrink-0 items-center justify-center rounded-full border border-background bg-primary text-primary-foreground shadow-md shadow-background/15 outline-none transition-colors after:absolute after:-inset-1 after:content-[''] hover:bg-primary-hover focus-visible:ring-3 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-40"
+  "relative inline-flex shrink-0 items-center justify-center rounded-full border border-background bg-primary text-primary-foreground shadow-md shadow-background/15 outline-none transition-colors after:absolute after:-inset-1 max-md:after:-inset-2 after:content-[''] hover:bg-primary-hover focus-visible:ring-3 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-40"
 
 type QuantityStepperProps = {
   value: number

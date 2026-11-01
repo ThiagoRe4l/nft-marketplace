@@ -5,12 +5,14 @@ import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Toaster } from '@/components/ui/sonner'
 import { MobileNav } from '@/components/layout/mobile-nav'
+import { isNftDetail } from '@/components/layout/nav'
 import { useSubmitSearch } from '@/features/catalog/use-submit-search'
 import { useNavigate, useRouterState } from '@tanstack/react-router'
 import { useLogout, useSession } from '@/features/auth/session'
 import { AuthDialog } from '@/features/auth/components/auth-dialog'
 import { withoutAuthParams } from '@/features/auth/redirect'
 import { cartItemCount, useCart } from '@/features/cart/queries'
+import { cn } from '@/lib/utils'
 import { RealtimeBridge } from '@/features/realtime/realtime-bridge'
 
 // parâmetros do diálogo de login/cadastro: valem em qualquer página
@@ -32,10 +34,17 @@ function RootLayout() {
     const logout = useLogout()
     const navigate = useNavigate()
     const href = useRouterState({ select: (s) => s.location.href })
+    const pathname = useRouterState({ select: (s) => s.location.pathname })
     const submitSearch = useSubmitSearch()
     const cartCount = cartItemCount(cart.data)
     return (
-        <div className="flex min-h-dvh flex-col pb-[calc(4.25rem+env(safe-area-inset-bottom))] md:pb-0">
+        <div
+            className={cn(
+                'flex min-h-dvh flex-col md:pb-0',
+                // mobile: espaço para a barra inferior, ou para a barra de compra (mais alta) no detalhe
+                isNftDetail(pathname) ? 'pb-[calc(10.5rem+env(safe-area-inset-bottom))]' : 'pb-[calc(4.25rem+env(safe-area-inset-bottom))]',
+            )}
+        >
             <a
                 href="#main"
                 onClick={skipToContent}

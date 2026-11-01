@@ -19,8 +19,9 @@ type NftCardProps = {
   eager?: boolean
 }
 
+// no mobile (<md) a área de toque passa de 44 px sem mexer no tamanho visual (::after)
 const actionClass =
-  'inline-flex size-9 items-center justify-center rounded-full bg-background/80 text-foreground outline-none backdrop-blur-sm transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:ring-3 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50'
+  'max-md:after:absolute max-md:after:-inset-1 max-md:after:content-[""] inline-flex size-9 items-center justify-center rounded-full bg-background/80 text-foreground outline-none backdrop-blur-sm transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:ring-3 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50'
 
 // botões ficam fora do fluxo e só recebem clique eles mesmos (o contêiner não bloqueia a imagem)
 const revealClass =
@@ -28,8 +29,15 @@ const revealClass =
 
 export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite, className, eager = false }: NftCardProps) {
   return (
-    <article className={cn('group/card', className)}>
-      <div className="relative rounded-xl bg-card p-1.5 md:rounded-sm md:p-3">
+    <article className={cn('group/card relative', className)}>
+      {/* mobile: o card inteiro é um alvo de toque que abre o detalhe (no desktop há o botão de ver) */}
+      <Link
+        to="/nft/$id"
+        params={{ id: nft.id }}
+        aria-label={`Ver detalhes de ${nft.name}`}
+        className="absolute inset-0 z-10 rounded-xl outline-none focus-visible:ring-3 focus-visible:ring-ring md:hidden"
+      />
+      <div className="relative rounded-xl bg-card p-1 max-md:bg-[linear-gradient(143.28deg,var(--card)_-12%,#2f1d15_106.59%)] md:rounded-sm md:p-3">
         <NftImage
           src={nft.image}
           alt={nft.name}
@@ -38,19 +46,19 @@ export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite
           sizes="(min-width: 768px) 240px, 45vw"
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
-          className="aspect-square w-full rounded-lg object-cover"
+          className="aspect-square w-full rounded-2xl object-cover md:rounded-lg"
         />
         {nft.rarity === 'rare' && (
-          <span className="absolute top-1.5 left-1.5 bg-primary px-2.5 py-1 text-xs font-bold text-primary-foreground md:top-3 md:left-3">
+          <span className="absolute top-4 left-0 bg-primary px-2 py-1 text-[0.8125rem] font-medium md:px-2.5 md:text-xs md:font-bold text-primary-foreground md:top-3 md:left-3">
             RARO
           </span>
         )}
         {/* ver e carrinho aparecem no hover/foco; o coração fica sempre visível abaixo de md (Figma) */}
-        <div className="pointer-events-none absolute inset-3 md:inset-5">
+        <div className="pointer-events-none absolute inset-3 z-20 md:inset-5">
           <Link
             to="/nft/$id"
             params={{ id: nft.id }}
-            className={cn(actionClass, revealClass, 'absolute right-[5.25rem] bottom-0')}
+            className={cn(actionClass, revealClass, 'absolute right-[5.25rem] bottom-0 max-md:hidden')}
             aria-label={`Ver detalhes de ${nft.name}`}
           >
             <EyeIcon className="size-4" />
@@ -61,7 +69,8 @@ export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite
               actionClass,
               revealClass,
               isFavorite && 'text-primary',
-              'absolute top-0 right-0 opacity-100 md:top-auto md:right-[2.625rem] md:bottom-0 md:opacity-0',
+              // mobile (Figma): 28 px, sempre visível no canto, ícone na cor primária
+              'absolute top-0 right-0 opacity-100 max-md:size-7 max-md:border max-md:border-border max-md:bg-[#2f1d15] max-md:text-primary md:top-auto md:right-[2.625rem] md:bottom-0 md:opacity-0',
             )}
             aria-label={isFavorite ? `Remover ${nft.name} dos favoritos` : `Favoritar ${nft.name}`}
             aria-pressed={isFavorite}
@@ -80,14 +89,14 @@ export function NftCard({ nft, isFavorite = false, onAddToCart, onToggleFavorite
           </button>
         </div>
       </div>
-      <div className="mt-2 space-y-0.5 px-1 md:px-0">
-        <h3 className="truncate text-sm font-normal">{nft.name}</h3>
-        <p className="flex flex-wrap items-baseline gap-x-2 text-sm">
+      <div className="mt-2 space-y-0.5 px-2 md:px-0">
+        <h3 className="truncate text-[0.9375rem] leading-5 font-normal md:text-sm">{nft.name}</h3>
+        <p className="flex flex-wrap items-baseline gap-x-2 text-base md:text-sm">
           {nft.soldOut ? (
             <span className="font-bold text-muted-foreground">Esgotado</span>
           ) : (
             <>
-              <span className="font-bold text-primary">{formatEth(nft.price)}</span>
+              <span className="font-bold text-highlight md:text-primary">{formatEth(nft.price)}</span>
               {nft.compareAtPrice && (
                 <s className="text-muted-foreground">
                   <span className="sr-only">Preço anterior: </span>
