@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 
-// Porta própria para o preview dos testes (a 4173 pode estar ocupada por outra sessão).
-const PORT = 4174
+// Porta do preview dos testes: E2E_PORT (padrão 4174) permite várias sessões em paralelo.
+const PORT = Number(process.env.E2E_PORT ?? 4174)
 
 export default defineConfig({
   testDir: 'e2e',

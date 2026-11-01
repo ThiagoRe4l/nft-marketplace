@@ -14,9 +14,9 @@ export function PasswordInput({ className, ...props }: Omit<ComponentProps<'inpu
         aria-label={visible ? 'Ocultar senha' : 'Mostrar senha'}
         aria-pressed={visible}
         onClick={() => setVisible((v) => !v)}
-        className="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-border-strong outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring"
+        className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-border-strong outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring md:w-10"
       >
-        {visible ? <EyeIcon className="size-4" /> : <EyeOffIcon className="size-4" />}
+        {visible ? <EyeIcon className="size-4 max-md:size-[18px]" /> : <EyeOffIcon className="size-4 max-md:size-[18px]" />}
       </button>
     </div>
   )

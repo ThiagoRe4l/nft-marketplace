@@ -2,7 +2,7 @@ import { NftCarousel } from '@/components/nft/nft-carousel'
 import { useQuickAdd } from '@/features/cart/use-quick-add'
 import { useNftList } from '@/features/catalog/queries'
 
-export function MoreFromCollection({ nftId, collection }: { nftId: string; collection: string }) {
+export function MoreFromCollection({ nftId, collection, className }: { nftId: string; collection: string; className?: string }) {
   const list = useNftList({ q: collection })
   const quickAdd = useQuickAdd()
   const items = list.data?.items.filter((item) => item.id !== nftId) ?? []
@@ -18,6 +18,7 @@ export function MoreFromCollection({ nftId, collection }: { nftId: string; colle
       items={items}
       isPending={list.isPending}
       onAddToCart={quickAdd}
+      className={className}
     />
   )
 }

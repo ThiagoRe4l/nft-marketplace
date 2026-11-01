@@ -211,7 +211,7 @@ Fluxo: **carrinho → cotação → confirmar → pedido pendente → recibo**.
 
 ## 9. Testes e Lighthouse
 
-**Estratégia (Playwright, `e2e/`).** Testes de ponta a ponta contra o **build de produção** servido pelo `vite preview` (porta 4174; o build já embute os mocks), em Chromium nos projetos **desktop** (1440×900) e **mobile** (390×844, touch). `reducedMotion: 'reduce'` desliga o carrossel automático e as animações. Trace e screenshot só em falha; `retries: 2` e 1 worker em CI.
+**Estratégia (Playwright, `e2e/`).** Testes de ponta a ponta contra o **build de produção** servido pelo `vite preview` (porta 4174 por padrão, ou `E2E_PORT` para rodar sessões em paralelo; o build já embute os mocks), em Chromium nos projetos **desktop** (1440×900) e **mobile** (390×844, touch). `reducedMotion: 'reduce'` desliga o carrossel automático e as animações. Trace e screenshot só em falha; `retries: 2` e 1 worker em CI.
 
 **Isolamento.** O "backend" é o MSW dentro da página e o banco vive no `localStorage`; cada teste roda num contexto de navegador novo, então **começa sempre no seed**, sem precisar de `reset`. Chamadas ao mock usam `page.evaluate(fetch(...))` (o `page.request` falaria com o servidor de preview, que não tem API). `e2e/fixtures.ts` oferece `gotoApp` (espera o app e o service worker), `loginAs` (login via fetch + token + reload) e `mock` (controles: reset, cenário, `patchEdition`, replay, desconexão, expirar sessões).
 
@@ -262,16 +262,18 @@ Linha de base (primeira rodada): mobile 73 e 84; desktop 95 e 90; SEO 83 em todo
 
 **Limitações conhecidas.**
 - Backend simulado: segurança é fictícia (token opaco, hash de senha no navegador), sem sincronização entre abas (seção 8) e sem transporte além de WebSocket.
-- Cobertura e2e parcial (seção 9) e sem regressão visual.
+- Cobertura e2e parcial (seção 9); a regressão visual cobre Início, Detalhe, Carrinho e Pagamento (desktop e mobile), mas não o login/cadastro.
 - Performance mobile abaixo da meta, com causa e justificativa na seção 9.
 - Pendências registradas no decisions.md: `maxPerOrder` das fixtures (2 até 1/10 e 5 acima) não reproduz as quantidades 2, 6 e 9 do carrinho do Figma (avaliar subir para 10 antes das baselines visuais); relatório HTML do Playwright em `docs/e2e-report/`.
 - Os campos do checkout além de rede e observação não editam a carteira (decisão consciente, seção 7).
 
 **Desvios do Figma** (conforme o decisions.md hoje):
-- Header mantido no mobile (o frame não tem): é onde ficam login, menu e busca.
-- Barra inferior do mobile reta (o Figma tem um recorte curvo) e hero mobile com uma imagem (o Figma sobrepõe duas), por tempo.
-- Checkout mobile: o frame só tem escolha de carteira, total e Confirmar; o app empilha as mesmas seções do desktop (formulário, itens, carteira, Confirmar).
+- Header mantido no mobile (o frame da Início não tem): é onde ficam login e menu; a lupa foi removida (a busca é o campo da página) e no detalhe do NFT o header e a barra inferior somem, como no Figma.
+- Barra inferior do mobile ainda reta (o Figma tem um recorte curvo em volta do botão Escanear); os ícones e o botão Escanear já são os do Figma. O hero mobile sobrepõe a segunda imagem (a do próximo slide).
+- Checkout mobile: só a carteira cadastrada, "Carteira e rede" (tipo e rede em leitura), total e o botão; os campos ficam sob "Trocar carteira". Segue o fluxo Revisar pedido → Confirmar compra e o passo de conectar (o Figma só mostra o final). A "Carteira e rede" do Figma tem três radios de tipo; aqui o tipo muda pelos campos.
+- Detalhe mobile: sem miniaturas, sem "Compartilhar" e sem pontos do carrossel de imagens (não há carrossel); a lupa de zoom foi mantida. Carrinho mobile sem "Continuar explorando" e com o texto do "Aplicar" em tinta (contraste).
+- Login/cadastro mobile: título e botão ainda "Criar conta" (o Figma diz "Criar perfil"); ícone de senha em `--border-strong` (contraste). Medidas e decisões em docs/decisions.md, "Fidelidade visual ao Figma (mobile)".
 - Recibo: vira a página `/pedidos/$id` em vez de modal; o "X" leva ao início; a ilustração "THANK YOU" é um ícone do lucide por falta de asset.
 - Slider de preço com os limites reais do catálogo, em vez de 0,02 – 12,30.
 
-<!-- atualizar após os ajustes visuais -->
+<!-- desvios do mobile atualizados após a rodada de fidelidade (docs/decisions.md) -->

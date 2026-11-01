@@ -19,7 +19,7 @@ const COPY: Record<Mode, { title: string; description: string; switchText: strin
   signup: {
     title: 'Criar conta',
     description: 'Crie seu perfil de colecionador e conecte uma carteira quando quiser.',
-    switchText: 'Já tem conta?',
+    switchText: 'Já tem uma conta?',
     switchAction: 'Entre',
   },
 }
@@ -65,14 +65,14 @@ export function AuthDialog() {
           'md:w-[31.25rem] md:max-w-[calc(100%-2rem)]',
         )}
       >
-        <div className="flex min-h-full flex-col px-7 pt-14 pb-8 md:px-10 md:pt-12 md:pb-14">
+        <div className="flex min-h-full flex-col px-7 pt-20 pb-6 max-md:gap-10 md:px-10 md:pt-12 md:pb-14">
           {reason === 'expired' && (
             <p role="alert" className="mb-4 border border-primary/60 p-3 text-sm text-primary">
               Sua sessão expirou. Entre novamente para continuar.
             </p>
           )}
 
-          <p className="mb-10 text-center text-3xl font-bold tracking-widest md:hidden" aria-hidden="true">
+          <p className="flex h-34 items-center justify-center text-[2rem] leading-[2.625rem] font-bold tracking-[0.1em] md:hidden" aria-hidden="true">
             KURIO
           </p>
 
@@ -97,12 +97,12 @@ export function AuthDialog() {
               </button>
             </div>
 
-            <DialogTitle className="text-center text-xl font-bold md:sr-only">{copy.title}</DialogTitle>
+            <DialogTitle className="text-center text-xl leading-4 font-bold md:sr-only md:leading-normal">{copy.title}</DialogTitle>
             <DialogDescription className="mt-6 hidden text-center text-xs text-foreground md:block">
               {copy.description}
             </DialogDescription>
 
-            <div className="mt-6">
+            <div className="mt-6 max-md:mt-10">
               {mode === 'login' ? (
                 <LoginForm onSuccess={handleSuccess} />
               ) : (
@@ -113,11 +113,11 @@ export function AuthDialog() {
 
           <SocialButtons />
 
-          <p className="mt-auto pt-10 text-center text-sm text-muted-foreground md:hidden">
+          <p className="text-center text-[0.9375rem] leading-5 text-muted-foreground md:hidden">
             {copy.switchText}{' '}
             <button
               type="button"
-              className="underline outline-none focus-visible:ring-3 focus-visible:ring-ring"
+              className="-my-3 py-3 underline outline-none focus-visible:ring-3 focus-visible:ring-ring"
               onClick={() => setAuth(mode === 'login' ? 'signup' : 'login')}
             >
               {copy.switchAction}

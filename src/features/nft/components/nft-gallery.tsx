@@ -27,7 +27,7 @@ export function NftGallery({ name, image, editions, selectedEditionId, onSelectE
   return (
     <div className="flex flex-col-reverse gap-4 md:flex-row md:items-start md:gap-7">
       {/* uma miniatura por edição: escolher aqui equivale a escolher nos botões de edição */}
-      <ul aria-label="Selecionar edição" className="flex gap-3 md:w-[6.25rem] md:shrink-0 md:flex-col md:gap-4">
+      <ul aria-label="Selecionar edição" className="flex gap-3 max-md:hidden md:w-[6.25rem] md:shrink-0 md:flex-col md:gap-4">
         {editions.map((edition) => {
           const soldOut = isSoldOut(edition)
           const selected = edition.id === selectedEditionId
@@ -60,7 +60,7 @@ export function NftGallery({ name, image, editions, selectedEditionId, onSelectE
         })}
       </ul>
 
-      <div className="relative min-w-0 flex-1 rounded-xl bg-card p-3 md:rounded-md md:p-4">
+      <div className="relative min-w-0 flex-1 md:rounded-md md:bg-card md:p-4">
         <NftImage
           src={image}
           alt={name}
@@ -69,14 +69,14 @@ export function NftGallery({ name, image, editions, selectedEditionId, onSelectE
           sizes="(min-width: 1024px) 404px, 90vw"
           fetchPriority="high"
           decoding="async"
-          className="aspect-square w-full rounded-lg object-cover md:rounded-3xl"
+          className="aspect-[361/356] w-full rounded-3xl object-cover md:aspect-square"
         />
         <button
           ref={zoomTrigger}
           type="button"
           aria-label="Ampliar imagem"
           onClick={() => setZoomOpen(true)}
-          className="absolute top-5 right-5 inline-flex size-9 items-center justify-center rounded-full bg-background/80 text-foreground outline-none backdrop-blur-sm transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:ring-3 focus-visible:ring-ring md:top-[1.875rem] md:right-7 md:size-[1.875rem] md:border md:bg-muted"
+          className="absolute top-3 right-3 inline-flex size-9 items-center justify-center rounded-full bg-background/80 text-foreground outline-none backdrop-blur-sm transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:ring-3 focus-visible:ring-ring md:top-[1.875rem] md:right-7 md:size-[1.875rem] md:border md:bg-muted"
         >
           <SearchIcon className="size-4 md:size-5" />
         </button>

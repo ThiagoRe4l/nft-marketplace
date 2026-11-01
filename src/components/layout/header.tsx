@@ -14,7 +14,7 @@ import {
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { comingSoon } from '@/shared/lib/coming-soon'
 import { SearchForm } from './search-form'
-import { hasHeaderDivider, isHomeActive, isMarketActive } from './nav'
+import { hasHeaderDivider, isHomeActive, isMarketActive, isNftDetail } from './nav'
 
 type HeaderUser = { displayName: string; avatarUrl: string | null }
 
@@ -68,7 +68,7 @@ export function Header({ cartCount, user, onLoginClick, onLogout, onSearch }: He
   }
 
   return (
-    <header className="bg-background max-md:border-b">
+    <header className={cn('bg-background max-md:border-b', isNftDetail(pathname) && 'max-md:hidden')}>
       {/* desktop: 24 px acima, linha de 45 px; a linha divisória só existe em algumas telas (ver nav.ts) */}
       <div className="mx-auto w-full max-w-page px-gutter md:pt-6">
         <div className="relative flex h-header items-center justify-between gap-4 md:grid md:h-[45px] md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-start md:gap-0 lg:grid-cols-[10rem_minmax(0,1fr)_minmax(12.9375rem,auto)]">
@@ -99,7 +99,7 @@ export function Header({ cartCount, user, onLoginClick, onLogout, onSearch }: He
           <button
             ref={searchTrigger}
             type="button"
-            className={cn(iconButton, desktopHitArea, 'md:size-5')}
+            className={cn(iconButton, desktopHitArea, 'hidden md:inline-flex md:size-5')}
             aria-label="Buscar"
             aria-expanded={searchOpen}
             onClick={() => setSearchOpen((open) => !open)}
@@ -148,7 +148,7 @@ export function Header({ cartCount, user, onLoginClick, onLogout, onSearch }: He
       </div>
 
       {searchOpen && (
-        <div className="border-t">
+        <div className="hidden border-t md:block">
           <div className="mx-auto w-full max-w-page px-gutter py-3">
             <SearchForm
               autoFocus

@@ -5,6 +5,7 @@ import { CheckIcon, WalletIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { Wallet } from '@/contracts/wallet'
 import { NETWORK_LABELS } from '@/features/catalog/components/labels'
+import { cn } from '@/lib/utils'
 import { shortHash, walletLabel } from '../labels'
 
 const linkClass =
@@ -16,15 +17,17 @@ export function WalletPicker({
   value,
   onChange,
   error,
+  className,
 }: {
   wallets: Wallet[]
   value: string
   onChange: (walletId: string) => void
   error?: string
+  className?: string
 }) {
   if (wallets.length === 0) {
     return (
-      <div className="space-y-2 rounded-sm border border-dashed border-border p-4 text-sm">
+      <div className={cn('space-y-2 rounded-sm border border-dashed border-border p-4 text-sm', className)}>
         <p className="font-bold">Cadastre uma carteira para pagar</p>
         <p className="text-muted-foreground">O pagamento usa uma das suas carteiras cadastradas.</p>
         <Link to="/carteiras" className={linkClass}>
@@ -35,7 +38,7 @@ export function WalletPicker({
   }
 
   return (
-    <div className="space-y-2">
+    <div className={cn('space-y-2', className)}>
       <RadioGroup
         aria-label="Carteira"
         value={value}
@@ -46,7 +49,7 @@ export function WalletPicker({
           <Radio.Root
             key={wallet.id}
             value={wallet.id}
-            className="flex w-full cursor-pointer items-start gap-3 rounded-sm border border-border p-3 text-left text-sm outline-none transition-colors hover:border-primary/60 focus-visible:ring-3 focus-visible:ring-ring data-checked:border-primary"
+            className="flex w-full cursor-pointer items-start gap-3 rounded-sm border border-border p-3 text-left text-sm outline-none transition-colors hover:border-primary/60 focus-visible:ring-3 focus-visible:ring-ring data-checked:border-primary max-lg:min-h-11 max-lg:rounded-2xl max-lg:bg-card max-lg:p-4"
           >
             <span
               aria-hidden="true"
@@ -82,6 +85,7 @@ export function WalletConnection({
   error,
   onConnect,
   onDisconnect,
+  className,
 }: {
   wallet: Wallet | undefined
   connected: boolean
@@ -89,11 +93,12 @@ export function WalletConnection({
   error: string | null
   onConnect: () => void
   onDisconnect: () => void
+  className?: string
 }) {
   if (!wallet) return null
 
   return (
-    <div className="space-y-2">
+    <div className={cn('space-y-2', className)}>
       {error && (
         <p role="alert" className="border border-destructive/50 p-3 text-sm text-destructive">
           {error}
@@ -110,7 +115,7 @@ export function WalletConnection({
           </Button>
         </div>
       ) : (
-        <Button type="button" variant="outline" size="lg" className="h-10 w-full" disabled={pending} onClick={onConnect}>
+        <Button type="button" variant="outline" size="lg" className="h-10 w-full max-lg:h-12 max-lg:rounded-full" disabled={pending} onClick={onConnect}>
           <WalletIcon aria-hidden="true" />
           {pending ? 'Conectando...' : 'Conectar carteira'}
         </Button>

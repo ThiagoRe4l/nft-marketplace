@@ -34,6 +34,10 @@
   --primary-hover: #b77743;
   /* "Text/Accent" do Figma: texto e itens ativos (o --primary é o fundo de botões e traços) */
   --highlight: #e89b55;
+  /* "Color/Secondary" do Figma mobile: placeholders dos campos e dados do token */
+  --soft-text: #b39463;
+  /* "Color/Amber" do Figma: estrela das avaliações */
+  --amber: #e3a44e;
 }
 
 @theme inline {
@@ -59,6 +63,8 @@
   --color-border-strong: var(--border-strong);
   --color-primary-hover: var(--primary-hover);
   --color-highlight: var(--highlight);
+  --color-soft-text: var(--soft-text);
+  --color-amber: var(--amber);
 }
 
 @theme {

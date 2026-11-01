@@ -57,16 +57,16 @@ export function LoginForm({ onSuccess }: { onSuccess: (displayName: string) => v
           {...register('password')}
         />
       </Field>
-      <div className="text-right">
+      <div className="text-right max-md:flex max-md:h-4 max-md:items-center max-md:justify-end">
         <button
           type="button"
           onClick={comingSoon}
-          className="text-xs text-primary outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring"
+          className="text-xs text-primary outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring max-md:-my-3.5 max-md:py-3.5 max-md:text-sm max-md:leading-4 max-md:text-highlight"
         >
           Esqueceu a senha?
         </button>
       </div>
-      <Button type="submit" size="lg" className="mt-3 h-11 w-full font-bold" disabled={login.isPending}>
+      <Button type="submit" size="lg" className="mt-3 h-11 w-full font-bold max-md:mt-7 max-md:h-[60px] max-md:rounded-[10px] max-md:text-base" disabled={login.isPending}>
         {login.isPending ? 'Entrando...' : 'Entrar'}
       </Button>
     </form>
