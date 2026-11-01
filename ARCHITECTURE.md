@@ -97,7 +97,7 @@ Os eventos são publicados pelo mock em `src/mocks/realtime/events.ts` sempre qu
 O carrinho **sempre vive no mock**; o cliente não mantém cópia local.
 
 - **Visitante.** O primeiro `GET /cart` sem token cria um carrinho no mock; o cliente guarda o `cart.id` em `localStorage` (`kurio-cart-id`, só quando não há token) e o interceptor o manda como `X-Cart-Id`. Com token, o header de identidade é o Bearer.
-- **Merge no login.** `startSession` grava o token e chama `POST /cart/merge { guestCartId }`. O mock soma as quantidades respeitando o limite da edição (`min(maxPerOrder, estoque)`), preserva o cupom do usuário (ou herda o do visitante) e apaga o carrinho de visitante. O `cartId` local só é esquecido **se o merge der certo**; se falhar, fica guardado e o merge é tentado no próximo login. Merge repetido é inofensivo (se o carrinho de visitante já não existe, devolve o do usuário).
+- **Merge no login.** `startSession` grava o token e chama `POST /cart/merge { guestCartId }`. O mock soma as quantidades respeitando o limite da edição (`min(maxPerOrder, estoque)`), preserva o cupom do usuário (ou herda o do visitante) e apaga o carrinho de visitante. O `cartId` local só é esquecido **se o merge der certo**; se falhar, fica guardado e o merge é tentado no próximo login. Merge repetido é inofensivo (se o carrinho de visitante já não existe, devolve o do usuário). A resposta do merge é gravada no cache do carrinho do dono, depois de o cache ser esvaziado (`clearCache`, sem `queryClient.clear()`).
 - **Resumo calculado pelo mock.** `Cart.summary` (subtotal, desconto, taxa de rede, total) vem do servidor (`src/mocks/lib/pricing.ts`, com `big.js`; desconto arredondado para baixo em 6 casas). O cliente só exibe, então preço e cupom têm uma única regra, e uma mudança de preço em tempo real é refletida relendo o carrinho.
 - **Chave de cache com dono.** `['cart', userId | 'guest']`. A query só habilita depois de a sessão ser conhecida (`enabled: !session.isPending`), para não buscar o carrinho do dono errado.
 - **Fila de mutations.** Todas as mutations do carrinho (adicionar, alterar quantidade, remover, cupom) compartilham `scope: { id: 'cart' }`, que o TanStack Query executa em série. A resposta de um clique antigo nunca sobrescreve a de um mais novo. Cada resposta já é o carrinho atualizado e vai direto para o cache (`setQueryData`); em erro (ex.: estoque mudou), invalida e busca o estado real.
@@ -217,7 +217,7 @@ Fluxo: **carrinho → cotação → confirmar → pedido pendente → recibo**.
 
 **Dois comandos.** `npm run test:e2e` roda os testes **funcionais** (`--grep-invert @visual`), portáteis para Windows, Mac, Linux e CI. `npm run test:visual` roda só a regressão visual (`@visual`, `e2e/visual.spec.ts`): as baselines de `visual.spec.ts-snapshots/` têm sufixo `-win32` (o render de fontes muda entre sistemas), então o arquivo se **pula sozinho** quando `process.platform !== 'win32'`, com mensagem explicando como gerar as do seu SO (`npm run test:visual -- --update-snapshots`). Não há workflow do GitHub Actions no repositório; um futuro deve chamar `test:e2e`.
 
-**O que cobrem hoje** (números exatos no resumo da última execução; cada teste roda em desktop e mobile):
+**O que cobrem hoje** (142 testes definidos, 71 por projeto; na última execução **132 passam e 10 pulam por design**: `figma.spec.ts` só roda no desktop e um teste do checkout só no mobile; cada teste roda em desktop e mobile):
 - `smoke.spec.ts`: Início com 9 cards e carrinho no Header, login da Ana, cenário `server-error` (retries e estado de erro com "Tentar novamente").
 - `checkout.spec.ts`: compra até o recibo; "Enviando…" e botão desabilitado; `order-timeout` (mesma `Idempotency-Key`, chegada ao recibo); pagamento e carteira recusados; validação; cotação desatualizada por mudança de preço em tempo real (e ausência de falso aviso); troca de carteira; sessão expirada no checkout com formulário restaurado; rascunho após refresh; carrinho vazio; retomada (sem pedido, `QUOTE_STALE`, com pedido); Bruno sem carteira; pedido inexistente; rota privada sem sessão.
 - `account.spec.ts`: rota privada e menu, logout, edição de perfil, validação com foco, conflito de e-mail, avatar, senha, carteiras.
@@ -225,10 +225,10 @@ Fluxo: **carrinho → cotação → confirmar → pedido pendente → recibo**.
 - `auth-isolation.spec.ts` (grupos 3 e 8): Ana favorita, enche o carrinho e cria pedido; Bruno entra em seguida e não vê favoritos, carrinho, perfil nem o pedido dela (por URL: "Pedido não encontrado"); troca de usuário sem recarregar a aplicação; cadastro novo; e-mail já cadastrado; senha errada e e-mail desconhecido com a **mesma** mensagem genérica; sessão expirada na navegação (diálogo com aviso e retorno à mesma página).
 - `favorites.spec.ts` (grupo 4): `mutation-error` ao favoritar e ao desfavoritar (o coração volta ao estado anterior e aparece o toast); favoritar/desfavoritar com persistência após refresh; visitante clica no coração → abre o login e, ao entrar, volta à mesma página.
 - `catalog.spec.ts` (grupo 1): aba e ordenação na URL, refresh, voltar/avançar; ordenação por menor preço; categoria na URL; parâmetros inválidos ignorados; `flaky` com trocas rápidas (espera todas as respostas, inclusive as atrasadas, e confere que a tela mostra o resultado da última).
-- `cart.spec.ts` (grupo 5): carrinho do visitante persiste após refresh; limite de quantidade; cupons `KURIO10` (10%), `EXPIRADO20`, inexistente e vazio.; merge do carrinho do visitante no login (soma até o limite e sem estouro).
+- `cart.spec.ts` (grupo 5): carrinho do visitante persiste após refresh; limite de quantidade; cupons `KURIO10` (10%), `EXPIRADO20`, inexistente e vazio; merge do carrinho do visitante no login (soma até o limite e sem estouro).
 - `visual.spec.ts` (`@visual`, só Windows): Início, Detalhe, Carrinho e Pagamento.
 
-**O que ainda não está coberto por teste automatizado:** estados de rede do grupo 12 (`slow` com skeleton, `offline`, "Tentar novamente" ao voltar ao default; só o `server-error` do catálogo tem teste), acessibilidade do grupo 11 (pular para o conteúdo, Esc fechando o diálogo e devolvendo o foco), e detalhe do NFT por URL direta / NFT inexistente (grupo 2). O relatório HTML final ainda deve ser copiado para `docs/e2e-report/` (pendência do decisions.md).
+**O que ainda não está coberto por teste automatizado:** estados de rede do grupo 12 (`slow` com skeleton, `offline`, "Tentar novamente" ao voltar ao default; só o `server-error` do catálogo tem teste), acessibilidade do grupo 11 (pular para o conteúdo, Esc fechando o diálogo e devolvendo o foco), e detalhe do NFT por URL direta / NFT inexistente (grupo 2). O relatório HTML da última execução completa está em `docs/e2e-report/` (abra o `index.html`).
 
 ### Lighthouse
 
@@ -262,9 +262,9 @@ Linha de base (primeira rodada): mobile 73 e 84; desktop 95 e 90; SEO 83 em todo
 
 **Limitações conhecidas.**
 - Backend simulado: segurança é fictícia (token opaco, hash de senha no navegador), sem sincronização entre abas (seção 8) e sem transporte além de WebSocket.
-- Cobertura e2e parcial (seção 9); a regressão visual cobre Início, Detalhe, Carrinho e Pagamento (desktop e mobile), mas não o login/cadastro.
+- Cobertura e2e parcial (seção 9: faltam os grupos 11, 12 e o detalhe por URL); a regressão visual cobre Início, Detalhe, Carrinho e Pagamento (desktop e mobile), mas não o login/cadastro.
 - Performance mobile abaixo da meta, com causa e justificativa na seção 9.
-- Pendências registradas no decisions.md: `maxPerOrder` das fixtures (2 até 1/10 e 5 acima) não reproduz as quantidades 2, 6 e 9 do carrinho do Figma (avaliar subir para 10 antes das baselines visuais); relatório HTML do Playwright em `docs/e2e-report/`.
+- Pendências registradas no decisions.md: `maxPerOrder` das fixtures (2 até 1/10 e 5 acima) não reproduz as quantidades 2, 6 e 9 do carrinho do Figma (avaliar subir para 10 antes das baselines visuais).
 - Os campos do checkout além de rede e observação não editam a carteira (decisão consciente, seção 7).
 
 **Desvios do Figma** (conforme o decisions.md hoje):

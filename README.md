@@ -158,7 +158,7 @@ npm run test:e2e:report
 
 As baselines de `e2e/visual.spec.ts-snapshots/` têm sufixo `-win32`: o render de fontes muda entre sistemas e elas quebrariam em Mac/Linux/CI. Por isso esses testes têm a tag `@visual`, ficam fora de `test:e2e` e se pulam sozinhos quando `process.platform !== 'win32'`. Para gerar baselines do seu SO: `npm run test:visual -- --update-snapshots` (remova o `test.skip` de plataforma).
 
-Cada teste roda num contexto de navegador novo, então o banco do mock começa sempre no estado inicial. Os fluxos rodam em Chromium nos viewports desktop (1440×900) e mobile (390×844). Relatório da execução final: [docs/e2e-report](./docs/e2e-report).
+Cada teste roda num contexto de navegador novo, então o banco do mock começa sempre no estado inicial. Os fluxos rodam em Chromium nos viewports desktop (1440×900) e mobile (390×844). Última execução completa do `test:e2e`: 132 passaram e 10 pulam por design (142 definidos, 71 por projeto). Relatório HTML: [docs/e2e-report](./docs/e2e-report) (abra o `index.html`).
 
 ## Lighthouse
 

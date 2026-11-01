@@ -1,4 +1,4 @@
-import { api, expect, gotoApp, loginAs, test, USERS } from './fixtures'
+import { api, detailHeart, expect, gotoApp, loginAs, test, USERS } from './fixtures'
 
 const EMERALD = 'emerald-ape-042'
 const NAME = 'Emerald Ape #042'
@@ -8,7 +8,7 @@ test.describe('favoritos', () => {
     await gotoApp(page, '/')
     await loginAs(page, 'ana')
     await gotoApp(page, `/nft/${EMERALD}`)
-    const heart = page.getByRole('button', { name: 'Favoritar', exact: true })
+    const heart = detailHeart(page, NAME)
     await expect(heart).toHaveAttribute('aria-pressed', 'false')
 
     await mock.scenario('mutation-error')
@@ -26,7 +26,7 @@ test.describe('favoritos', () => {
     await loginAs(page, 'ana')
     await api(page, 'PUT', `/api/favorites/${EMERALD}`)
     await gotoApp(page, `/nft/${EMERALD}`)
-    const heart = page.getByRole('button', { name: 'Favoritar', exact: true })
+    const heart = detailHeart(page, NAME)
     await expect(heart).toHaveAttribute('aria-pressed', 'true')
 
     await mock.scenario('mutation-error')
@@ -40,7 +40,7 @@ test.describe('favoritos', () => {
     await gotoApp(page, '/')
     await loginAs(page, 'ana')
     await gotoApp(page, `/nft/${EMERALD}`)
-    const heart = page.getByRole('button', { name: 'Favoritar', exact: true })
+    const heart = detailHeart(page, NAME)
     // o coração muda na hora (otimista); só recarrega depois que o servidor confirmou
     const saved = page.waitForResponse((r) => r.request().method() === 'PUT' && r.url().includes('/api/favorites/'))
     await heart.click()
@@ -56,7 +56,7 @@ test.describe('favoritos', () => {
   test('visitante que clica no coração abre o login e, ao entrar, volta à mesma página', async ({ page }) => {
     await gotoApp(page, `/nft/${EMERALD}`)
     await expect(page.getByRole('heading', { level: 1, name: NAME })).toBeVisible()
-    await page.getByRole('button', { name: 'Favoritar', exact: true }).click()
+    await detailHeart(page, NAME).click()
 
     await expect(page).toHaveURL(/auth=login/)
     const dialog = page.getByRole('dialog')

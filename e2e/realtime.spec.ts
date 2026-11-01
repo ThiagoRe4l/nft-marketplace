@@ -3,12 +3,14 @@ import { api, expect, gotoApp, loginAs, seedCart, test } from './fixtures'
 
 const EMERALD = 'emerald-ape-042' // edição aberta: 1.19 ETH
 const EMERALD_OPEN = `${EMERALD}-aberta`
-const VIOLET = 'violet-nomad-314'
 
 const TOAST_TEXT = /Emerald Ape #042 mudou de preço ou disponibilidade/
 
 /** O preço da edição escolhida no detalhe (o texto não tem papel próprio). */
-const price = (page: Page, value: string) => page.getByRole('main').getByText(`${value} ETH`, { exact: true }).first()
+// (no mobile o preço fica na barra fixa do rodapé, fora do `main`)
+// (o painel de desktop fica no DOM, escondido, no mobile: só o preço visível conta)
+const price = (page: Page, value: string) =>
+  page.getByText(`${value} ETH`, { exact: true }).locator('visible=true').first()
 
 /**
  * Registra, dentro da página, todo valor "N ETH" que o primeiro parágrafo de preço do `main` assume.
@@ -19,7 +21,7 @@ async function recordPrices(page: Page) {
     const seen: string[] = []
     ;(window as unknown as { __prices: string[] }).__prices = seen
     const read = () => {
-      const node = [...document.querySelectorAll('main p')].find((p) => /^\d+\.\d+ ETH$/.test(p.textContent ?? ''))
+      const node = [...document.querySelectorAll('p')].find((p) => /^\d+\.\d+ ETH$/.test(p.textContent ?? ''))
       const text = node?.textContent ?? null
       if (text && seen.at(-1) !== text) seen.push(text)
     }
@@ -35,11 +37,15 @@ test.describe('tempo real', () => {
     await gotoApp(page, '/')
     await loginAs(page, 'ana')
     await seedCart(page, [{ nftId: EMERALD, quantity: 1 }])
-    // a página mostra OUTRO NFT: o toast do carrinho independe da tela em que o usuário está
-    await gotoApp(page, `/nft/${VIOLET}`)
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
     // o carrinho precisa estar no cache do app antes do evento (é de lá que o bridge decide se avisa)
+    await gotoApp(page, '/')
     await expect(page.getByRole('link', { name: /^Carrinho(?!, vazio)/ })).toBeVisible()
+    // a página mostra OUTRO NFT: o toast do carrinho independe da tela (navegação de cliente, o cache fica)
+    const list = await api<{ items: { id: string; name: string }[] }>(page, 'GET', '/api/nfts')
+    const other = list.items.find((item) => item.id !== EMERALD)! // o 1º card da Início que não está no carrinho
+    await page.getByRole('link', { name: `Ver detalhes de ${other.name}` }).first().click()
+    await expect(page).toHaveURL(new RegExp(`/nft/${other.id}`))
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
 
     await mock.patchEdition(EMERALD, EMERALD_OPEN, { price: '1.29' })
     const toast = page.getByText(TOAST_TEXT)
@@ -50,9 +56,9 @@ test.describe('tempo real', () => {
     await mock.replay('last')
 
     // sentinela: eventos chegam em ordem, então quando esta atualização aparece o replay já foi tratado
-    const nft = (await api(page, 'GET', `/api/nfts/${VIOLET}`)) as { editions: { id: string }[] }
-    for (const edition of nft.editions) await mock.patchEdition(VIOLET, edition.id, { price: '9.99' })
-    await expect(page.getByRole('main').getByText('9.99 ETH', { exact: true }).first()).toBeVisible()
+    const nft = (await api(page, 'GET', `/api/nfts/${other.id}`)) as { editions: { id: string }[] }
+    for (const edition of nft.editions) await mock.patchEdition(other.id, edition.id, { price: '9.99' })
+    await expect(price(page, '9.99')).toBeVisible()
 
     await expect(toast).toHaveCount(0)
   })

@@ -13,7 +13,7 @@ async function guestBuy(page: Page, units: number) {
   await gotoApp(page, `/nft/${EMERALD}`)
   await expect(page.getByRole('heading', { level: 1, name: NAME })).toBeVisible()
   for (let i = 1; i < units; i++) await page.getByRole('button', { name: 'Aumentar quantidade' }).click()
-  await page.getByRole('button', { name: 'Comprar', exact: true }).click()
+  await page.getByRole('button', { name: /^Comprar( NFT)?$/ }).click()
   await expect(page).toHaveURL(/\/carrinho$/)
   await expect(items(page)).toHaveCount(1)
 }

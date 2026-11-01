@@ -130,3 +130,12 @@ export async function seedCart(page: Page, items: { nftId: string; quantity: num
     await api(page, 'POST', '/api/cart/items', { nftId, editionId: edition.id, quantity })
   }
 }
+
+/**
+ * O coração da página de detalhe: no desktop é o botão "Favoritar" do painel de compra; no mobile fica na barra do topo,
+ * com o nome do NFT no rótulo ("Favoritar X" / "Remover X dos favoritos").
+ */
+export function detailHeart(page: Page, nftName: string) {
+  const mobile = page.getByRole('button', { name: new RegExp(`^(Favoritar|Remover) ${nftName}( dos favoritos)?$`) })
+  return mobile.or(page.getByRole('button', { name: 'Favoritar', exact: true }))
+}

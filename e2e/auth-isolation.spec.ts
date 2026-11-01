@@ -1,7 +1,8 @@
 import type { Page } from '@playwright/test'
-import { api, expect, gotoApp, loginAs, seedCart, test, TOKEN_KEY, USERS } from './fixtures'
+import { api, detailHeart, expect, gotoApp, loginAs, seedCart, test, TOKEN_KEY, USERS } from './fixtures'
 
 const EMERALD = 'emerald-ape-042'
+const NAME = 'Emerald Ape #042'
 
 /** Preenche e envia o diálogo de login (como o usuário faria), na página atual. */
 async function loginThroughDialog(page: Page, email: string, password: string) {
@@ -163,7 +164,7 @@ test.describe('autenticação', () => {
     await expect(page.getByRole('list', { name: 'NFTs da coleção' }).getByRole('article').first()).toBeVisible()
 
     await mock.expireSessions()
-    await page.getByRole('button', { name: 'Favoritar', exact: true }).click() // chamada autenticada → 401
+    await detailHeart(page, NAME).click() // chamada autenticada → 401
 
     const dialog = page.getByRole('dialog')
     await expect(dialog.getByText('Sua sessão expirou. Entre novamente para continuar.')).toBeVisible()

@@ -56,7 +56,7 @@
 - Axios com interceptor de identidade (Bearer ou X-Cart-Id) e de 401; o cliente só avisa, a camada de sessão decide (sem dependência circular com router/Query).
 - Respostas validadas com os schemas Zod do contrato (função request).
 - Erros normalizados em AppError, incluindo NETWORK_ERROR e TIMEOUT, que não têm resposta HTTP.
-- Sessão como query (staleTime infinito). Login, cadastro, logout e 401 limpam o cache inteiro (queryClient.clear): nenhum dado privado atravessa a troca de usuário. Chaves de dados privados também levam o userId.
+- Sessão como query (staleTime infinito). Login, cadastro, logout e 401 esvaziam o cache (clearCache: tudo menos a sessão; queryClient.clear é proibido, ver "Correção: tela do carrinho…"): nenhum dado privado atravessa a troca de usuário. Chaves de dados privados também levam o userId.
 - Merge do carrinho de visitante no login; o id só é descartado se o merge der certo.
 - Rotas privadas usam `beforeLoad: requireAuth` em cada rota (ensureQueryData da sessão), e não um layout `_auth`: um `_auth.tsx` sem filhas conflita com "/" no gerador de rotas (comentário em src/features/auth/require-auth.ts). Sem sessão, redireciona para /?auth=login&redirect=<página>. O redirect só aceita caminhos internos (evita open redirect).
 - Expiração durante a navegação leva a /?auth=login&redirect=<página>&reason=expired (diálogo de login sobre a Início, com o aviso de sessão expirada). /login e /cadastro só redirecionam para esse formato.
@@ -122,7 +122,7 @@ Medidas, tipografia e cores vêm de docs/figma/css; o mobile não foi alterado (
 - Recibo: sem "Continuar explorando" (o X leva ao catálogo); o aviso de transação simulada virou uma linha discreta e aparece sempre, não só com o link do explorador.
 - Correção de bug visual: `<picture>` com `display: contents` deixava os `<source>` como itens vazios de flex, e o `gap` empurrava as imagens (carrinho e pedido ficavam com 24 a 32px de vazio à esquerda). `picture > source { display: none }` em index.css.
 - Fora do escopo e não alterado: breadcrumb, cards dos carrosséis (219px no Figma, 230px aqui), rodapé (colunas mais estreitas, então alguns títulos quebram) e as telas de login, cadastro e pedido.
-- Regressão visual (e2e/visual.spec.ts): Início, Detalhe (emerald-ape-042), Carrinho (3 itens fixos) e Pagamento, em desktop e mobile, com `maxDiffPixelRatio` de 1% (playwright.config.ts). As baselines têm o sufixo `-win32`: em outro sistema operacional é preciso gerá-las (`npx playwright test visual --update-snapshots=all`). Com o padrão `--update-snapshots` só as imagens que passam do limite são reescritas.
+- Regressão visual (e2e/visual.spec.ts): Início, Detalhe (emerald-ape-042), Carrinho (3 itens fixos) e Pagamento, em desktop e mobile, com `maxDiffPixelRatio` de 1% (playwright.config.ts). As baselines têm o sufixo `-win32`: em outro sistema operacional é preciso gerá-las (`npm run test:visual -- --update-snapshots=all`; os testes têm a tag `@visual`, ficam fora do `test:e2e` e pulam fora do Windows). Com o padrão `--update-snapshots` só as imagens que passam do limite são reescritas.
 
 ## Correção: tela do carrinho não refletia o merge no login
 - Sintoma (achado pelos testes E2E): ao entrar com carrinho de visitante, o servidor somava certo (8 + 4 → 10), mas a tela mostrava a quantidade de antes (4) até recarregar.
