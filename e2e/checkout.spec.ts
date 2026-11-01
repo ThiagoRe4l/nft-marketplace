@@ -127,6 +127,38 @@ test.describe('checkout: Ana (com carteira)', () => {
     await expect(page).toHaveURL(/\/pedidos\//, { timeout: 15_000 })
   })
 
+  test('order-timeout: o reenvio recupera o MESMO pedido e o usuário chega ao recibo', async ({ page, mock }) => {
+    test.setTimeout(90_000)
+    await openCheckout(page, 'ana')
+    await reviewAndConnect(page)
+    await mock.scenario('order-timeout') // o pedido nasce, mas a resposta passa do timeout de 10 s
+
+    const posts: { key: string | undefined }[] = []
+    page.on('request', (request) => {
+      if (request.method() === 'POST' && new URL(request.url()).pathname === '/api/orders') {
+        posts.push({ key: request.headers()['idempotency-key'] })
+      }
+    })
+
+    await confirmButton(page).click()
+    // o pedido é confirmado durante a espera, o carrinho esvazia e o fluxo é desmontado:
+    // o usuário nunca deve ver "carrinho vazio", e sim chegar ao pedido
+    await expect(page.getByText('Seu carrinho está vazio')).toHaveCount(0)
+    await expect(page).toHaveURL(/\/pedidos\/[\w-]+$/, { timeout: 45_000 })
+    const orderId = new URL(page.url()).pathname.split('/').pop()
+    await expect(page.getByRole('heading', { name: 'Seus NFTs agora estão na sua carteira' })).toBeVisible({
+      timeout: 20_000,
+    })
+
+    expect(posts).toHaveLength(2)
+    expect(posts[0].key).toBeTruthy()
+    expect(posts[1].key).toBe(posts[0].key)
+
+    // o pedido da URL é o que o reenvio recuperou: a tentativa guardada aponta para ele (e termina com o recibo)
+    expect(orderId).toBeTruthy()
+    expect(await api<{ id: string }>(page, 'GET', `/api/orders/${orderId}`)).toMatchObject({ id: orderId })
+  })
+
   test('pagamento recusado: mostra o motivo e os itens continuam no carrinho', async ({ page, mock }) => {
     await openCheckout(page, 'ana')
     await mock.scenario('payment-rejected')

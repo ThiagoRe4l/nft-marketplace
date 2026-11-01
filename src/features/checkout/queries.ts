@@ -24,12 +24,14 @@ export function useConnectWallet() {
   })
 }
 
+export const PLACE_ORDER_KEY = ['place-order']
+
 export function usePlaceOrder() {
   const queryClient = useQueryClient()
   const session = useSession()
 
   return useMutation({
-    mutationKey: ['place-order'], // permite observar a compra de qualquer componente
+    mutationKey: PLACE_ORDER_KEY, // permite observar a compra de qualquer componente
     scope: { id: 'checkout' },
     // cliques repetidos entram na mesma fila e caem na mesma tentativa
     mutationFn: async (body: z.infer<typeof CreateOrderInput>) => {

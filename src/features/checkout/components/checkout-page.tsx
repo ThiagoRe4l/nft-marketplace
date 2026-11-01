@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
+import { useIsMutating, useMutationState } from '@tanstack/react-query'
+import type { Order } from '@/contracts/order'
 import { ChevronLeftIcon, LoaderCircleIcon } from 'lucide-react'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -11,7 +13,7 @@ import { cn } from '@/lib/utils'
 import { toAppError } from '@/shared/api/errors'
 import { attemptStorage } from '../attempt'
 import { draftStorage } from '../draft'
-import { usePlaceOrder, useStoredAttempt } from '../queries'
+import { PLACE_ORDER_KEY, usePlaceOrder, useStoredAttempt } from '../queries'
 import { CheckoutFlow } from './checkout-flow'
 
 const linkClass = 'outline-none hover:text-primary focus-visible:ring-3 focus-visible:ring-ring'
@@ -73,6 +75,28 @@ export function CheckoutPage() {
     )
   }, [resumeBody, userId, place, navigate])
 
+  // A compra pode terminar com o componente que a disparou já desmontado (o carrinho esvazia em tempo real
+  // e a página troca o fluxo). Por isso observamos a mutation pela chave e navegamos daqui, que não desmonta.
+  const buying = useIsMutating({ mutationKey: PLACE_ORDER_KEY }) > 0
+  const [mountedAt] = useState(() => Date.now())
+  const purchases = useMutationState({
+    filters: { mutationKey: PLACE_ORDER_KEY, status: 'success' },
+    select: (m) => ({ submittedAt: m.state.submittedAt, order: m.state.data as Order | undefined }),
+  })
+  // ignora compras de visitas anteriores que ainda estão no cache
+  const purchasedId = purchases.filter((p) => p.submittedAt >= mountedAt).at(-1)?.order?.id
+  const storedOrderId = attempt?.orderId ?? null
+  const cartIsEmpty = !!cartQuery.data && cartQuery.data.items.length === 0
+  // carrinho vazio com tentativa que já tem pedido: o lugar do usuário é o pedido
+  const targetOrderId = purchasedId ?? (cartIsEmpty && !resuming ? storedOrderId : null)
+  const navigatedTo = useRef<string | null>(null)
+  useEffect(() => {
+    if (!targetOrderId || !userId || navigatedTo.current === targetOrderId) return
+    navigatedTo.current = targetOrderId
+    if (purchasedId) draftStorage.clear(userId)
+    void navigate({ to: '/pedidos/$id', params: { id: targetOrderId }, replace: true })
+  }, [targetOrderId, purchasedId, userId, navigate])
+
   const cart = cartQuery.data
   const loadError = !cart && cartQuery.isError ? cartQuery.error : (profile.isError ? profile.error : wallets.isError ? wallets.error : null)
   const retryAll = () => {
@@ -84,6 +108,15 @@ export function CheckoutPage() {
   let body
   if (resuming) {
     body = null
+  } else if (targetOrderId || (buying && cartIsEmpty)) {
+    // o carrinho esvaziou com a compra em andamento (ou o pedido já existe): nunca mostra "carrinho vazio" no meio do caminho.
+    // Com itens no carrinho o formulário continua montado, para manter o botão "Enviando..."
+    body = (
+      <p role="status" aria-live="polite" className="flex items-center gap-3 rounded-sm bg-card p-4 text-sm">
+        <LoaderCircleIcon className="size-4 animate-spin text-primary motion-reduce:animate-none" aria-hidden="true" />
+        Finalizando sua compra...
+      </p>
+    )
   } else if (loadError) {
     body = (
       <div role="alert" className="flex flex-col items-center gap-4 rounded-xl bg-card px-6 py-16 text-center">
