@@ -73,7 +73,7 @@ export function CouponForm({ couponCode }: { couponCode: string | null }) {
           autoComplete="off"
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
-          className="h-10 rounded-r-none border-border-strong text-xs max-lg:h-full max-lg:rounded-none max-lg:border-0 max-lg:bg-transparent max-lg:px-0 max-lg:text-[0.8125rem] max-lg:leading-[22px] max-lg:placeholder:text-[#B39463] max-lg:focus-visible:ring-0"
+          className="h-10 rounded-r-none border-border-strong text-xs max-lg:h-full max-lg:rounded-none max-lg:border-0 max-lg:bg-transparent max-lg:px-0 max-lg:text-[0.8125rem] max-lg:leading-[22px] max-lg:placeholder:text-[#B39463] max-lg:focus-visible:ring-0 max-lg:dark:bg-transparent"
         />
         <Button type="button" onClick={submit} disabled={apply.isPending} className="h-10 rounded-l-none px-5 font-bold max-lg:h-full max-lg:w-[6.0625rem] max-lg:rounded-full max-lg:bg-[linear-gradient(93.11deg,rgb(210_138_76/0.7)_-0.94%,#D28A4C_105.02%)] max-lg:px-0 max-lg:text-[#140d0a] max-lg:hover:bg-[linear-gradient(93.11deg,rgb(210_138_76/0.7)_-0.94%,#D28A4C_105.02%)] max-lg:text-[0.9375rem]">
           Aplicar
