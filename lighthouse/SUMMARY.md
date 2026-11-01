@@ -9,5 +9,9 @@
 
 - Lighthouse 12.6.1
 - Navegador: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36
+- SO: Microsoft Windows 11 Pro 10.0.26300
+- CPU: AMD Ryzen 5 3400G with Radeon Vega Graphics (16 GB de RAM)
+- Node.js 24.18.0
+- @lhci/cli 0.15.1
 - Build de produção (vite build + vite preview), mocks ativos no cenário padrão
 - Relatórios HTML e JSON de cada medição em lighthouse/mobile e lighthouse/desktop

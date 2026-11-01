@@ -1,5 +1,4 @@
-import { Link } from '@tanstack/react-router'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 
 // Mesmas dimensões da tela pronta: galeria (miniaturas + imagem) e coluna de informações.
@@ -26,18 +25,6 @@ export function NftDetailSkeleton() {
         <Skeleton className="h-10 w-full" />
         <Skeleton className="h-20 w-full" />
       </div>
-    </div>
-  )
-}
-
-export function NftNotFound() {
-  return (
-    <div role="alert" className="flex flex-col items-center gap-4 rounded-sm bg-card p-10 text-center">
-      <h1 className="text-xl font-bold">NFT não encontrado</h1>
-      <p className="text-sm text-muted-foreground">Ele pode ter sido removido ou o endereço está incorreto.</p>
-      <Link to="/" hash="catalogo" className={buttonVariants({ className: 'h-9 px-4 font-bold' })}>
-        Voltar ao catálogo
-      </Link>
     </div>
   )
 }

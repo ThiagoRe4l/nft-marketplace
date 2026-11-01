@@ -3,7 +3,7 @@
 Marketplace de NFTs em React e TypeScript, com backend 100% simulado por MSW (REST e Socket.IO).
 
 - **Aplicação publicada:** https://nft-marketplace-ashen-zeta.vercel.app
-- **Repositório:** <URL do repositório>
+- **Repositório:** [github.com/ThiagoRe4l/nft-marketplace](https://github.com/ThiagoRe4l/nft-marketplace)
 - **Arquitetura e decisões:** [ARCHITECTURE.md](./ARCHITECTURE.md) e [docs/decisions.md](./docs/decisions.md)
 - **Contratos REST:** [docs/contracts.md](./docs/contracts.md)
 
@@ -13,17 +13,19 @@ React, TypeScript, TanStack Router, TanStack Query, Axios, Socket.IO (cliente), 
 
 ## Requisitos
 
-- Node.js <versão usada, ex.: 22.x> (confira com `node -v`)
+- Node.js 24.x (testado com 24.18; mínimo 22.12)
 - npm
 
 ## Como rodar (a partir de um checkout limpo)
 
 ```bash
-git clone <URL do repositório>
+git clone https://github.com/ThiagoRe4l/nft-marketplace.git
 cd nft-marketplace
 npm ci
 npm run dev
 ```
+
+O `npm ci` pode avisar que o `postinstall` do `msw` foi bloqueado; é inofensivo, pois o worker já está versionado em `public/mockServiceWorker.js`.
 
 Abra http://localhost:5173. Os mocks sobem junto com o app: não há backend para configurar.
 

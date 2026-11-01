@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
+import { RouteErrorPage } from './components/layout/status-pages'
 import './index.css'
 import { endSession } from './features/auth/session'
 import { setUnauthorizedHandler } from './shared/api/client'
@@ -30,6 +31,7 @@ const router = createRouter({
   context: { queryClient },
   defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,
+  defaultErrorComponent: ({ reset }) => <RouteErrorPage reset={reset} />,
 })
 
 declare module '@tanstack/react-router' {
