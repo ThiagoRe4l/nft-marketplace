@@ -23,7 +23,7 @@ export function CatalogToolbar({ tab, sort, onTabChange, onSortChange }: Catalog
           const parsed = NftTab.safeParse(value)
           if (parsed.success) onTabChange(parsed.data)
         }}
-        className="max-w-full overflow-x-auto"
+        className="max-w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         <TabsList variant="line" aria-label="Filtrar por" className="h-auto gap-2.5 pb-2 md:gap-4">
           {NftTab.options.map((option) => (
