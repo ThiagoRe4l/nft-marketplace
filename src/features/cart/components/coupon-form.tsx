@@ -60,7 +60,7 @@ export function CouponForm({ couponCode }: { couponCode: string | null }) {
       <Label htmlFor={inputId} className="mb-2 text-xs font-bold max-lg:sr-only">
         Código promocional
       </Label>
-      <div className="flex max-lg:h-[3.125rem] max-lg:items-center max-lg:rounded-full max-lg:border max-lg:border-border max-lg:bg-card max-lg:pl-4 max-lg:shadow-[0_6px_20px_rgba(10,6,4,0.45)] max-lg:focus-within:ring-3 max-lg:focus-within:ring-ring">
+      <div className="flex max-lg:h-[3.125rem] max-lg:items-center max-lg:rounded-full max-lg:border max-lg:border-[#3F2319] max-lg:bg-[#241612] max-lg:pl-4 max-lg:shadow-[0_6px_20px_rgba(10,6,4,0.45)] max-lg:focus-within:ring-3 max-lg:focus-within:ring-ring">
         <Input
           id={inputId}
           value={code}
@@ -73,9 +73,9 @@ export function CouponForm({ couponCode }: { couponCode: string | null }) {
           autoComplete="off"
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
-          className="h-10 rounded-r-none border-border-strong text-xs max-lg:h-full max-lg:rounded-none max-lg:border-0 max-lg:bg-transparent max-lg:px-0 max-lg:text-[0.8125rem] max-lg:leading-[22px] max-lg:placeholder:text-soft-text max-lg:focus-visible:ring-0"
+          className="h-10 rounded-r-none border-border-strong text-xs max-lg:h-full max-lg:rounded-none max-lg:border-0 max-lg:bg-transparent max-lg:px-0 max-lg:text-[0.8125rem] max-lg:leading-[22px] max-lg:placeholder:text-[#B39463] max-lg:focus-visible:ring-0"
         />
-        <Button type="button" onClick={submit} disabled={apply.isPending} className="h-10 rounded-l-none px-5 font-bold max-lg:h-full max-lg:w-[6.0625rem] max-lg:rounded-full max-lg:bg-[linear-gradient(93.11deg,rgb(210_138_76/0.85)_-0.94%,var(--primary)_105.02%)] max-lg:px-0 max-lg:text-[0.9375rem]">
+        <Button type="button" onClick={submit} disabled={apply.isPending} className="h-10 rounded-l-none px-5 font-bold max-lg:h-full max-lg:w-[6.0625rem] max-lg:rounded-full max-lg:bg-[linear-gradient(93.11deg,rgb(210_138_76/0.7)_-0.94%,#D28A4C_105.02%)] max-lg:px-0 max-lg:text-[#140d0a] max-lg:hover:bg-[linear-gradient(93.11deg,rgb(210_138_76/0.7)_-0.94%,#D28A4C_105.02%)] max-lg:text-[0.9375rem]">
           Aplicar
         </Button>
       </div>

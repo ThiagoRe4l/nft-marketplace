@@ -13,7 +13,7 @@ export function MobileNav({ cartCount }: { cartCount: number }) {
   const home = isHomeActive(pathname, hash) || isMarketActive(pathname, hash)
   const cartActive = pathname === '/carrinho'
   const profileActive = pathname === '/perfil'
-  if (isNftDetail(pathname)) return null
+  if (isNftDetail(pathname) || pathname === '/carrinho') return null
 
   return (
     <nav

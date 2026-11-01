@@ -42,8 +42,13 @@ function RootLayout() {
         <div
             className={cn(
                 'flex min-h-dvh flex-col md:pb-0',
-                // mobile: espaço para a barra inferior, ou para a barra de compra (mais alta) no detalhe
-                isNftDetail(pathname) ? 'pb-[calc(10.5rem+env(safe-area-inset-bottom))]' : 'pb-[calc(4.25rem+env(safe-area-inset-bottom))]',
+                // mobile: espaço para a barra inferior, ou para a barra de compra (mais alta) no detalhe;
+                // o carrinho não tem barra inferior (o painel do resumo fica fixo e a página reserva o espaço dele)
+                isNftDetail(pathname)
+                    ? 'pb-[calc(10.5rem+env(safe-area-inset-bottom))]'
+                    : pathname === '/carrinho'
+                      ? 'pb-0'
+                      : 'pb-[calc(4.25rem+env(safe-area-inset-bottom))]',
             )}
         >
             <a
@@ -68,7 +73,10 @@ function RootLayout() {
             <main id="main" tabIndex={-1} className="flex-1 outline-none">
                 <Outlet />
             </main>
-            <Footer />
+            {/* mobile: o rodapé só aparece na Início (e no detalhe, que já estava certo) */}
+            <div className={cn(pathname !== '/' && !isNftDetail(pathname) && 'max-md:hidden')}>
+                <Footer />
+            </div>
             <MobileNav cartCount={cartCount} />
             <AuthDialog />
             <Toaster />

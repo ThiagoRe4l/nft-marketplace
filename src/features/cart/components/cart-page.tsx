@@ -16,7 +16,7 @@ export function CartPage() {
   const cart = query.data
 
   return (
-    <div className="mx-auto w-full max-w-page px-gutter pt-4 pb-8 lg:py-8">
+    <div className="mx-auto w-full max-w-page px-gutter pt-4 pb-[calc(2rem+var(--cart-panel-h,0px))] md:pb-8 lg:py-8">
       <Breadcrumb className="mb-4 max-lg:hidden">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -82,7 +82,9 @@ export function CartPage() {
         {cart ? <CartSummary cart={cart} /> : query.isError ? null : <CartSummarySkeleton />}
       </div>
 
-      <AlsoViewed />
+      <div className="max-md:hidden">
+        <AlsoViewed />
+      </div>
     </div>
   )
 }

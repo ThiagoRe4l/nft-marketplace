@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -8,9 +8,31 @@ import { formatEth } from '@/shared/lib/money'
 import { CouponForm } from './coupon-form'
 
 // mesmo contêiner para o resumo real e o skeleton: as dimensões não mudam ao carregar
-// mobile (Figma): painel de 40 px de raio que acompanha a rolagem e fica colado acima da barra inferior (sticky), sem cobrir o fim da lista
+// mobile (Figma): painel de 40 px de raio FIXO no rodapé da tela (sem barra inferior), com área segura;
+// a página reserva o espaço dele via --cart-panel-h. Entre 768 e 1023 px continua sticky, como antes.
 const panelClass =
-  'max-lg:sticky max-lg:bottom-[calc(4.25rem+env(safe-area-inset-bottom))] max-lg:z-10 max-lg:-mx-gutter max-lg:rounded-t-[2.5rem] max-lg:bg-card max-lg:px-gutter max-lg:pt-6 max-lg:pb-9 max-lg:shadow-[0_-10px_30px_rgba(10,6,4,0.45)]'
+  'max-lg:z-10 max-lg:rounded-t-[2.5rem] max-lg:bg-card max-lg:px-gutter max-lg:pt-6 max-lg:shadow-[0_-10px_30px_rgba(10,6,4,0.45)] md:max-lg:sticky md:max-lg:bottom-[calc(4.25rem+env(safe-area-inset-bottom))] md:max-lg:-mx-gutter md:max-lg:pb-9 max-md:fixed max-md:inset-x-0 max-md:bottom-0 max-md:pb-[calc(1.5rem+env(safe-area-inset-bottom))]'
+
+// publica a altura do painel fixo para a página dar padding no fim da lista
+function usePanelHeight() {
+  const [node, setNode] = useState<HTMLElement | null>(null)
+  useLayoutEffect(() => {
+    if (!node) return
+    const root = document.documentElement
+    const update = () => {
+      const fixed = getComputedStyle(node).position === 'fixed'
+      root.style.setProperty('--cart-panel-h', fixed ? `${node.offsetHeight}px` : '0px')
+    }
+    update()
+    const observer = new ResizeObserver(update)
+    observer.observe(node)
+    return () => {
+      observer.disconnect()
+      root.style.removeProperty('--cart-panel-h')
+    }
+  }, [node])
+  return setNode
+}
 
 const rowClass = 'flex h-8 items-center justify-between text-sm max-lg:h-5 max-lg:text-[0.9375rem] max-lg:[&>dd]:text-base'
 const ctaClass = cn(
@@ -33,9 +55,10 @@ export function CartSummary({ cart }: { cart: Cart }) {
   const { summary } = cart
   const empty = cart.items.length === 0
   const announcement = useTotalAnnouncement(summary.total)
+  const panelRef = usePanelHeight()
 
   return (
-    <aside aria-labelledby="cart-summary-title" className={panelClass}>
+    <aside ref={panelRef} aria-labelledby="cart-summary-title" className={panelClass}>
       <h2 id="cart-summary-title" className="hidden border-b pb-3 text-base font-bold lg:block">
         Resumo da carteira
       </h2>
@@ -87,8 +110,9 @@ export function CartSummary({ cart }: { cart: Cart }) {
 }
 
 export function CartSummarySkeleton() {
+  const panelRef = usePanelHeight()
   return (
-    <div role="status" aria-label="Carregando resumo" className={panelClass}>
+    <div ref={panelRef} role="status" aria-label="Carregando resumo" className={panelClass}>
       <div className="hidden border-b pb-3 lg:block">
         <Skeleton className="h-6 w-44" />
       </div>

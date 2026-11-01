@@ -85,13 +85,14 @@ test.describe('regressão visual', { tag: '@visual' }, () => {
     await expectScreenshot(page, 'detalhe.png')
   })
 
-  test('Carrinho (itens fixos)', async ({ page }) => {
+  test('Carrinho (itens fixos)', async ({ page, isMobile }) => {
     await gotoApp(page, '/')
     await loginAs(page, 'ana')
     await seedCart(page)
     await gotoApp(page, '/carrinho')
     await expect(page.getByRole('region', { name: 'Itens do carrinho' }).getByRole('listitem')).toHaveCount(CART.length)
-    await expect(page.getByRole('list', { name: 'NFTs em alta' }).getByRole('article').first()).toBeVisible()
+    // no mobile a seção "Colecionadores também viram" não aparece no carrinho
+    if (!isMobile) await expect(page.getByRole('list', { name: 'NFTs em alta' }).getByRole('article').first()).toBeVisible()
     await expectScreenshot(page, 'carrinho.png')
   })
 
