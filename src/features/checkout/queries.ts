@@ -29,8 +29,9 @@ export function usePlaceOrder() {
   const session = useSession()
 
   return useMutation({
-    // cliques repetidos entram na mesma fila e caem na mesma tentativa
+    mutationKey: ['place-order'], // permite observar a compra de qualquer componente
     scope: { id: 'checkout' },
+    // cliques repetidos entram na mesma fila e caem na mesma tentativa
     mutationFn: async (body: z.infer<typeof CreateOrderInput>) => {
       const userId = session.data?.user.id
       if (!userId) throw new Error('Sessão encerrada')
